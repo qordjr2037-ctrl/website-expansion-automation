@@ -2,7 +2,7 @@
   "experiment_id": "gangara-blitz-2026",
   "status": "active",
   "started_at": "2026-06-17T00:00:00Z",
-  "updated_at": "2026-06-17T04:57:02Z",
+  "updated_at": "2026-06-17T04:59:18Z",
   "hypothesis": "gangara.co.kr 단일 사이트에 directory+guide_hub 백링크 집중 시 3키워드 SERP 상승",
   "target": {
     "money_url": "https://gangara.co.kr/",
@@ -71,6 +71,120 @@
             "https://roomhubs.com/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD/",
             "https://gangnamhyperpublic.com/"
           ]
+        }
+      ]
+    },
+    {
+      "probed_at": "2026-06-17T04:59:18Z",
+      "mode": "deep",
+      "target_domains": [
+        "gangara.co.kr",
+        "gangara.netlify.app"
+      ],
+      "keywords_probed": 3,
+      "found_in_serp_count": 0,
+      "results": [
+        {
+          "keyword": "강남 가라오케",
+          "best_rank": null,
+          "best_provider": "ddg_lite",
+          "best_matched_url": null,
+          "indexed": {
+            "query": "site:gangara.co.kr 강남 가라오케",
+            "indexed_urls": [],
+            "indexed_count": 0
+          },
+          "providers": {
+            "ddg_lite": {
+              "result_count": 0,
+              "rank": null,
+              "matched_url": null,
+              "matched_domain": null,
+              "top10": []
+            },
+            "ddg_html": {
+              "result_count": 0,
+              "rank": null,
+              "matched_url": null,
+              "matched_domain": null,
+              "top10": []
+            },
+            "bing": {
+              "result_count": 0,
+              "rank": null,
+              "matched_url": null,
+              "matched_domain": null,
+              "top10": []
+            }
+          }
+        },
+        {
+          "keyword": "강남 풀싸롱",
+          "best_rank": null,
+          "best_provider": "ddg_lite",
+          "best_matched_url": null,
+          "indexed": {
+            "query": "site:gangara.co.kr 강남 풀싸롱",
+            "indexed_urls": [],
+            "indexed_count": 0
+          },
+          "providers": {
+            "ddg_lite": {
+              "result_count": 0,
+              "rank": null,
+              "matched_url": null,
+              "matched_domain": null,
+              "top10": []
+            },
+            "ddg_html": {
+              "result_count": 0,
+              "rank": null,
+              "matched_url": null,
+              "matched_domain": null,
+              "top10": []
+            },
+            "bing": {
+              "result_count": 0,
+              "rank": null,
+              "matched_url": null,
+              "matched_domain": null,
+              "top10": []
+            }
+          }
+        },
+        {
+          "keyword": "강남 하이퍼블릭",
+          "best_rank": null,
+          "best_provider": "ddg_lite",
+          "best_matched_url": null,
+          "indexed": {
+            "query": "site:gangara.co.kr 강남 하이퍼블릭",
+            "indexed_urls": [],
+            "indexed_count": 0
+          },
+          "providers": {
+            "ddg_lite": {
+              "result_count": 0,
+              "rank": null,
+              "matched_url": null,
+              "matched_domain": null,
+              "top10": []
+            },
+            "ddg_html": {
+              "result_count": 0,
+              "rank": null,
+              "matched_url": null,
+              "matched_domain": null,
+              "top10": []
+            },
+            "bing": {
+              "result_count": 0,
+              "rank": null,
+              "matched_url": null,
+              "matched_domain": null,
+              "top10": []
+            }
+          }
         }
       ]
     }
@@ -153,5 +267,119 @@
       "A": 13,
       "B": 13
     }
+  },
+  "last_deep_probe": {
+    "probed_at": "2026-06-17T04:59:18Z",
+    "mode": "deep",
+    "target_domains": [
+      "gangara.co.kr",
+      "gangara.netlify.app"
+    ],
+    "keywords_probed": 3,
+    "found_in_serp_count": 0,
+    "results": [
+      {
+        "keyword": "강남 가라오케",
+        "best_rank": null,
+        "best_provider": "ddg_lite",
+        "best_matched_url": null,
+        "indexed": {
+          "query": "site:gangara.co.kr 강남 가라오케",
+          "indexed_urls": [],
+          "indexed_count": 0
+        },
+        "providers": {
+          "ddg_lite": {
+            "result_count": 0,
+            "rank": null,
+            "matched_url": null,
+            "matched_domain": null,
+            "top10": []
+          },
+          "ddg_html": {
+            "result_count": 0,
+            "rank": null,
+            "matched_url": null,
+            "matched_domain": null,
+            "top10": []
+          },
+          "bing": {
+            "result_count": 0,
+            "rank": null,
+            "matched_url": null,
+            "matched_domain": null,
+            "top10": []
+          }
+        }
+      },
+      {
+        "keyword": "강남 풀싸롱",
+        "best_rank": null,
+        "best_provider": "ddg_lite",
+        "best_matched_url": null,
+        "indexed": {
+          "query": "site:gangara.co.kr 강남 풀싸롱",
+          "indexed_urls": [],
+          "indexed_count": 0
+        },
+        "providers": {
+          "ddg_lite": {
+            "result_count": 0,
+            "rank": null,
+            "matched_url": null,
+            "matched_domain": null,
+            "top10": []
+          },
+          "ddg_html": {
+            "result_count": 0,
+            "rank": null,
+            "matched_url": null,
+            "matched_domain": null,
+            "top10": []
+          },
+          "bing": {
+            "result_count": 0,
+            "rank": null,
+            "matched_url": null,
+            "matched_domain": null,
+            "top10": []
+          }
+        }
+      },
+      {
+        "keyword": "강남 하이퍼블릭",
+        "best_rank": null,
+        "best_provider": "ddg_lite",
+        "best_matched_url": null,
+        "indexed": {
+          "query": "site:gangara.co.kr 강남 하이퍼블릭",
+          "indexed_urls": [],
+          "indexed_count": 0
+        },
+        "providers": {
+          "ddg_lite": {
+            "result_count": 0,
+            "rank": null,
+            "matched_url": null,
+            "matched_domain": null,
+            "top10": []
+          },
+          "ddg_html": {
+            "result_count": 0,
+            "rank": null,
+            "matched_url": null,
+            "matched_domain": null,
+            "top10": []
+          },
+          "bing": {
+            "result_count": 0,
+            "rank": null,
+            "matched_url": null,
+            "matched_domain": null,
+            "top10": []
+          }
+        }
+      }
+    ]
   }
 }

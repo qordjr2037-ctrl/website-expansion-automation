@@ -1,0 +1,114 @@
+{
+  "probed_at": "2026-06-17T04:59:18Z",
+  "mode": "deep",
+  "target_domains": [
+    "gangara.co.kr",
+    "gangara.netlify.app"
+  ],
+  "keywords_probed": 3,
+  "found_in_serp_count": 0,
+  "results": [
+    {
+      "keyword": "강남 가라오케",
+      "best_rank": null,
+      "best_provider": "ddg_lite",
+      "best_matched_url": null,
+      "indexed": {
+        "query": "site:gangara.co.kr 강남 가라오케",
+        "indexed_urls": [],
+        "indexed_count": 0
+      },
+      "providers": {
+        "ddg_lite": {
+          "result_count": 0,
+          "rank": null,
+          "matched_url": null,
+          "matched_domain": null,
+          "top10": []
+        },
+        "ddg_html": {
+          "result_count": 0,
+          "rank": null,
+          "matched_url": null,
+          "matched_domain": null,
+          "top10": []
+        },
+        "bing": {
+          "result_count": 0,
+          "rank": null,
+          "matched_url": null,
+          "matched_domain": null,
+          "top10": []
+        }
+      }
+    },
+    {
+      "keyword": "강남 풀싸롱",
+      "best_rank": null,
+      "best_provider": "ddg_lite",
+      "best_matched_url": null,
+      "indexed": {
+        "query": "site:gangara.co.kr 강남 풀싸롱",
+        "indexed_urls": [],
+        "indexed_count": 0
+      },
+      "providers": {
+        "ddg_lite": {
+          "result_count": 0,
+          "rank": null,
+          "matched_url": null,
+          "matched_domain": null,
+          "top10": []
+        },
+        "ddg_html": {
+          "result_count": 0,
+          "rank": null,
+          "matched_url": null,
+          "matched_domain": null,
+          "top10": []
+        },
+        "bing": {
+          "result_count": 0,
+          "rank": null,
+          "matched_url": null,
+          "matched_domain": null,
+          "top10": []
+        }
+      }
+    },
+    {
+      "keyword": "강남 하이퍼블릭",
+      "best_rank": null,
+      "best_provider": "ddg_lite",
+      "best_matched_url": null,
+      "indexed": {
+        "query": "site:gangara.co.kr 강남 하이퍼블릭",
+        "indexed_urls": [],
+        "indexed_count": 0
+      },
+      "providers": {
+        "ddg_lite": {
+          "result_count": 0,
+          "rank": null,
+          "matched_url": null,
+          "matched_domain": null,
+          "top10": []
+        },
+        "ddg_html": {
+          "result_count": 0,
+          "rank": null,
+          "matched_url": null,
+          "matched_domain": null,
+          "top10": []
+        },
+        "bing": {
+          "result_count": 0,
+          "rank": null,
+          "matched_url": null,
+          "matched_domain": null,
+          "top10": []
+        }
+      }
+    }
+  ]
+}
