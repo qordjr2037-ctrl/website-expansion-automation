@@ -1,0 +1,45 @@
+# -*- coding: utf-8 -*-
+"""placement 풀 랭킹 — dofollow·무캡챠·키워드 deficit 우선."""
+from __future__ import annotations
+
+from collections import Counter
+from typing import Any
+
+
+def pick_keyword_balanced_batch(
+    pool: list[dict[str, Any]],
+    keywords: list[str],
+    batch_size: int,
+    existing_coverage: dict[str, int] | None = None,
+) -> list[dict[str, Any]]:
+    coverage = Counter(existing_coverage or {})
+    for kw in keywords:
+        coverage.setdefault(kw, 0)
+
+    def sort_key(row: dict[str, Any]) -> tuple:
+        kw = row.get("target_keyword", "")
+        deficit = -coverage.get(kw, 0)
+        dofollow = 0 if row.get("dofollow_hint") else 1
+        captcha = 1 if row.get("write_captcha") else 0
+        rank = row.get("serp_rank", 99)
+        trait = -row.get("trait_score", 0)
+        tier_order = {"S": 0, "A": 1, "B": 2, "F": 3}.get(row.get("tier_hint", "B"), 2)
+        return (tier_order, deficit, dofollow, captcha, rank, trait)
+
+    active = [r for r in pool if r.get("qualified", True) and r.get("trait_score", 0) >= 40]
+    active.sort(key=sort_key)
+
+    picked: list[dict[str, Any]] = []
+    picked_urls: set[str] = set()
+    for row in active:
+        if len(picked) >= batch_size:
+            break
+        url = row.get("deploy_url") or row.get("url", "")
+        if url in picked_urls:
+            continue
+        picked_urls.add(url)
+        picked.append(row)
+        kw = row.get("target_keyword", "")
+        coverage[kw] += 1
+
+    return picked
