@@ -45,6 +45,20 @@ SEED_URLS: list[tuple[str, str]] = [
     ("강남 가라오케", "https://choicelounge.co.kr/gangnam-garaoke/"),
     ("강남 풀싸롱", "https://choicelounge.co.kr/poolsalon/"),
     ("강남 하이퍼블릭", "https://choicelounge.co.kr/highpublic/"),
+    # 풀싸롱 SERP 벤치마크 시드 (coverage 보강)
+    ("강남 풀싸롱", "https://www.gangnamfullssalong.com/"),
+    ("강남 풀싸롱", "https://www.fullssawara.com/"),
+    ("강남 풀싸롱", "https://www.levelhotelsalon.com/"),
+    ("강남 풀싸롱", "https://www.classicnamu.com/"),
+    ("강남 풀싸롱", "https://gangnammirror.com/"),
+    ("강남 풀싸롱", "https://thesevensalon.com/"),
+    ("강남 풀싸롱", "https://roompang.com/guide/gangnam-poolsalon"),
+    ("강남 풀싸롱", "https://www.gugudano.com/"),
+    ("강남 풀싸롱", "https://hypublic.com/gangnam-poolsalon/"),
+    ("강남 풀싸롱", "https://gangnamko.co.kr/poolsalon/"),
+    ("강남 하이퍼블릭", "https://www.roompang.com/guide/gangnam-hyperpublic"),
+    ("강남 하이퍼블릭", "https://gangnam-highpublic.com/"),
+    ("강남 가라오케", "https://www.karaokegangnam.net/"),
 ]
 
 RESULT_LINK = re.compile(r'uddg=([^&"]+)')

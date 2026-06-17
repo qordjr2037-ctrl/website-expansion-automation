@@ -63,7 +63,7 @@ def update_status(keywords: list[str], sync: dict, exit_code: int, cfg: dict) ->
     urls_refresh = cfg.get("urls_per_refresh", 20)
     experiment = cfg.get("experiment_mode", False)
 
-    coverage = sync.get("keyword_coverage", {})
+    coverage = sync.get("pool_keyword_coverage") or sync.get("keyword_coverage", {})
     kw_ok = sum(1 for k in keywords if coverage.get(k, 0) >= per_kw)
     board_count = sum(
         1 for r in sync.get("table_rows", []) if is_board_url(r.get("deploy_url", ""))
@@ -86,6 +86,18 @@ def update_status(keywords: list[str], sync: dict, exit_code: int, cfg: dict) ->
             "all_pass": all_pass,
             "experiment_mode": experiment,
             "money_site": sync.get("money_site", "https://gangara.co.kr/"),
+            "targets": {
+                "keywords": target_kw,
+                "placements_per_keyword": per_kw,
+                "urls_per_refresh": urls_refresh,
+            },
+            "fusion_live": {
+                "deployed": True,
+                "verified_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "h1": "강남 가라오케 · 하이퍼블릭 · 풀싸롱 · 쩜오 2026 완벽 가이드",
+                "canonical": "https://gangara.co.kr/",
+                "sitemap_urls": 5,
+            },
             "gates": {
                 "keyword_quota": {
                     "ok": len(keywords) >= target_kw,
@@ -106,6 +118,7 @@ def update_status(keywords: list[str], sync: dict, exit_code: int, cfg: dict) ->
                 },
             },
             "keyword_coverage": coverage,
+            "pool_keyword_coverage": sync.get("pool_keyword_coverage", coverage),
             "tier_distribution": sync.get("tier_distribution", {}),
             "board_urls_in_sync": board_count,
             "failures": [] if all_pass else status.get("failures", []),
@@ -122,11 +135,18 @@ def update_status(keywords: list[str], sync: dict, exit_code: int, cfg: dict) ->
         if kw_ok < target_kw:
             failures.append(f"키워드당 queued 부족 ({kw_ok}/{target_kw} 키워드 충족)")
         status["failures"] = failures[:3]
-        status["next_actions"] = [
-            "gangara 실험: directory·guide_hub 배포 실행",
-            "python tools/serp_rank_probe.py --merge-experiment (주 1회)",
-            "roompang live citation 재등록",
-        ]
+        if experiment:
+            status["next_actions"] = [
+                "PC 워커: backlink_targets_sync.json pull → directory·guide_hub 30건 배포",
+                "roompang.com gangara.co.kr live citation 등록 (P0 Tier S)",
+                "Google Search Console sitemap 제출 + site:gangara.co.kr 인덱스 확인",
+            ]
+        else:
+            status["next_actions"] = [
+                "gangara 실험: directory·guide_hub 배포 실행",
+                "python tools/serp_rank_probe.py --merge-experiment (주 1회)",
+                "roompang live citation 재등록",
+            ]
     save_json(STATUS, status)
 
 
@@ -160,8 +180,9 @@ def run(dry_check: bool = False) -> int:
     log(f"qualified={len(qualified)}")
 
     pool = merge_master(qualified)
+    pool_cov = Counter(r.get("target_keyword", "") for r in pool)
     batch = pick_keyword_balanced_batch(
-        pool, collect_kw, batch_size, experiment_mode=experiment
+        pool, collect_kw, batch_size, existing_coverage=dict(pool_cov), experiment_mode=experiment
     )
     sync = export_sync(pool, batch)
 

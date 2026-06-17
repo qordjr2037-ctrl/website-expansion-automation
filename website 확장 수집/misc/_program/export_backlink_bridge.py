@@ -58,6 +58,8 @@ def export_sync(pool: list[dict[str, Any]], batch: list[dict[str, Any]]) -> dict
     for row in batch:
         coverage[row.get("target_keyword", "")] += 1
 
+    pool_coverage = Counter(r.get("target_keyword", "") for r in pool)
+
     table_rows = []
     for i, row in enumerate(batch):
         kw = row.get("target_keyword", "")
@@ -89,6 +91,7 @@ def export_sync(pool: list[dict[str, Any]], batch: list[dict[str, Any]]) -> dict
         "source": "gangara_experiment" if experiment else "backlink_sync",
         "board_urls": 0,
         "keyword_coverage": dict(coverage),
+        "pool_keyword_coverage": dict(pool_coverage),
         "tier_distribution": dict(Counter(r.get("tier_hint", "B") for r in batch)),
         "table_rows": table_rows,
     }

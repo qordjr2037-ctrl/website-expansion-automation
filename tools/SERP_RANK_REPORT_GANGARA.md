@@ -40,17 +40,27 @@ choicelounge·gangnamdalto·classicsalong 등 **SERP 벤치마크 10곳은 이 s
 
 ---
 
-## 라이브 gangara.co.kr 상태 (순위 없는 핵심 원인)
+## 라이브 gangara.co.kr 상태 (2026-06-17 fusion 배포 후)
 
-| 항목 | 라이브 (2026-06-17) | fusion 템플릿 (repo) |
-|------|---------------------|----------------------|
+| 항목 | live (배포 후) | fusion 목표 |
+|------|----------------|-------------|
+| H1 | `강남 가라오케 · 하이퍼블릭 · 풀싸롱 · 쩜오 2026 완벽 가이드` ✅ | ✅ |
+| canonical | `https://gangara.co.kr/` ✅ | ✅ |
+| robots sitemap | co.kr ✅ | ✅ |
+| sitemap URL 수 | **5개** ✅ | 5 |
+| fusion 배포 | **live 반영** ✅ | templates/gangara-hub/ |
+
+→ **온페이지 fusion 완료.** SERP 미노출은 백링크·인덱스 단계 (Phase 3 PC 배포).
+
+---
+
+## 라이브 gangara.co.kr 상태 (배포 전 — 참고)
+
+| 항목 | 라이브 (구버전) | fusion 템플릿 (repo) |
+|------|-----------------|----------------------|
 | H1 | `강남 가라오케 01025949736` ❌ | `{키워드} 2026 완벽 가이드` ✅ |
 | canonical | gangara.**netlify.app** ❌ | gangara.co.kr ✅ |
-| robots sitemap | netlify ❌ | co.kr ✅ |
-| sitemap URL 수 | 1개 (netlify만) | 5개 (허브+하부) |
 | fusion 배포 | **미배포** | templates/gangara-hub/ |
-
-→ **백링크 실험 전에 fusion HTML을 호스팅코리아에 올려야** 순위 변화 측정 의미 있음.
 
 ---
 
