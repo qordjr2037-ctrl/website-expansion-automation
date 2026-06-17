@@ -1,12 +1,20 @@
 {
   "campaigns": [
     {
+      "id": "gangara-experiment",
+      "label": "gangara.co.kr 백링크 집중 실험 (단일 사이트)",
+      "money_url": "https://gangara.co.kr/",
+      "utm_template": "?utm_source=backlink&utm_medium={platform}&utm_campaign={keyword_slug}",
+      "default_anchor_keyword": "강남 가라오케",
+      "enabled": true
+    },
+    {
       "id": "main-landing",
-      "label": "메인 랜딩 (로컬에서 money_url 교체 — 커밋 주의)",
-      "money_url": "https://example.com/",
+      "label": "레거시 캠페인 (비활성)",
+      "money_url": "https://gangara.co.kr/",
       "utm_template": "?utm_source=backlink&utm_medium={platform}&utm_campaign={keyword_slug}",
       "default_anchor_keyword": "강남 하이퍼블릭",
-      "enabled": true
+      "enabled": false
     }
   ]
 }

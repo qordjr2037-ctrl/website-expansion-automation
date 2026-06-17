@@ -1,0 +1,28 @@
+{
+  "experiment_id": "gangara-blitz-2026",
+  "status": "active",
+  "started_at": "2026-06-17T00:00:00Z",
+  "updated_at": "",
+  "hypothesis": "gangara.co.kr 단일 사이트에 directory+guide_hub 백링크 집중 시 3키워드 SERP 상승",
+  "target": {
+    "money_url": "https://gangara.co.kr/",
+    "domain": "gangara.co.kr",
+    "keywords": ["강남 가라오케", "강남 풀싸롱", "강남 하이퍼블릭"],
+    "goal_rank": 10,
+    "platform_priority": ["directory", "guide_hub", "profile"]
+  },
+  "baseline": {
+    "dr": 2,
+    "rd": 46,
+    "backlinks": 389,
+    "note": "2026-06-17 SST — tools/backlink_live_output.json"
+  },
+  "rank_history": [],
+  "last_probe": null,
+  "deploy_log": [],
+  "success_criteria": [
+    "3키워드 중 1개 이상 DDG top10 진입",
+    "RD live +5 (Ahrefs/SST 주 1회)",
+    "roompang directory live citation 200 OK"
+  ]
+}

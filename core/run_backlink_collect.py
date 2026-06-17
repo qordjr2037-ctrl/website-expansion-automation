@@ -21,13 +21,17 @@ from serp_backlink_collector import collect_keywords  # noqa: E402
 
 STATUS = REPO / "core/backlink_deploy_status.json"
 CONFIG = REPO / "core/machine_config.json"
-KEYWORDS = REPO / "website 확장 수집/misc/data/backlink_keywords.txt"
+KEYWORDS_DEFAULT = REPO / "website 확장 수집/misc/data/backlink_keywords.txt"
 LOG = REPO / "website 확장 수집/misc/logs/backlink_collect_live.log"
 
 
-def load_keywords() -> list[str]:
+def load_keywords(cfg: dict | None = None) -> list[str]:
+    cfg = cfg or load_json(CONFIG, {})
+    kw_file = REPO / cfg.get("keywords_file", KEYWORDS_DEFAULT.relative_to(REPO))
+    if not kw_file.is_absolute():
+        kw_file = REPO / kw_file
     lines = []
-    for line in KEYWORDS.read_text(encoding="utf-8").splitlines():
+    for line in kw_file.read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if line and not line.startswith("#"):
             lines.append(line)
@@ -53,11 +57,11 @@ def log(msg: str) -> None:
     print(line.rstrip())
 
 
-def update_status(keywords: list[str], sync: dict, exit_code: int) -> None:
-    cfg = load_json(CONFIG, {})
+def update_status(keywords: list[str], sync: dict, exit_code: int, cfg: dict) -> None:
     target_kw = cfg.get("target_keywords", 13)
     per_kw = cfg.get("placements_per_keyword", 10)
     urls_refresh = cfg.get("urls_per_refresh", 20)
+    experiment = cfg.get("experiment_mode", False)
 
     coverage = sync.get("keyword_coverage", {})
     kw_ok = sum(1 for k in keywords if coverage.get(k, 0) >= per_kw)
@@ -80,12 +84,14 @@ def update_status(keywords: list[str], sync: dict, exit_code: int) -> None:
             "updated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "current_phase": 2,
             "all_pass": all_pass,
+            "experiment_mode": experiment,
+            "money_site": sync.get("money_site", "https://gangara.co.kr/"),
             "gates": {
                 "keyword_quota": {
                     "ok": len(keywords) >= target_kw,
                     "current": len(keywords),
                     "target": target_kw,
-                    "detail": "backlink_keywords.txt 키워드 수",
+                    "detail": cfg.get("keywords_file", "backlink_keywords.txt"),
                 },
                 "sync_push": {
                     "ok": sync.get("count", 0) >= urls_refresh,
@@ -117,26 +123,28 @@ def update_status(keywords: list[str], sync: dict, exit_code: int) -> None:
             failures.append(f"키워드당 queued 부족 ({kw_ok}/{target_kw} 키워드 충족)")
         status["failures"] = failures[:3]
         status["next_actions"] = [
-            "키워드 deficit 우선 pick_batch",
-            "directory·guide_hub 시드 확대",
-            "fusion gangara-hub 호스팅 배포",
+            "gangara 실험: directory·guide_hub 배포 실행",
+            "python tools/serp_rank_probe.py --merge-experiment (주 1회)",
+            "roompang live citation 재등록",
         ]
     save_json(STATUS, status)
 
 
 def run(dry_check: bool = False) -> int:
-    keywords = load_keywords()
     cfg = load_json(CONFIG, {})
+    keywords = load_keywords(cfg)
     batch_size = cfg.get("urls_per_refresh", 20)
+    experiment = cfg.get("experiment_mode", False)
 
     priority = ["강남 가라오케", "강남 풀싸롱", "강남 하이퍼블릭"]
-    collect_kw = priority + [k for k in keywords if k not in priority]
+    collect_kw = [k for k in priority if k in keywords] + [k for k in keywords if k not in priority]
 
-    log(f"collect start keywords={len(keywords)} priority={priority}")
+    mode = "experiment" if experiment else "standard"
+    log(f"collect start mode={mode} keywords={len(keywords)} money=gangara.co.kr")
 
     if dry_check:
         sync = load_json(REPO / "core/backlink_targets_sync.json", {})
-        update_status(keywords, sync, 0)
+        update_status(keywords, sync, 0, cfg)
         log("dry-check done")
         return 0
 
@@ -152,13 +160,15 @@ def run(dry_check: bool = False) -> int:
     log(f"qualified={len(qualified)}")
 
     pool = merge_master(qualified)
-    batch = pick_keyword_balanced_batch(pool, collect_kw, batch_size)
+    batch = pick_keyword_balanced_batch(
+        pool, collect_kw, batch_size, experiment_mode=experiment
+    )
     sync = export_sync(pool, batch)
 
     tier_dist = Counter(r.get("tier_hint", "B") for r in batch)
     log(f"sync count={sync['count']} pool_total={sync['pool_total']} tiers={dict(tier_dist)}")
 
-    update_status(keywords, sync, 0)
+    update_status(keywords, sync, 0, cfg)
     return 0
 
 
@@ -166,11 +176,17 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-check", action="store_true")
     args = parser.parse_args()
+    cfg = load_json(CONFIG, {})
     try:
         code = run(dry_check=args.dry_check)
     except Exception as e:
         log(f"ERROR {e}")
-        update_status(load_keywords(), load_json(REPO / "core/backlink_targets_sync.json", {}), 1)
+        update_status(
+            load_keywords(cfg),
+            load_json(REPO / "core/backlink_targets_sync.json", {}),
+            1,
+            cfg,
+        )
         sys.exit(1)
     sys.exit(code)
 

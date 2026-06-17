@@ -35,6 +35,16 @@ SEED_URLS: list[tuple[str, str]] = [
     ("강남 하이퍼블릭", "https://thesevensalon.com/"),
     ("강남 유흥", "https://www.korea.kr/"),
     ("강남 가라오케", "https://www.safetyreport.go.kr/"),
+    # experiment: directory·guide_hub 집중 시드
+    ("강남 가라오케", "https://roompang.com/search?q=강남+가라오케"),
+    ("강남 풀싸롱", "https://roompang.com/search?q=강남+풀싸롱"),
+    ("강남 하이퍼블릭", "https://roompang.com/search?q=강남+하이퍼블릭"),
+    ("강남 가라오케", "https://gangnamhigh.clickn.co.kr/"),
+    ("강남 하이퍼블릭", "https://gangnamhigh.clickn.co.kr/"),
+    ("강남 풀싸롱", "https://gangnamko.co.kr/"),
+    ("강남 가라오케", "https://choicelounge.co.kr/gangnam-garaoke/"),
+    ("강남 풀싸롱", "https://choicelounge.co.kr/poolsalon/"),
+    ("강남 하이퍼블릭", "https://choicelounge.co.kr/highpublic/"),
 ]
 
 RESULT_LINK = re.compile(r'uddg=([^&"]+)')
