@@ -1,0 +1,407 @@
+{
+  "generated_at": "2026-06-17T04:08:00Z",
+  "ahrefs_configured": false,
+  "reports": [
+    {
+      "domain": "gangara.co.kr",
+      "ahrefs_dr": null,
+      "ahrefs_live_backlinks": null,
+      "ahrefs_live_refdomains": null,
+      "blazehive_authority": null,
+      "blazehive_refdomains": null,
+      "known_citations": [],
+      "verified_live_citations": [],
+      "ddg_link_sample": 0,
+      "notes": [
+        "SmallSEOTools 실측(Semrush): DR=2 RD=46 BL=389",
+        "Ahrefs API 키 없음 — AHREFS_API_KEY 설정 시 live_refdomains/백링크 수 자동 수집",
+        "공개 인덱스상 외부 인용 극소 — 1페이지 경쟁사 대비 최대 격차 요인"
+      ],
+      "data_sources": [
+        "smallseotools_live"
+      ],
+      "sst_dr": 2,
+      "sst_referring_domains": 46,
+      "sst_backlinks_total": 389,
+      "sst_referring_urls": 304,
+      "sst_sample_backlinks": [
+        "https://postheaven.net/ghostdeal22/gangnam-garaoke-gangnamgaraoke-gangnamjjeomo-gangnam-jjeomo-gangnam-syeoceurum-gangnamsyeoceurum"
+      ]
+    },
+    {
+      "domain": "choicelounge.co.kr",
+      "ahrefs_dr": null,
+      "ahrefs_live_backlinks": null,
+      "ahrefs_live_refdomains": null,
+      "blazehive_authority": null,
+      "blazehive_refdomains": null,
+      "known_citations": [
+        {
+          "type": "guide_hub_internal",
+          "url": "https://choicelounge.co.kr/",
+          "note": "허브→8매장 카드 내부 PageRank"
+        }
+      ],
+      "verified_live_citations": [],
+      "ddg_link_sample": 0,
+      "notes": [
+        "SmallSEOTools 실측(Semrush): DR=2 RD=101 BL=14494",
+        "Ahrefs API 키 없음 — AHREFS_API_KEY 설정 시 live_refdomains/백링크 수 자동 수집",
+        "공개 인덱스상 외부 인용 극소 — 1페이지 경쟁사 대비 최대 격차 요인"
+      ],
+      "data_sources": [
+        "smallseotools_live"
+      ],
+      "sst_dr": 2,
+      "sst_referring_domains": 101,
+      "sst_backlinks_total": 14494,
+      "sst_referring_urls": 5866,
+      "sst_sample_backlinks": [
+        "https://xanderfogd369922.bcbloggers.com/40010417/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD-%ED%9E%99%EC%8A%A4%ED%84%B0%EB%93%A4%EC%9D%98-%EC%84%B1%EC%A7%80%EB%A1%9C-%EB%96%A0%EC%98%A4%EB%A5%B4%EB%8A%94-%EC%9D%B4%EC%9C%A0"
+      ]
+    },
+    {
+      "domain": "gangnamdalto.co.kr",
+      "ahrefs_dr": null,
+      "ahrefs_live_backlinks": null,
+      "ahrefs_live_refdomains": null,
+      "blazehive_authority": null,
+      "blazehive_refdomains": null,
+      "known_citations": [
+        {
+          "type": "directory_listing",
+          "url": "https://www.roompang.com/firm/4d378a0b-f740-433c-9e98-86a03f1c850c/",
+          "note": "룸빵닷컴 업소页 — 2026-06-17 HTTP 404, 재등록 URL 필요"
+        },
+        {
+          "type": "sibling_domain",
+          "url": "https://runningrabbit.kr",
+          "note": "형제 도메인 상호링크 (벤치마크)"
+        },
+        {
+          "type": "sibling_domain",
+          "url": "https://runningrabbit.net",
+          "note": "형제 도메인"
+        }
+      ],
+      "verified_live_citations": [],
+      "ddg_link_sample": 0,
+      "notes": [
+        "SmallSEOTools 실측(Semrush): DR=5 RD=556 BL=6194",
+        "Ahrefs API 키 없음 — AHREFS_API_KEY 설정 시 live_refdomains/백링크 수 자동 수집",
+        "공개 인덱스상 외부 인용 극소 — 1페이지 경쟁사 대비 최대 격차 요인"
+      ],
+      "data_sources": [
+        "smallseotools_live"
+      ],
+      "sst_dr": 5,
+      "sst_referring_domains": 556,
+      "sst_backlinks_total": 6194,
+      "sst_referring_urls": 2146,
+      "sst_sample_backlinks": [
+        "https://runningrabbitt-gn.com/"
+      ]
+    },
+    {
+      "domain": "classicsalong.com",
+      "ahrefs_dr": null,
+      "ahrefs_live_backlinks": null,
+      "ahrefs_live_refdomains": null,
+      "blazehive_authority": null,
+      "blazehive_refdomains": null,
+      "known_citations": [],
+      "verified_live_citations": [],
+      "ddg_link_sample": 0,
+      "notes": [
+        "SmallSEOTools 실측(Semrush): DR=6 RD=48 BL=463",
+        "Ahrefs API 키 없음 — AHREFS_API_KEY 설정 시 live_refdomains/백링크 수 자동 수집",
+        "공개 인덱스상 외부 인용 극소 — 1페이지 경쟁사 대비 최대 격차 요인"
+      ],
+      "data_sources": [
+        "smallseotools_live"
+      ],
+      "sst_dr": 6,
+      "sst_referring_domains": 48,
+      "sst_backlinks_total": 463,
+      "sst_referring_urls": 313,
+      "sst_sample_backlinks": [
+        "http://knows.sbs/domain/domain/part/51761"
+      ]
+    },
+    {
+      "domain": "thesevensalon.com",
+      "ahrefs_dr": null,
+      "ahrefs_live_backlinks": null,
+      "ahrefs_live_refdomains": null,
+      "blazehive_authority": null,
+      "blazehive_refdomains": null,
+      "known_citations": [],
+      "verified_live_citations": [],
+      "ddg_link_sample": 0,
+      "notes": [
+        "SmallSEOTools 실측(Semrush): DR=6 RD=93 BL=386",
+        "Ahrefs API 키 없음 — AHREFS_API_KEY 설정 시 live_refdomains/백링크 수 자동 수집",
+        "공개 인덱스상 외부 인용 극소 — 1페이지 경쟁사 대비 최대 격차 요인"
+      ],
+      "data_sources": [
+        "smallseotools_live"
+      ],
+      "sst_dr": 6,
+      "sst_referring_domains": 93,
+      "sst_backlinks_total": 386,
+      "sst_referring_urls": 254,
+      "sst_sample_backlinks": [
+        "https://m.salonlofts.com/angela_alexander"
+      ]
+    },
+    {
+      "domain": "applegangnam.com",
+      "ahrefs_dr": null,
+      "ahrefs_live_backlinks": null,
+      "ahrefs_live_refdomains": null,
+      "blazehive_authority": null,
+      "blazehive_refdomains": null,
+      "known_citations": [],
+      "verified_live_citations": [],
+      "ddg_link_sample": 0,
+      "notes": [
+        "SmallSEOTools 실측(Semrush): DR=2 RD=113 BL=264",
+        "Ahrefs API 키 없음 — AHREFS_API_KEY 설정 시 live_refdomains/백링크 수 자동 수집",
+        "공개 인덱스상 외부 인용 극소 — 1페이지 경쟁사 대비 최대 격차 요인"
+      ],
+      "data_sources": [
+        "smallseotools_live"
+      ],
+      "sst_dr": 2,
+      "sst_referring_domains": 113,
+      "sst_backlinks_total": 264,
+      "sst_referring_urls": 263,
+      "sst_sample_backlinks": [
+        "https://www.applegangnam.com/"
+      ]
+    },
+    {
+      "domain": "gangnammirror.com",
+      "ahrefs_dr": null,
+      "ahrefs_live_backlinks": null,
+      "ahrefs_live_refdomains": null,
+      "blazehive_authority": null,
+      "blazehive_refdomains": null,
+      "known_citations": [],
+      "verified_live_citations": [],
+      "ddg_link_sample": 0,
+      "notes": [
+        "SmallSEOTools 실측(Semrush): DR=6 RD=96 BL=208",
+        "Ahrefs API 키 없음 — AHREFS_API_KEY 설정 시 live_refdomains/백링크 수 자동 수집",
+        "공개 인덱스상 외부 인용 극소 — 1페이지 경쟁사 대비 최대 격차 요인"
+      ],
+      "data_sources": [
+        "smallseotools_live"
+      ],
+      "sst_dr": 6,
+      "sst_referring_domains": 96,
+      "sst_backlinks_total": 208,
+      "sst_referring_urls": 208,
+      "sst_sample_backlinks": [
+        "https://ptowplqwe.blogspot.com/"
+      ]
+    },
+    {
+      "domain": "gangnamko.co.kr",
+      "ahrefs_dr": null,
+      "ahrefs_live_backlinks": null,
+      "ahrefs_live_refdomains": null,
+      "blazehive_authority": null,
+      "blazehive_refdomains": null,
+      "known_citations": [],
+      "verified_live_citations": [],
+      "ddg_link_sample": 0,
+      "notes": [
+        "SmallSEOTools 실측(Semrush): DR=2 RD=404 BL=3560",
+        "Ahrefs API 키 없음 — AHREFS_API_KEY 설정 시 live_refdomains/백링크 수 자동 수집",
+        "공개 인덱스상 외부 인용 극소 — 1페이지 경쟁사 대비 최대 격차 요인"
+      ],
+      "data_sources": [
+        "smallseotools_live"
+      ],
+      "sst_dr": 2,
+      "sst_referring_domains": 404,
+      "sst_backlinks_total": 3560,
+      "sst_referring_urls": 3550,
+      "sst_sample_backlinks": [
+        "https://yeonjehobba.co.kr/"
+      ]
+    },
+    {
+      "domain": "richhuang.co.kr",
+      "ahrefs_dr": null,
+      "ahrefs_live_backlinks": null,
+      "ahrefs_live_refdomains": null,
+      "blazehive_authority": null,
+      "blazehive_refdomains": null,
+      "known_citations": [],
+      "verified_live_citations": [],
+      "ddg_link_sample": 0,
+      "notes": [
+        "Ahrefs API 키 없음 — AHREFS_API_KEY 설정 시 live_refdomains/백링크 수 자동 수집",
+        "공개 인덱스상 외부 인용 극소 — 1페이지 경쟁사 대비 최대 격차 요인"
+      ],
+      "data_sources": []
+    }
+  ],
+  "niche_benchmark_estimates": [
+    {
+      "domain": "gangnamdalto.co.kr",
+      "est_refdomains": "5~20",
+      "est_backlinks": "10~80",
+      "ahrefs_dr": "미측정/소형",
+      "top_citation_types": [
+        "directory(roompang)",
+        "sibling_domain"
+      ],
+      "verified": [
+        "roompang 업소页"
+      ]
+    },
+    {
+      "domain": "choicelounge.co.kr",
+      "est_refdomains": "5~25",
+      "est_backlinks": "15~100",
+      "ahrefs_dr": "미측정/소형",
+      "top_citation_types": [
+        "guide_hub_internal",
+        "directory"
+      ],
+      "verified": [
+        "허브 8매장 내부링크"
+      ]
+    },
+    {
+      "domain": "classicsalong.com",
+      "est_refdomains": "3~15",
+      "est_backlinks": "5~50",
+      "ahrefs_dr": "미측정/소형",
+      "top_citation_types": [
+        "longform",
+        "local"
+      ],
+      "verified": []
+    },
+    {
+      "domain": "gangara.co.kr",
+      "est_refdomains": "0~3",
+      "est_backlinks": "0~10",
+      "ahrefs_dr": "미측정/신규",
+      "top_citation_types": [],
+      "verified": [],
+      "gap_vs_median_top10": "RD -5~20"
+    }
+  ],
+  "how_to_get_exact_numbers": [
+    "Ahrefs 무료: https://ahrefs.com/backlink-checker (도메인 입력)",
+    "Ahrefs API: AHREFS_API_KEY 환경변수 → python tools/backlink_audit.py --all",
+    "Google Search Console → Links → Top linking sites (본인 사이트만)",
+    "BlazeHive 무료 10회/일: https://www.blazehive.io/tools/free-backlink-checker/"
+  ],
+  "live_sst_collected_at": "2026-06-17T04:05:12Z",
+  "live_sst_provider": "smallseotools+2captcha",
+  "live_sst_summary": [
+    {
+      "domain": "gangara.co.kr",
+      "dr": 2,
+      "referring_domains": 46,
+      "backlinks_total": 389,
+      "referring_urls": 304,
+      "sample_backlinks": [
+        "https://postheaven.net/ghostdeal22/gangnam-garaoke-gangnamgaraoke-gangnamjjeomo-gangnam-jjeomo-gangnam-syeoceurum-gangnamsyeoceurum"
+      ],
+      "status": "ok"
+    },
+    {
+      "domain": "choicelounge.co.kr",
+      "dr": 2,
+      "referring_domains": 101,
+      "backlinks_total": 14494,
+      "referring_urls": 5866,
+      "sample_backlinks": [
+        "https://xanderfogd369922.bcbloggers.com/40010417/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD-%ED%9E%99%EC%8A%A4%ED%84%B0%EB%93%A4%EC%9D%98-%EC%84%B1%EC%A7%80%EB%A1%9C-%EB%96%A0%EC%98%A4%EB%A5%B4%EB%8A%94-%EC%9D%B4%EC%9C%A0"
+      ],
+      "status": "ok"
+    },
+    {
+      "domain": "gangnamdalto.co.kr",
+      "dr": 5,
+      "referring_domains": 556,
+      "backlinks_total": 6194,
+      "referring_urls": 2146,
+      "sample_backlinks": [
+        "https://runningrabbitt-gn.com/"
+      ],
+      "status": "ok"
+    },
+    {
+      "domain": "classicsalong.com",
+      "dr": 6,
+      "referring_domains": 48,
+      "backlinks_total": 463,
+      "referring_urls": 313,
+      "sample_backlinks": [
+        "http://knows.sbs/domain/domain/part/51761"
+      ],
+      "status": "ok"
+    },
+    {
+      "domain": "thesevensalon.com",
+      "dr": 6,
+      "referring_domains": 93,
+      "backlinks_total": 386,
+      "referring_urls": 254,
+      "sample_backlinks": [
+        "https://m.salonlofts.com/angela_alexander"
+      ],
+      "status": "ok"
+    },
+    {
+      "domain": "applegangnam.com",
+      "dr": 2,
+      "referring_domains": 113,
+      "backlinks_total": 264,
+      "referring_urls": 263,
+      "sample_backlinks": [
+        "https://www.applegangnam.com/"
+      ],
+      "status": "ok"
+    },
+    {
+      "domain": "gangnammirror.com",
+      "dr": 6,
+      "referring_domains": 96,
+      "backlinks_total": 208,
+      "referring_urls": 208,
+      "sample_backlinks": [
+        "https://ptowplqwe.blogspot.com/"
+      ],
+      "status": "ok"
+    },
+    {
+      "domain": "gangnamko.co.kr",
+      "dr": 2,
+      "referring_domains": 404,
+      "backlinks_total": 3560,
+      "referring_urls": 3550,
+      "sample_backlinks": [
+        "https://yeonjehobba.co.kr/"
+      ],
+      "status": "ok"
+    },
+    {
+      "domain": "richhuang.co.kr",
+      "dr": null,
+      "referring_domains": null,
+      "backlinks_total": null,
+      "referring_urls": null,
+      "sample_backlinks": [],
+      "status": "parse_failed"
+    }
+  ]
+}

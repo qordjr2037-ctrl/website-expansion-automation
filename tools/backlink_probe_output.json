@@ -1,0 +1,132 @@
+{
+  "gangara.co.kr": {
+    "domain": "gangara.co.kr",
+    "duckduckgo": {
+      "ddg_result_links": 0,
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    },
+    "bing": {
+      "bing_results_reported": "?",
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    }
+  },
+  "choicelounge.co.kr": {
+    "domain": "choicelounge.co.kr",
+    "duckduckgo": {
+      "ddg_result_links": 0,
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    },
+    "bing": {
+      "bing_results_reported": "?",
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    }
+  },
+  "gangnamdalto.co.kr": {
+    "domain": "gangnamdalto.co.kr",
+    "duckduckgo": {
+      "ddg_result_links": 0,
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    },
+    "bing": {
+      "bing_results_reported": "?",
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    }
+  },
+  "classicsalong.com": {
+    "domain": "classicsalong.com",
+    "duckduckgo": {
+      "ddg_result_links": 0,
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    },
+    "bing": {
+      "bing_results_reported": "?",
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    }
+  },
+  "thesevensalon.com": {
+    "domain": "thesevensalon.com",
+    "duckduckgo": {
+      "ddg_result_links": 0,
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    },
+    "bing": {
+      "bing_results_reported": "?",
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    }
+  },
+  "applegangnam.com": {
+    "domain": "applegangnam.com",
+    "duckduckgo": {
+      "ddg_result_links": 0,
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    },
+    "bing": {
+      "bing_results_reported": "?",
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    }
+  },
+  "gangnammirror.com": {
+    "domain": "gangnammirror.com",
+    "duckduckgo": {
+      "ddg_result_links": 0,
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    },
+    "bing": {
+      "bing_results_reported": "?",
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    }
+  },
+  "gangnamko.co.kr": {
+    "domain": "gangnamko.co.kr",
+    "duckduckgo": {
+      "ddg_result_links": 0,
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    },
+    "bing": {
+      "bing_results_reported": "?",
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    }
+  },
+  "richhuang.co.kr": {
+    "domain": "richhuang.co.kr",
+    "duckduckgo": {
+      "ddg_result_links": 0,
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    },
+    "bing": {
+      "bing_results_reported": "?",
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    }
+  },
+  "garaoke.clickn.co.kr": {
+    "domain": "garaoke.clickn.co.kr",
+    "duckduckgo": {
+      "ddg_result_links": 0,
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    },
+    "bing": {
+      "bing_results_reported": "?",
+      "sample_referring_hosts": [],
+      "sample_count_unique": 0
+    }
+  }
+}

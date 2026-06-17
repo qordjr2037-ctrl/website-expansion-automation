@@ -85,6 +85,55 @@ on_page_score (export 최소 50, Tier B 이상)
   -30 bbs/write  -20 본문<500
 
 ================================================================================
+API · 캡차 · 백링크 실측 (환경변수 — 항상 이 목록 전제, 커밋 금지)
+================================================================================
+Automation/Agent Run 은 아래 키가 **Runner·로컬 env 에 이미 있다**고 가정한다.
+프롬프트 작성 시 이 블록을 **항상 통째로** 넣는다 (나중에 귀찮게 추가하지 않음).
+
+  TWOCAPTCHA_API_KEY     — 2captcha.com (reCAPTCHA v2/v3, hCaptcha, Turnstile)
+                           SmallSEOTools·SEO Review Tools·디렉터리 가입/조회 캡차
+  AHREFS_API_KEY         — Ahrefs API v3 → DR, live RD, live backlinks
+  SEMRUSH_API_KEY        — Semrush API (Authority Score, RD) — 유료 플랜
+  SEMRUSH_LOGIN_EMAIL    — (선택) Semrush 무료 10회 — 브라우저 로그인용
+  SEMRUSH_LOGIN_PASSWORD — (선택) 위와 쌍
+  SEOREVIEWTOOLS_API_KEY — seoreviewtools.com API / 유료 백링크 리포트
+  BLAZEHIVE_API_KEY      — (선택, 서비스 종료·주차 가능) BlazeHive 백링크
+
+로컬 전용 파일 ( .gitignore — **절대 push 금지** ):
+  .env
+  captcha_solver.json    → {"provider":"2captcha","api_key":"<TWOCAPTCHA_API_KEY>"}
+  local_defaults.py
+
+Python 에서는 os.environ 또는 python-dotenv(.env) 로 읽는다.
+브라우저 자동화 시 캡차 뜨면 **TWOCAPTCHA_API_KEY 로 풀고 재시도** (포기 금지).
+
+백링크 DR/RD·인용 실측 순서 (gangara + SERP 벤치마크 9~11도메인):
+  1) python tools/backlink_audit.py --all  (AHREFS_API_KEY)
+  2) 브라우저 Ahrefs 무료:
+       https://ahrefs.com/backlink-checker
+       https://ahrefs.com/website-authority-checker
+  3) 브라우저 + 2captcha:
+       https://www.seoreviewtools.com/valuable-backlinks-checker/
+       https://smallseotools.com/backlink-checker/
+  4) Semrush Backlink Analytics (로그인 env 있으면) + 2captcha
+  5) 보조: known citation live verify (roompang 업소页 등), Bing "link:domain"
+  6) 결과 → tools/backlink_audit_output.json 갱신, core/SERP_VS_GANGARA_COMPARISON.txt 반영
+
+이 niche: DR 50+ 필수 아님. **live RD 5~20 + directory 1~3** 이 체감 차이.
+gangara.co.kr 실측(2026-06-17 SST): DR 2 · RD 46 · BL 389 — 상위(choicelounge RD101, gangnamdalto RD556) 대비 RD·고품질 인용 부족.
+
+================================================================================
+Instruction / Extraction 프롬프트 본문 (Automation 에 붙여넣기)
+================================================================================
+Cursor Automation · Agent Run 의 **Instructions / Extraction prompt** 필드에는
+아래 파일 **전체**를 복사해 넣는다 (메타 설명 아님, 실행 프롬프트 본문):
+
+  → core/EXTRACTION_PROMPT.txt
+
+본 파일(AGENT_INSTRUCTION_PROMPT.txt)은 repo·역할·게이트 요약용.
+fusion·10곳 장점·단점 보완 **실행 지시**는 EXTRACTION_PROMPT.txt 만 사용.
+
+================================================================================
 매 Run
 ================================================================================
 1) core/backlink_deploy_status.json 읽기
@@ -106,13 +155,15 @@ on_page_score (export 최소 50, Tier B 이상)
 금지
 ================================================================================
 Track A · board_writer · guest_sync · bbs 수집 · DR-only 필터
-비밀키·2captcha·실제 money_url 커밋 · 무한 harvest · E2E 대량 Chrome
+비밀키·API키·2captcha·.env·captcha_solver.json·실제 money_url **커밋**
+  (env 사용은 OK, repo push 는 NO) · 무한 harvest · E2E 대량 Chrome
 
 ================================================================================
 참고 파일
 ================================================================================
-  core/SERP_RANKING_VS_INVISIBLE.txt
-  core/SERP_WEBSITE_ANALYSIS.txt
+  core/SERP_VS_GANGARA_COMPARISON.txt
+  core/EXTRACTION_PROMPT.txt          ← Automation Instructions 붙여넣기 본문
+  core/GANGARA_FUSION_BLUEPRINT.txt
   core/AUTOMATION_INSTRUCTIONS.txt
   website 확장 수집/misc/data/backlink_keywords.txt
   website 확장 수집/misc/data/serp_backlink_queries.txt

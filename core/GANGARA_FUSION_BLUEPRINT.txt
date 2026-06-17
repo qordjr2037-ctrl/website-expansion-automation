@@ -1,0 +1,65 @@
+================================================================================
+GANGARA FUSION — 10곳 장점 통합 + 단점 보완 설계서
+================================================================================
+배포: website 확장 수집/templates/gangara-hub/ → 호스팅코리아 gangara.co.kr
+
+================================================================================
+10곳에서 가져온 장점 → fusion 반영
+================================================================================
+| # | 벤치마크 | 가져온 장점 | fusion 파일 |
+|---|----------|-------------|-------------|
+| 1 | choicelounge | 허브+하부URL+비교표+FAQ+타임라인 | index.html |
+| 2 | gangnamdalto | NAP표·통계·FAQ·가격표 | index.html |
+| 3 | classicsalong | 실장 스토리·매직미러 용어 | index + poolsalon |
+| 4 | thesevensalon | footer #해시태그 | index.html |
+| 5 | applegangnam | 룸타입 섹션 | gangnam-poolsalon.html |
+| 6 | gangnammirror | 문자 예약 퍼널 | poolsalon |
+| 7 | gangnamko | Q&A·매거진 → FAQ+하부링크 | 전 페이지 |
+| 8 | richhuang | (단점) title 과밀·짧은 본문 | **미사용** |
+| 9 | clickn | 다점포 → **co.kr 하부 URL** (SaaS 대신) | 4 subpages |
+|10 | roompang | 디렉터리 인용 | **Phase1 백링크** (사이트 밖) |
+
+================================================================================
+10곳 단점 → fusion에서 제거
+================================================================================
+| 단점 | fusion 대응 |
+|------|-------------|
+| NAP 없음 (gangara旧) | NAP HTML 표 |
+| 내부링크 1 | 허브+4하부+상호링크 |
+| 010 42회 반복 | CTA 2~3회/페이지 |
+| netlify sitemap 혼선 | robots/sitemap → co.kr only |
+| roompang 미등록 | Track B P0 등록 |
+| DR/RD 극소 | backlink_audit + directory 5~10 |
+| clickn 빈 템플릿 | 자체 HTML만 |
+| richhuang 키워드 스터핑 | 자연 밀도 |
+| Pepyaka 1MB+ HTML | 가벼운 정적 CSS (~15KB) |
+| H1=전화번호 | H1=키워드 문장 |
+
+================================================================================
+백링크 — 왜 숫자가 없었는지 & 지금 있는 것
+================================================================================
+Ahrefs DR/RD = 유료 API 또는 브라우저 로그인 필요. 이전 턴은 온페이지만 프로브.
+
+지금 repo에 추가:
+  tools/backlink_audit.py       — AHREFS_API_KEY 있으면 live RD/백링크
+  tools/backlink_audit_output.json
+  tools/backlink_probe.py       — link: 검색 샘플
+
+niche 추정 (SERP+인용 분석):
+  gangnamdalto  RD 5~20   | roompang + 형제도메인
+  choicelounge  RD 5~25   | 허브 내부링크
+  gangara       RD 0~3    | **최대 gap**
+
+사용자가 숫자 확인 3가지 (무료):
+  1) https://ahrefs.com/backlink-checker → gangara.co.kr 입력
+  2) Google Search Console → Links (본인만)
+  3) python tools/backlink_audit.py --all (+ AHREFS_API_KEY)
+
+================================================================================
+배포 체크리스트
+================================================================================
+□ gangara-hub/* → 호스팅코리아 public_html
+□ gangara.netlify.app → 301 gangara.co.kr
+□ robots.txt 교체 (netlify sitemap 제거)
+□ roompang 업소 등록 (백링크 P0)
+□ 주 1회: python tools/backlink_audit.py --domain gangara.co.kr

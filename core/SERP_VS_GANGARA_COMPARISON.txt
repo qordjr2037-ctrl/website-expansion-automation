@@ -1,0 +1,179 @@
+================================================================================
+SERP 상위 10곳 vs gangara.co.kr — 요인별 비교 분석표
+================================================================================
+분석일: 2026-06-14
+키워드 축: 강남 가라오케 · 강남 풀싸롱 · 강남 하이퍼블릭
+방법: HTTP 온페이지 프로브(2026-06-14) + 기존 SERP 벤치마크 + 인용(citation) 검색
+백링크 DR: Ahrefs 무료·유료 도구로 개별 확인 권장 (이 업종은 DR 미측정·소형도 1페이지 多)
+
+※ richhuang.co.kr — 프로브 시 콘텐츠가 게임 거래(아이템땡스)로 변경됨. 과거 벤치마크와 불일치.
+※ garaoke.clickn.co.kr, clicknn.co.kr — 프로브 환경 DNS 실패. 과거 SERP 기록은 유지.
+
+================================================================================
+1. 종합 점수 (Track B on_page_score + 인용 가중)
+================================================================================
+
+| 사이트 | 유형 | 온페이지(100) | 인용/백링크 | 종합 Tier | gangara 대비 |
+|--------|------|---------------|-------------|-----------|--------------|
+| choicelounge.co.kr | guide_hub | 85 | ★★★ 허브8매장 | S | ▲▲▲ gap 큼 |
+| gangnamdalto.co.kr | single_landing | 85 | ★★ roompang+형제 | A | ▲▲ |
+| classicsalong.com | single_landing | 85 | ★ 롱폼 | A | ▲ |
+| thesevensalon.com | single_landing | 85 | ★ 해시태그 | A | ▲ |
+| applegangnam.com | single_landing | 85 | ★ 섹션롱폼 | A | ▲ |
+| gangnammirror.com | single_landing | 85 | ★ CTA LP | A | ▲ |
+| garaoke.clickn.co.kr | saas_sub | (과거) | ★ clickn망 | B | ▲ |
+| gangnamko.co.kr | guide_hub | 10* | ★★ 내부허브 | B | 혼합 |
+| richhuang.co.kr | minimal | 0* | ☆ 거의없음 | C | (벤치마크失效) |
+| **gangara.co.kr (YOU)** | **single LP** | **75** | **☆ 미확인·약함** | **B-** | **기준** |
+
+*gangnamko/richhuang: SPA·리다이렉트로 텍스트 추출 왜곡 가능 — 실제 SERP 페이지는 더 풍부
+
+================================================================================
+2. 요인별 상세 비교표 (★=강함 ○=보통 △=약함 ✗=없음)
+================================================================================
+
+범례: 10곳 = SERP 벤치마크 평균/공통 패턴
+
+| # | 요인 (가중치) | 1페이지 10곳 공통 | gangara.co.kr | 격차 | 조치 우선순위 |
+|---|---------------|-------------------|---------------|------|---------------|
+| 1 | **타깃 키워드 title** (★★★) | ★ "{키워드}+1위/가이드/2026" | ★ 5키워드 title | 거의 동급 | 유지 |
+| 2 | **H1 키워드** (★★★) | ★ exact/near | ○ H1=전화번호 혼재 | △ | H1을 키워드 문장으로 |
+| 3 | **FAQ 5개+** (★★★) | ★ 5~56블록 | △ schema有, 본문FAQ 2 | △ | 아코디언 FAQ 8개+ |
+| 4 | **가격표/비교표** (★★★) | ★ HTML table | ○ 텍스트만(주대언급) | △ | 1부/2부·TC·RT 표 |
+| 5 | **NAP(주소·지하철·시간)** (★★★) | ★ 테이블 19~46신호 | ✗ 신호 2 | ✗✗ | 강남역·주소·영업표 |
+| 6 | **본문 3000자+** (★★) | ★ 3k~9k | ○ 3,644자 | ○ | 키워드별 섹션 확장 |
+| 7 | **내부링크/하부URL** (★★★) | ★ 5~24개(허브) | ✗ 1개 | ✗✗ | /hyperbolic /poolsalon 등 |
+| 8 | **Schema FAQ/Local** (★★) | ★ 9/10 | ○ FAQ schema | ○ | LocalBusiness 추가 |
+| 9 | **플랫폼/CMS** (★) | WP/ClickN/커스텀 | ○ 정적 Apache | ○ | WP 허브 전환 검토 |
+| 10 | **도메인 .co.kr** (★★) | ★ 6/10 .co.kr | ★ gangara.co.kr | 동급 | 유지 |
+| 11 | **도메인 연령** (★★) | ○~★ 2017+ or SaaS | △ 미확인(신규可) | △ | 인용으로 보완 |
+| 12 | **형제 도메인** (★★) | ○ 2~3개 상호링크 | ✗ 없음 | ✗ | .kr 1개만 선택 시 |
+| 13 | **디렉터리 인용** (★★★) | ★ roompang 등 | ✗ 검색未발견 | ✗✗ | roompang 등록 P0 |
+| 14 | **guide_hub 인용** (★★) | ○ choicelounge형 | ✗ | ✗ | Phase1 백링크 |
+| 15 | **ClickN/SaaS 망** (★★) | ○ 서브量産 | ✗ | — | 필수 아님 |
+| 16 | **추정 DR / RD** (★) | △ 대부분 미측정 | △ 미측정 | ? | RD 5~10 목표 |
+| 17 | **기술 SEO** (★★) | ○ HTTPS·sitemap | △ sitemap→netlify | △ | robots/sitemap 수정 |
+| 18 | **키워드 스터핑** (리스크) | ○ 적정 | △ 010×42회 | △ | CTA는 하단 집중 |
+
+================================================================================
+3. 백링크·기간·인용 — 유형별 매트릭스
+================================================================================
+
+| 인용 유형 | gangnamdalto | choicelounge | Pepyaka 4사 | gangara.co.kr |
+|-----------|--------------|--------------|-------------|---------------|
+| roompang.com 업소页 | ★ 등록됨 | ○ | ○ | ✗ 미확인 |
+| 형제 .kr/.net | ★ runningrabbit.* | ○ | ○ | ✗ |
+| guide_hub 내부 | ○ | ★★★ 8매장 | ○ | ✗ 단일URL |
+| clickn 프로필 | ○ | ○ | ○ | ✗ |
+| web2/블로그 | ○ | ○ | ○ | ✗ |
+| 추정 referring domains | 5~15+ | 5~20+ | 3~10+ | **0~3 (추정)** |
+
+| 기간·신뢰 | gangnamdalto | choicelounge | gangara.co.kr |
+|-----------|--------------|--------------|---------------|
+| 업력(콘텐츠) | 2017~ (9년+) | 가이드 허브 | "10년+" (선호부장) |
+| 도메인 등록 | .co.kr 사업 | .co.kr | .co.kr (호스팅코리아 NS) |
+| 호스팅 | openresty/WP | Apache 커스텀 | Apache + AWS IP |
+| Netlify 병행 | ✗ | ✗ | △ gangara.netlify.app 존재 |
+
+================================================================================
+4. gangara.co.kr — 발견된 기술 이슈 (즉시 수정)
+================================================================================
+
+1) robots.txt: Sitemap: https://gangara.netlify.app/sitemap.xml
+   → .co.kr 본番인데 sitemap이 Netlify를 가리킴. Google 혼선·신뢰 하락.
+   → 수정: Sitemap: https://gangara.co.kr/sitemap.xml + canonical gangara.co.kr
+
+2) gangara.netlify.app 와 gangara.co.kr 콘텐츠 중복
+   → canonical 하나만 (.co.kr 권장), Netlify는 301 리다이렉트 또는 폐기
+
+3) sitemap.xml (co.kr) — 500 에러. 인덱스 신호 약함.
+
+================================================================================
+5. gangara vs 1페이지 — 강점 / 약점 요약
+================================================================================
+
+[강점]
+  · .co.kr + 호스팅코리아 (벤치마크와 동일 축)
+  · title 다키워드 (가라오케·하이퍼블릭·쩜오·풀싸롱)
+  · 본문 3600자+, 주대/TC/룸티 설명 있음
+  · FAQ Schema markup 존재
+  · on_page_score 75 — export 기준(50) 통과
+
+[약점 — 1페이지 gap의 80%]
+  · NAP 테이블 없음 (상위 10곳 중 choicelounge 제외 전원 강함)
+  · 내부링크 1 / 하부 URL 0 (choicelounge 24개)
+  · roompang·디렉터리 인용 0 (달토는 roompang 必)
+  · HTML 가격·비교 표 없음
+  · FAQ 본문 2개 수준 (상위는 5~40)
+  · 010 번호 42회 반복 (과밀)
+  · 외부 referring domain 추정 극소
+
+================================================================================
+6. gangara 90일 로드맵 (비용 최소)
+================================================================================
+
+Week 1-2 온페이지 (무료·자체)
+  □ NAP 테이블 + FAQ 8 + 가격 HTML 표
+  □ 키워드별 하부 3URL (/gangnam-garaoke /hyperbolic /poolsalon)
+  □ robots/sitemap/canonical .co.kr 통일
+  □ 010 반복 → 하단 CTA 3~5회로 축소
+
+Week 3-8 인용 (Track B Phase 1)
+  □ roompang.com 업소 등록 (P0)
+  □ 지역 디렉터리 5~10
+  □ guide_hub형 사이트 프로필 URL 5+
+  □ anchor_plan: exact 40% partial 30% brand 20% naked 10%
+
+Week 9-12 검증
+  □ site:gangara.co.kr {키워드}
+  □ Ahrefs free: RD 목표 5~10
+  □ SERP rank probe 주 1회
+
+================================================================================
+7. 측정 데이터 원본 (2026-06-14 HTTP 프로브)
+================================================================================
+
+| site | html | text | h1 | faq | price | nap | tel | internal | on_score |
+| gangara | 15k | 3644 | 1 | 2 | 17 | 2 | 42 | 1 | 75 |
+| gangnamdalto | 56k | 3305 | 1 | 56 | 5 | 19 | 18 | 1 | 85 |
+| choicelounge | 54k | 5104 | 1 | 40 | 22 | 0 | 4 | 24 | 85 |
+| classicsalong | 1M | 7164 | 1 | 5 | 10 | 35 | 4 | 0 | 85 |
+| applegangnam | 1.3M | 9142 | 1 | 5 | 11 | 35 | 2 | 1 | 85 |
+
+도구: tools/serp_compare_probe.py → tools/serp_probe_output.json
+
+================================================================================
+8. Ahrefs / SEO 도구로 사용자가 직접 확인할 항목
+================================================================================
+
+https://ahrefs.com/website-authority-checker  → gangara.co.kr DR, live RD
+https://ahrefs.com/backlink-checker             → referring domains 목록
+site:gangara.co.kr                              → 인덱스 페이지 수
+site:roompang.com gangara                       → 디렉터리 등록 여부
+
+이 업종 벤치마크: DR 30+ 필수 아님. RD 5~10 + directory 1~3개가 체감 차이.
+================================================================================
+9. 백링크 실측 (SmallSEOTools/Semrush, 2026-06-17T04:05:12Z)
+================================================================================
+
+| domain | DR(SST) | RD | backlinks | ref URLs |
+|--------|---------|-----|-----------|----------|
+| gangara.co.kr | 2 | 46 | 389 | 304 |
+| choicelounge.co.kr | 2 | 101 | 14494 | 5866 |
+| gangnamdalto.co.kr | 5 | 556 | 6194 | 2146 |
+| classicsalong.com | 6 | 48 | 463 | 313 |
+| thesevensalon.com | 6 | 93 | 386 | 254 |
+| applegangnam.com | 2 | 113 | 264 | 263 |
+| gangnammirror.com | 6 | 96 | 208 | 208 |
+| gangnamko.co.kr | 2 | 404 | 3560 | 3550 |
+| richhuang.co.kr | — | — | — | SST/Semrush 데이터 없음 |
+
+출처: python tools/backlink_live_collect.py --all (2captcha Turnstile)
+주의: SST=Semrush 샘플 데이터. Ahrefs DR/RD와 수치가 다를 수 있음.
+
+gangara.co.kr 격차 요약 (2026-06-17 실측):
+  DR 2 — 벤치마크 중하위 (2~6)
+  RD 46 — choicelounge(101), gangnamdalto(556), gangnamko(404) 대비 낮음
+  백링크 389 — 상위권(choicelounge 14K, gangnamdalto 6K) 대비 낮음
+  샘플 링크: postheaven.net 스팸성 NF 링크 위주 → directory/고품질 RD 부족이 핵심
+  roompang 구 firm UUID URL → HTTP 404 (live citation 재등록 필요)

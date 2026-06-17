@@ -1,0 +1,160 @@
+{
+  "generated_at": "2026-06-17T04:05:12Z",
+  "provider": "smallseotools+2captcha",
+  "results": [
+    {
+      "source": "smallseotools_semrush",
+      "parsed": true,
+      "provider_note": "Semrush 데이터 via SmallSEOTools 무료 체커",
+      "dr": 2,
+      "referring_urls": 304,
+      "backlinks_total": 389,
+      "referring_domains": 46,
+      "referring_ips": 60,
+      "dofollow": 304,
+      "nofollow": 304,
+      "sample_backlinks": [
+        "https://postheaven.net/ghostdeal22/gangnam-garaoke-gangnamgaraoke-gangnamjjeomo-gangnam-jjeomo-gangnam-syeoceurum-gangnamsyeoceurum"
+      ],
+      "domain": "gangara.co.kr",
+      "http_status": 200,
+      "checked_at": "2026-06-17T04:01:58Z"
+    },
+    {
+      "source": "smallseotools_semrush",
+      "parsed": true,
+      "provider_note": "Semrush 데이터 via SmallSEOTools 무료 체커",
+      "dr": 2,
+      "referring_urls": 5866,
+      "backlinks_total": 14494,
+      "referring_domains": 101,
+      "referring_ips": 188,
+      "dofollow": 5866,
+      "nofollow": 5866,
+      "sample_backlinks": [
+        "https://xanderfogd369922.bcbloggers.com/40010417/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD-%ED%9E%99%EC%8A%A4%ED%84%B0%EB%93%A4%EC%9D%98-%EC%84%B1%EC%A7%80%EB%A1%9C-%EB%96%A0%EC%98%A4%EB%A5%B4%EB%8A%94-%EC%9D%B4%EC%9C%A0"
+      ],
+      "domain": "choicelounge.co.kr",
+      "http_status": 200,
+      "checked_at": "2026-06-17T04:02:21Z"
+    },
+    {
+      "source": "smallseotools_semrush",
+      "parsed": true,
+      "provider_note": "Semrush 데이터 via SmallSEOTools 무료 체커",
+      "dr": 5,
+      "referring_urls": 2146,
+      "backlinks_total": 6194,
+      "referring_domains": 556,
+      "referring_ips": 632,
+      "dofollow": 2146,
+      "nofollow": 2146,
+      "sample_backlinks": [
+        "https://runningrabbitt-gn.com/"
+      ],
+      "domain": "gangnamdalto.co.kr",
+      "http_status": 200,
+      "checked_at": "2026-06-17T04:02:44Z"
+    },
+    {
+      "source": "smallseotools_semrush",
+      "parsed": true,
+      "provider_note": "Semrush 데이터 via SmallSEOTools 무료 체커",
+      "dr": 6,
+      "referring_urls": 313,
+      "backlinks_total": 463,
+      "referring_domains": 48,
+      "referring_ips": 17,
+      "dofollow": 313,
+      "nofollow": 313,
+      "sample_backlinks": [
+        "http://knows.sbs/domain/domain/part/51761"
+      ],
+      "domain": "classicsalong.com",
+      "http_status": 200,
+      "checked_at": "2026-06-17T04:03:06Z"
+    },
+    {
+      "source": "smallseotools_semrush",
+      "parsed": true,
+      "provider_note": "Semrush 데이터 via SmallSEOTools 무료 체커",
+      "dr": 6,
+      "referring_urls": 254,
+      "backlinks_total": 386,
+      "referring_domains": 93,
+      "referring_ips": 35,
+      "dofollow": 254,
+      "nofollow": 254,
+      "sample_backlinks": [
+        "https://m.salonlofts.com/angela_alexander"
+      ],
+      "domain": "thesevensalon.com",
+      "http_status": 200,
+      "checked_at": "2026-06-17T04:03:29Z"
+    },
+    {
+      "source": "smallseotools_semrush",
+      "parsed": true,
+      "provider_note": "Semrush 데이터 via SmallSEOTools 무료 체커",
+      "dr": 2,
+      "referring_urls": 263,
+      "backlinks_total": 264,
+      "referring_domains": 113,
+      "referring_ips": 33,
+      "dofollow": 263,
+      "nofollow": 263,
+      "sample_backlinks": [
+        "https://www.applegangnam.com/"
+      ],
+      "domain": "applegangnam.com",
+      "http_status": 200,
+      "checked_at": "2026-06-17T04:03:57Z"
+    },
+    {
+      "source": "smallseotools_semrush",
+      "parsed": true,
+      "provider_note": "Semrush 데이터 via SmallSEOTools 무료 체커",
+      "dr": 6,
+      "referring_urls": 208,
+      "backlinks_total": 208,
+      "referring_domains": 96,
+      "referring_ips": 29,
+      "dofollow": 208,
+      "nofollow": 208,
+      "sample_backlinks": [
+        "https://ptowplqwe.blogspot.com/"
+      ],
+      "domain": "gangnammirror.com",
+      "http_status": 200,
+      "checked_at": "2026-06-17T04:04:21Z"
+    },
+    {
+      "source": "smallseotools_semrush",
+      "parsed": true,
+      "provider_note": "Semrush 데이터 via SmallSEOTools 무료 체커",
+      "dr": 2,
+      "referring_urls": 3550,
+      "backlinks_total": 3560,
+      "referring_domains": 404,
+      "referring_ips": 378,
+      "dofollow": 3550,
+      "nofollow": 3550,
+      "sample_backlinks": [
+        "https://yeonjehobba.co.kr/"
+      ],
+      "domain": "gangnamko.co.kr",
+      "http_status": 200,
+      "checked_at": "2026-06-17T04:04:49Z"
+    },
+    {
+      "source": "smallseotools_semrush",
+      "parsed": false,
+      "provider_note": "Semrush 데이터 via SmallSEOTools 무료 체커",
+      "blocked": "adblocker_warning",
+      "domain": "richhuang.co.kr",
+      "http_status": 200,
+      "checked_at": "2026-06-17T04:05:12Z",
+      "error": "parse_failed"
+    }
+  ]
+}

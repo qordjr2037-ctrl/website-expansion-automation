@@ -182,6 +182,15 @@ Run 종료 보고 형식 (필수)
   다음 Run: ...
 
 ================================================================================
+API · 캡차 (Runner env — AGENT_INSTRUCTION_PROMPT.txt 와 동일, 커밋 금지)
+================================================================================
+  TWOCAPTCHA_API_KEY, AHREFS_API_KEY, SEMRUSH_API_KEY, SEMRUSH_LOGIN_*,
+  SEOREVIEWTOOLS_API_KEY, BLAZEHIVE_API_KEY
+  로컬: .env, captcha_solver.json, local_defaults.py
+
+캡차·로그인 벽 → 2captcha 또는 env 계정으로 통과 후 수집/실측 계속.
+
+================================================================================
 금지
 ================================================================================
 - board-post-automation repo 수정·push·submodule
