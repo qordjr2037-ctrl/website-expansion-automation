@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-17T04:42:56Z",
+  "updated_at": "2026-06-17T04:57:02Z",
   "scope": "collect_and_export_only",
   "current_phase": 2,
   "all_pass": false,
@@ -12,14 +12,14 @@
   "gates": {
     "keyword_quota": {
       "ok": true,
-      "current": 13,
-      "target": 13,
-      "detail": "backlink_keywords.txt 키워드 수"
+      "current": 3,
+      "target": 3,
+      "detail": "website 확장 수집/misc/data/backlink_keywords_experiment.txt"
     },
     "sync_push": {
       "ok": true,
-      "count": 20,
-      "pool_total": 38,
+      "count": 30,
+      "pool_total": 49,
       "detail": "backlink_targets_sync.json"
     },
     "collect_round": {
@@ -29,25 +29,27 @@
     }
   },
   "keyword_coverage": {
-    "강남 가라오케": 6,
-    "강남 풀싸롱": 3,
-    "강남 하이퍼블릭": 7,
+    "강남 가라오케": 11,
+    "강남 풀싸롱": 5,
+    "강남 하이퍼블릭": 10,
     "강남 클럽": 1,
     "강남 유흥": 3
   },
   "failures": [
-    "키워드당 queued 부족 (0/13 키워드 충족)"
+    "키워드당 queued 부족 (0/3 키워드 충족)"
   ],
   "next_actions": [
-    "키워드 deficit 우선 pick_batch",
-    "directory·guide_hub 시드 확대",
-    "fusion gangara-hub 호스팅 배포"
+    "gangara 실험: directory·guide_hub 배포 실행",
+    "python tools/serp_rank_probe.py --merge-experiment (주 1회)",
+    "roompang live citation 재등록"
   ],
   "serp_benchmark_note": "guide_hub(choicelounge) > single_landing > minimal — FAQ+가격표+내부링크",
   "tier_distribution": {
-    "S": 1,
-    "A": 9,
-    "B": 10
+    "S": 4,
+    "A": 13,
+    "B": 13
   },
-  "board_urls_in_sync": 0
+  "board_urls_in_sync": 0,
+  "experiment_mode": true,
+  "money_site": "https://gangara.co.kr/"
 }
