@@ -153,10 +153,32 @@ print(out, out.stat().st_size)
 
 ---
 
+## 프롬프트 D — 계정 포함 (로컬 전용, Git 미커밋)
+
+계정·비번까지 Agent가 입력하게 하려면:
+
+- 로컬 파일: `tools/CURSOR_BROWSER_DEPLOY_PROMPT.private.md` (`.gitignore` 처리됨)
+- **GitHub에는 올라가지 않음** — clone 후 로컬에서만 사용
+
+---
+
+## 배포 소스 확인 (GitHub repo = 맞음)
+
+| 항목 | 값 |
+|------|-----|
+| repo | `qordjr2037-ctrl/website-expansion-automation` |
+| 브랜치 | `cursor/gangara-faeb` |
+| 소스 폴더 | `website 확장 수집/templates/gangara-hub/` |
+| 파일 수 | **18개** (HTML 5 + robots + sitemap + CSS 1 + JPG 10) |
+| zip | `tools/gangara-hub-deploy.zip` (로컬 생성 가능) |
+| 업로드 대상 | cPanel `public_html/` |
+
+---
+
 ## Cursor Browser 사용 팁
 
 1. Cursor에서 **Browser** 기능 켜기 → Chrome/Edge가 Agent에 연결됨
-2. **먼저** 브라우저에서 https://gangara.co.kr:2083/ 수동 로그인
-3. 로그인된 탭 유지한 채 위 **프롬프트 A** 붙여넣기
-4. Agent가 File Manager 조작 → live URL 검증까지 진행
-5. 2FA/캡cha 뜨면 내가 직접 처리 후 "계속" 입력
+2. **프롬프트 D** (계정 포함) 또는 **프롬프트 A** 붙여넣기
+3. Agent가 cPanel 로그인 → File Manager → 업로드 → live 검증
+4. 2FA/캡cha 뜨면 내가 직접 처리 후 "계속" 입력
+5. cPanel 직접 로그인 invalid 시 → hosting.kr → cPanel 바로가기

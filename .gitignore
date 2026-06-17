@@ -4,6 +4,8 @@
 **/captcha_solver.json
 .env
 .env.*
+**/CURSOR_BROWSER_DEPLOY_PROMPT.private.*
+**/*_WITH_CREDS.*
 
 # runtime / local data
 **/logs/
