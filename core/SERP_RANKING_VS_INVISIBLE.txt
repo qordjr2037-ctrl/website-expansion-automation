@@ -1,0 +1,168 @@
+================================================================================
+1페이지 vs 미노출 — 백링크·도메인·온페이지 비교 (Track B)
+================================================================================
+키워드: 강남 가라오케 · 강남 풀싸롱 · 강남 하이퍼블릭
+대상: 게시판(write.php) 제외, 자체 웹사이트만
+
+※ Ahrefs/Moz에 DR 미등록인데도 1페이지 노출 — 이 업종은 「고 DR」보다
+   「키워드 정합 + 온페이지 + 인용(citation) 백링크」 패턴이 더 중요.
+
+================================================================================
+A. 1페이지 그룹 (10곳 + 인용 생태계)
+================================================================================
+
+| # | URL | 추정 DR | 백링크/인용 신호 | 온페이지 |
+|---|-----|---------|------------------|----------|
+| 1 | gangnamdalto.co.kr | DR 미측정(소형) | roompang.com 업소页, .net/.kr 형제 도메인 | FAQ Y, title 키워드, ~33k |
+| 2 | garaoke.clickn.co.kr | 서브도메인 독립 | clickn 네트워크 템플릿 | FAQ+가격 가이드 |
+| 3 | richhuang.co.kr | DR 미측정 | 거의 없음(극단) | FAQ N, title 108자 키워드 과밀, ~131k |
+| 4 | gangnamko.co.kr | DR 미측정 | 협력사·매거진 내부링크 | FAQ Y, H1 없음, ~56k |
+| 5 | clicknn.co.kr/pages/* | 플랫폼 | clicknn 상호 링크 | 이벤트·예약 LP |
+| 6 | classicsalong.com | DR 미측정 | WP형 롱폼 | FAQ Y, ~840k(롱폼) |
+| 7 | thesevensalon.com | DR 미측정 | footer #해시태그 | FAQ Y, ~866k |
+| 8 | applegangnam.com | DR 미측정 | 섹션형 롱폼 | FAQ Y, ~1M |
+| 9 | gangnammirror.com | DR 미측정 | 예약 CTA | conversion LP |
+|10 | choicelounge.co.kr | DR 미측정 | **허브→8매장 카드** 내부링크 | FAQ+비교표+타임라인, ~32k ★ |
+
+**인용(백링크) 생태계 — 1페이지를 받치는 외부 표면:**
+  · roompang.com/firm/…     — 업소 디렉터리 (강남 달토 등)
+  · runningrabbit.kr / .net / runningrabbitgn.com — 형제 머니 도메인 상호 링크
+  · choicelounge → 개별 매장 하부 URL (내부 PageRank)
+  · clickn.co.kr / clicknn.co.kr — SaaS量産 (서브도메인 각각 SERP 1칸)
+
+================================================================================
+B. 미노출·약노출 그룹 (비교용)
+================================================================================
+
+| 유형 | 예시 | 왜 안 뜨나 |
+|------|------|------------|
+| 행정/정보 | upjong.co.kr/ksic-56211 | 키워드 의도 불일치 (업종코드) |
+| 법률 DB | legalengine.co.kr | 판례 페이지, 상업 키워드 X |
+| clickn 빈 템플릿 | karaoke.clickn.co.kr | 콘텐츠 거의 없음, 미완성 |
+| 일반 기업 홈 | (키워드 없는 co.kr) | title/H1에 타깃 키워드 없음 |
+| 게시판 only | bbs/write.php | Track A 영역, 웹사이트 확장 X |
+| 단일 연락처만 | (010 한 줄, 키워드 0) | SERP 진입 극히 어려움 (richhuang은 예외: title 과밀) |
+
+**미노출 공통 5조건 (1개라도 해당 시 Tier F):**
+  1) title/H1에 타깃 키워드 없음
+  2) 본문 < 500자 또는 FAQ·가격·비교 블록 전무
+  3) indexable URL 1개뿐 (하부 페이지·허브 없음)
+  4) 외부 인용 0 (디렉터리·허브·형제 도메인·SNS 프로필 링크 없음)
+  5) 게시판 URL만 존재하고 자체 랜딩 없음
+
+================================================================================
+C. 1페이지 vs 미노출 — 결정 요인 (우선순위)
+================================================================================
+
+[온페이지 — 즉시 복제 가능]  가중치 ★★★
+  · title = "{키워드} + 수식어(1위|완벽가이드|2026|예약)"
+  · H1 1개 = exact 또는 near-exact keyword
+  · FAQ 5개+ (질문에 키워드 포함)
+  · 가격 구조 (주대/TC/룸티) 또는 비교표
+  · 지역 NAP (주소·지하철·영업시간 테이블)
+  · 본문 3,000자+ 또는 허브+하부 5URL+
+  · LSI 밀도: 하이퍼블릭, 퍼블릭, 풀싸롱, 초이스, 역삼, 주대
+
+[백링크/인용 — Track B 수집·배포]  가중치 ★★★
+  · DR 30+ 필수 아님 — 소형 co.kr도 1페이지 가능
+  · 중요한 건 **인용 유형**:
+      directory_listing  roompang형 업소 등록
+      guide_hub_link     choicelounge 카드→하부
+      sibling_domain     runningrabbit.* 상호 링크
+      platform_profile   clickn/clicknn 프로필 homepage
+      local_citation     네이버·카카오맵 (수동, Automation 외)
+      web2_article       tistory/naver blog (지원 링크)
+  · dofollow + anchor에 키워드 or 브랜드+키워드
+  · referring_domains 3~10개만 있어도 롱테일 1페이지 사례 다수
+
+[도메인 — 보조]  가중치 ★★
+  · .co.kr 사업 도메인 > 무료 서브도메인 (단 clickn은 예외量産)
+  · domain_age: 1년+ 선호 (신규는 형제도메인+인용으로 보완)
+  · **형제 도메인 네트워크** = 이 업종 핵심 (같은 업장 .co.kr + .kr + .net)
+  · 서브도메인(clickn) = 부모 DR과 분리 → 각자 백링크 필요
+
+[기술]  가중치 ★
+  · HTTPS, 모바일, 속도 (극단적 느림만 제외)
+  · Schema LocalBusiness / FAQPage (있으면 가산)
+
+================================================================================
+D. Tier 모델 (수집·자체 확장 공통 scoring)
+================================================================================
+
+  Tier S  guide_hub + FAQ + 비교표 + 하부 5URL+ + directory 인용 2+
+          → choicelounge 패턴 — 1페이지 상단 목표
+
+  Tier A  single_landing + FAQ + 가격표 + NAP + 인용 1+
+          → gangnamdalto 패턴
+
+  Tier B  saas_subdomain(clickn) + 롱폼 가이드 템플릿
+          → garaoke.clickn 패턴
+
+  Tier C  minimal/keyword-stuff title + 짧은 본문 (불안정)
+          → richhuang 패턴 — 벤치마크에서 제외 권장
+
+  Tier F  미노출 — B섹션 5조건
+
+**Track B placement_qualifier 최소 기준 (export):**
+  · Tier S/A/B surface만
+  · bbs/write REJECT
+  · dofollow 또는 directory/guide_hub 인용 가능
+  · target_keyword SERP에서 competitor Tier ≥ B 확인
+
+================================================================================
+E. 「1페이지 상위」 만들기 로드맵 (Automation + 로컬)
+================================================================================
+
+Phase 1 — 온페이지 (머니사이트 또는 satellite)
+  □ 키워드별 전용 URL 1개 (허브 또는 랜딩)
+  □ title/H1/FAQ/가격/NAP 체크리스트 (C섹션)
+  □ choicelounge형: 메인 허브 + 키워드별 하부 3~8개
+
+Phase 2 — 인용 백링크 (Track B 배포)
+  □ directory_listing 5~10 (roompang 유형 수집)
+  □ guide_hub 카드 링크 / platform profile 5+
+  □ sibling satellite 도메인 2~3 상호 링크
+  □ anchor_plan: exact 40% + partial 30% + brand 20% + naked 10%
+
+Phase 3 — 검증
+  □ site:도메인 키워드 검색 (인덱스)
+  □ SERP rank probe (키워드별 주 1회)
+  □ referring URL live check (link_verifier)
+
+================================================================================
+F. 수집기가 기록할 metrics (backlink_targets row 확장)
+================================================================================
+
+  "domain_tier": "S|A|B|C|F"
+  "on_page_score": 0-100
+  "referring_domains_est": int
+  "citation_types": ["directory","guide_hub","platform","sibling",...]
+  "dofollow_ratio_est": float
+  "indexable_pages_est": int
+  "serp_rank_for_keyword": int
+  "competitor_of": "money_site campaign_id"
+  "clone_template": "guide_hub|single_landing|directory_listing"
+
+on_page_score 계산 (Automation 구현용):
+  +20 title keyword match
+  +15 H1 keyword
+  +15 FAQ 5+
+  +15 price or compare table
+  +10 NAP table
+  +10 body ≥3000 chars OR subpages ≥5
+  +10 internal links ≥5
+  +5  LSI keywords ≥8
+  -30 bbs/write path
+  -20 body <500 chars
+
+================================================================================
+G. SERP 비교 Run (Automation 1회성 조사 명령)
+================================================================================
+
+키워드 1개당:
+  1) 1페이지 URL 10개 scrape → Tier + on_page_score
+  2) 2~3페이지 또는 미노출 URL 3개 scrape → Tier F 확인
+  3) diff 리포트 → placements_master에 clone_template 태그
+  4) directory/guide_hub URL → backlink_targets_sync 우선 export
+
+================================================================================

@@ -1,8 +1,9 @@
 {
   "updated_at": "",
   "scope": "collect_and_export_only",
-  "current_phase": 0,
+  "current_phase": 1,
   "all_pass": false,
+  "ranking_model": "Tier S/A/B/F + on_page_score — DR 필수 아님 (SERP_RANKING_VS_INVISIBLE.txt)",
   "targets": {
     "keywords": 13,
     "placements_per_keyword": 10,
@@ -29,12 +30,12 @@
   },
   "keyword_coverage": {},
   "failures": [
-    "Phase 0 — SERP 벤치마크 10곳 분석 완료 (core/SERP_WEBSITE_ANALYSIS.txt). Phase 1 수집 MVP 구현 필요."
+    "Phase 1 — 1페이지 vs 미노출 비교 모델 정의 완료. serp_collector + on_page_score 구현 필요."
   ],
   "next_actions": [
-    "placement_classifier: single_landing | guide_hub | saas_subdomain 추가",
-    "placement_qualifier: bbs/write.php REJECT",
-    "serp_backlink_collector + export_backlink_bridge.py"
+    "placement_scorer.py — on_page_score + Tier S/A/B/F",
+    "directory_listing SERP (roompang 유형) 우선 수집",
+    "serp_backlink_collector + export_backlink_bridge"
   ],
   "serp_benchmark_note": "guide_hub(choicelounge) > single_landing > minimal — FAQ+가격표+내부링크"
 }

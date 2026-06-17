@@ -2,113 +2,88 @@
 **board-post-automation(Track A) 은 절대 열거나 수정하지 않는다.**
 
 ================================================================================
-미션 (Track B — 웹사이트 확장)
+미션
 ================================================================================
-타깃 키워드(강남 가라오케, 강남 풀싸롱, 강남 하이퍼블릭 등) SERP에서
-**게시판 글이 아닌 웹사이트**가 어떻게 상위에 머무는지 분석하고,
-그와 같은 「표면」을 수집·적격 판정·GitHub sync export 한다.
+타깃 키워드 SERP에서 **1페이지에 뜨는 웹사이트** vs **아예 안 뜨는 것**을 비교하고,
+1페이지 패턴(Tier S/A)에 맞는 **백링크 placement** + **온페이지 벤치마크**를 수집·export.
 
-  · 수집 대상 O: 자체 .co.kr 랜딩, /pages/ 가이드, clickn SaaS 서브도메인,
-                 프로필·디렉터리·웹2.0 등 **링크·콘텐츠 확장 가능 URL**
-  · 수집 대상 X: */bbs/*, write.php, wr_id=, Track A 게시판 글쓰기 URL
+  · O: 디렉터리(roompang형), guide_hub, platform profile, sibling domain, web2
+  · X: bbs/write.php, Track A 게시판, Tier F(미노출 5조건)
 
-1 Run = 1사이클. 무한 루프·백그라운드 harvest 금지.
+1 Run = 1사이클. 무한 harvest 금지.
 
 ================================================================================
-SERP 벤치마크 (반드시 core/SERP_WEBSITE_ANALYSIS.txt 참고)
+핵심 발견 — DR 높을 필요 없음
 ================================================================================
-상위 노출 **웹사이트** 10유형 — 게시판 아님:
+강남 niche 1페이지 사이트 다수는 Ahrefs DR **미등록(0~5 추정)**.
+대신 아래 3축:
 
-  1 single_landing   gangnamdalto.co.kr      FAQ·가격·지도·010 CTA
-  2 saas_subdomain   garaoke.clickn.co.kr    clickn 템플릿量産
-  3 minimal_landing  richhuang.co.kr         초단문+키워드
-  4 content_hub      gangnamko.co.kr         Q&A·협력사·매거진
-  5 platform_page    clicknn.co.kr/pages/*   slug별 page
-  6 story_landing    classicsalong.com       실장 스토리+이벤트
-  7 hashtag_landing  thesevensalon.com       footer #키워드
-  8 multi_section    applegangnam.com        룸타입 섹션
-  9 conversion_lp    gangnammirror.com       예약·견적 퍼널
- 10 guide_hub        choicelounge.co.kr      허브→매장 카드→하부페이지 ★최우선 벤치마크
+  1) 온페이지: title/H1 키워드, FAQ 5+, 가격·비교표, NAP, 3000자+ 또는 하부 5URL+
+  2) 인용 백링크: directory(roompang), guide_hub 카드링크, 형제도메인(.co.kr+.kr+.net)
+  3) Tier: S=choicelounge 허브 | A=gangnamdalto | B=clickn | F=미노출
 
-적격 trait (placement / 자체 확장 공통):
-  · title/H1에 target_keyword
-  · FAQ 또는 가격표 또는 비교표 중 1개+
-  · bbs 경로 없음
-  · (placement) profile/comment/directory 링크 필드 존재
-  · (owned site) 내부 링크 3개+ 또는 /pages/ 깊이
+상세: core/SERP_RANKING_VS_INVISIBLE.txt
 
 ================================================================================
-성공 조건 (all_pass)
+1페이지 벤치마크 10곳 (게시판 아님)
 ================================================================================
-core/backlink_deploy_status.json:
+  guide_hub ★     choicelounge.co.kr     FAQ+비교표+매장카드 8+
+  single_landing  gangnamdalto.co.kr     FAQ+가격+NAP + roompang 인용
+  saas_subdomain  garaoke.clickn.co.kr   clickn 롱폼 템플릿
+  directory 인용  roompang.com/firm/*    → 머니사이트 dofollow 후보
+  sibling net     runningrabbit.kr/.net  형제 도메인 상호링크
+  (나머지) classicsalong, applegangnam, thesevensalon, gangnamko, gangnammirror
 
-  · keywords_covered ≥ 13 (backlink_keywords.txt)
-  · 키워드당 sync queued ≥ placements_per_keyword (기본 10)
-  · backlink_targets_sync.json count ≥ urls_per_refresh (20)
-  · table_rows 에 platform_type, target_keyword, deploy_url, dofollow_hint
-  · 게시판 URL 0건 포함
-  · collect_round exit_code = 0
-
-================================================================================
-매 Run 절차
-================================================================================
-1) core/backlink_deploy_status.json → current_phase, failures 읽기
-2) core/SERP_WEBSITE_ANALYSIS.txt + core/AUTOMATION_INSTRUCTIONS.txt 확인
-3) 실행 (구현된 경우):
-     python core/run_backlink_collect.py
-     python core/run_backlink_collect.py --dry-check
-4) 미구현 Phase — **이번 Run 1개만**:
-   Phase 0: machine_config, keywords 13개, status JSON
-   Phase 1: serp_backlink_collector (게시판 제외 쿼리)
-            placement_classifier (single_landing|guide_hub|saas_subdomain|profile|…)
-            placement_qualifier (REJECT bbs/write)
-            export_backlink_bridge → backlink_targets_sync.json
-   Phase 2: run_backlink_collect.py 래퍼 + gates
-5) 실패 1개 → 최소 diff → commit·push (비밀 제외)
-6) Run 종료 보고:
-   Phase / all_pass / 키워드 coverage / sync count·pool_total
-   / 수정 파일 / 가설 / 다음 Run
+미노출(F) 예: 키워드 없는 기업홈, clickn 빈템플릿, upjong/legal DB, bbs only
 
 ================================================================================
-수집 규칙 (절대)
+미노출 5조건 (Tier F — export 제외)
 ================================================================================
-1) URL 적격 시 **먼저** 게시판 필터:
-   bbs, write.php, board.php?bo_table, wr_id, cafe24_article 글 URL → REJECT
-2) 키워드 균형 — pick_keyword_balanced_batch (deficit 큰 키워드 우선)
-3) SERP 쿼리: serp_backlink_queries.txt + `-inurl:write.php -site:*/bbs/*`
-4) export: backlink_targets_sync.json only (PC pull)
-5) password·money_url 실제값·2captcha → 커밋 금지
-6) choicelounge형 guide_hub 패턴 우선순위 > minimal_landing
+  1 title/H1 타깃 키워드 없음
+  2 본문<500자 & FAQ·가격·비교 전무
+  3 indexable URL 1개뿐
+  4 외부 인용 0 (디렉터리·허브·형제도메인 없음)
+  5 자체 랜딩 없고 게시판만
 
 ================================================================================
-우선 구현 파일 (Phase 1)
+on_page_score (0~100, placement row에 기록)
 ================================================================================
-  website 확장 수집/misc/_program/serp_backlink_collector.py
-  website 확장 수집/misc/_program/placement_classifier.py
-  website 확장 수집/misc/_program/placement_qualifier.py
-  website 확장 수집/misc/_program/export_backlink_bridge.py
-  core/run_backlink_collect.py
-  core/backlink_pool_rank.py
+  +20 title keyword  +15 H1  +15 FAQ5+  +15 가격/비교표  +10 NAP
+  +10 3000자+ 또는 하부5URL  +10 내부링크5+  +5 LSI 8+
+  -30 bbs/write  -20 본문<500
 
-platform_type enum:
-  profile | comment | directory | web2_article | forum_signature
-  single_landing | guide_hub | saas_subdomain | guest_post
+export 최소: Tier S/A/B + on_page_score ≥ 50 + bbs 아님
+
+================================================================================
+백링크 수집 우선순위 (money_url 로 링크 걸 표면)
+================================================================================
+  P0 directory_listing   roompang 유형, 업소등록, 지역 디렉터리
+  P1 guide_hub_link      choicelounge형 카드·하부페이지 슬롯
+  P2 platform_profile    clickn/clicknn homepage 필드
+  P3 web2_article        tistory·naver blog (본문 링크)
+  P4 sibling_satellite   키워드별 2~3 도메인 상호링크 (자체 확장)
+
+anchor_plan: exact 40% / partial 30% / brand 20% / naked 10%
+
+================================================================================
+성공 (all_pass)
+================================================================================
+  keywords 13/13 · 키워드당 sync ≥10 · count ≥20
+  sync rows: Tier≥B, on_page_score≥50, 게시판 0건
+  backlink_deploy_status.json gates pass
+
+================================================================================
+매 Run
+================================================================================
+1) backlink_deploy_status.json + SERP_RANKING_VS_INVISIBLE.txt
+2) python core/run_backlink_collect.py (있으면) / 없으면 Phase 1 구현 1개
+3) (조사 Run) 키워드 1개: 1페이지 10 URL vs 미노출 3 URL → Tier·score diff
+4) 실패 1개 → 최소 diff → push
+5) 보고: Phase / all_pass / Tier 분포 / sync / 다음 Run
 
 ================================================================================
 금지
 ================================================================================
-- board-post-automation 수정
-- board_writer / guest_sync / collector_sites
-- Track A run_collect_signup_automation.py
-- 배포 Chrome E2E 대량 실행 (Phase 3+, 로컬)
-- local_defaults.py, captcha_solver.json, .env 커밋
+Track A 수정 · DR 50+ only 필터(소형 co.kr 제외 금지) · 비밀키 커밋 · E2E 대량 배포
 
-================================================================================
-설정 경로
-================================================================================
-  core/machine_config.json
-  website 확장 수집/misc/data/backlink_keywords.txt
-  website 확장 수집/misc/data/money_sites.json (로컬 placeholder)
-  website 확장 수집/misc/data/serp_backlink_queries.txt
-
-all_pass: true 될 때까지 Run마다 Phase 1개 또는 게이트 1개만 진행.
+참고: SERP_WEBSITE_ANALYSIS.txt · AUTOMATION_INSTRUCTIONS.txt
