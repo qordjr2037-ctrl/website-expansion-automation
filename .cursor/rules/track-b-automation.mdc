@@ -1,0 +1,21 @@
+---
+description: Track B 웹사이트 확장 — 키워드별 백링크 수집·sync export (배포 E2E 제외)
+alwaysApply: true
+---
+
+# 웹사이트 확장 자동화 (Track B)
+
+repo: **website-expansion-automation** only. **board-post-automation 수정 금지.**
+
+## 매 Run
+
+1. `core/AUTOMATION_INSTRUCTIONS.txt` 전체 준수
+2. `core/backlink_deploy_status.json` → phase · failures
+3. `python core/run_backlink_collect.py` (있으면) 또는 Phase 0~1 스켈레ton
+4. 실패 1개 → 최소 diff → push
+5. Run 종료 보고 형식 (Instructions 하단)
+
+## 금지
+
+- Track A 경로·board_writer·guest_sync
+- 비밀키·실제 money_url·계정 커밋

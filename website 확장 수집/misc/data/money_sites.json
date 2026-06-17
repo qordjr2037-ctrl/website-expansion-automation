@@ -1,0 +1,12 @@
+{
+  "campaigns": [
+    {
+      "id": "main-landing",
+      "label": "메인 랜딩 (로컬에서 money_url 교체 — 커밋 주의)",
+      "money_url": "https://example.com/",
+      "utm_template": "?utm_source=backlink&utm_medium={platform}&utm_campaign={keyword_slug}",
+      "default_anchor_keyword": "강남 하이퍼블릭",
+      "enabled": true
+    }
+  ]
+}

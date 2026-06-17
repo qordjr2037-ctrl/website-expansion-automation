@@ -1,0 +1,9 @@
+{
+  "default": {
+    "exact_match_pct": 40,
+    "partial_match_pct": 30,
+    "brand_pct": 20,
+    "naked_url_pct": 10
+  },
+  "by_keyword": {}
+}

@@ -1,0 +1,7 @@
+# {keyword} 치환 SERP 쿼리 — website 확장 수집/misc/_program/serp_backlink_collector.py
+{keyword} site:co.kr inurl:member
+{keyword} "프로필" "홈페이지"
+{keyword} inurl:join OR inurl:register
+{keyword} "링크" "등록" site:co.kr
+site:tistory.com {keyword}
+site:naver.com {keyword} blog

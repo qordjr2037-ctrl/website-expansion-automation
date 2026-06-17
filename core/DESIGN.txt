@@ -1,0 +1,23 @@
+================================================================================
+Track B 설계 요약 — 상세는 AUTOMATION_INSTRUCTIONS.txt
+================================================================================
+
+아키텍처 (Track A 와 동일 패턴, 파일만 분리):
+
+  [Automation/Runner] collect → backlink_targets_sync.json push
+           ↓ git pull
+  [PC N] run_backlink_prepare → backlink_deploy_queue.json
+           ↓
+  [PC N] run_backlink_auto (Phase 3+, Automation 범위 밖)
+
+핵심 JSON:
+  backlink_targets_sync.json  — N대 공통 URL/placement batch
+  backlink_deploy_status.json — all_pass · phase · keyword_coverage
+  placements_master.json      — 누적 (로컬 merge, 계정 주의)
+
+platform_type:
+  profile | comment | directory | web2_article | forum_signature | guest_post
+
+Implementation order: Phase 0 → 1 → 2 → 3 → 4 → 5 (Instructions 참조)
+
+================================================================================

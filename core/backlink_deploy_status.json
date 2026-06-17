@@ -1,0 +1,39 @@
+{
+  "updated_at": "",
+  "scope": "collect_and_export_only",
+  "current_phase": 0,
+  "all_pass": false,
+  "targets": {
+    "keywords": 13,
+    "placements_per_keyword": 10,
+    "urls_per_refresh": 20
+  },
+  "gates": {
+    "keyword_quota": {
+      "ok": false,
+      "current": 0,
+      "target": 13,
+      "detail": "backlink_keywords.txt 키워드 수"
+    },
+    "sync_push": {
+      "ok": false,
+      "count": 0,
+      "pool_total": 0,
+      "detail": "backlink_targets_sync.json"
+    },
+    "collect_round": {
+      "ok": false,
+      "exit_code": null,
+      "detail": "run_backlink_collect.py 미구현"
+    }
+  },
+  "keyword_coverage": {},
+  "failures": [
+    "Phase 0 — repo 스켈레ton. Phase 1 수집 MVP 구현 필요."
+  ],
+  "next_actions": [
+    "backlink_keywords.txt 13키워드 확정",
+    "run_backlink_collect.py + export_backlink_bridge.py 추가",
+    "serp_backlink_collector.py smoke test"
+  ]
+}
