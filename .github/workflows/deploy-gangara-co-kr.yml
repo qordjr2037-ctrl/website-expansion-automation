@@ -1,0 +1,47 @@
+name: Deploy gangara.co.kr hub
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, cursor/gangara-faeb]
+    paths:
+      - 'website 확장 수집/templates/gangara-hub/**'
+      - '.github/workflows/deploy-gangara-co-kr.yml'
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    if: github.repository == 'qordjr2037-ctrl/website-expansion-automation'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: FTP upload to gangara.co.kr
+        env:
+          GANGARA_FTP_HOST: ${{ secrets.GANGARA_FTP_HOST }}
+          GANGARA_FTP_USER: ${{ secrets.GANGARA_FTP_USER }}
+          GANGARA_FTP_PASS: ${{ secrets.GANGARA_FTP_PASS }}
+          GANGARA_FTP_REMOTE: ${{ secrets.GANGARA_FTP_REMOTE || '/public_html' }}
+        run: |
+          if [ -z "$GANGARA_FTP_USER" ] || [ -z "$GANGARA_FTP_PASS" ]; then
+            echo "::error::GANGARA_FTP_USER / GANGARA_FTP_PASS secrets required"
+            exit 1
+          fi
+          HOST="${GANGARA_FTP_HOST:-gangara.co.kr}"
+          lftp -c "
+          set ssl:verify-certificate no
+          set ftp:passive-mode true
+          open -u ${GANGARA_FTP_USER},${GANGARA_FTP_PASS} ${HOST}
+          lcd 'website 확장 수집/templates/gangara-hub'
+          cd ${GANGARA_FTP_REMOTE}
+          mirror --reverse --delete --verbose
+          bye
+          "
+          echo "Deployed → https://gangara.co.kr/"
+
+      - name: Verify live H1
+        run: |
+          sleep 5
+          curl -sL https://gangara.co.kr/ | grep -o '<h1[^>]*>[^<]*' | head -1
