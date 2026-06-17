@@ -1,0 +1,19 @@
+Track B Cursor Automation — 최초 1회만
+========================================
+
+Repo 목록에 website-expansion-automation 이 안 보이면 Instructions/@file 이 비어 보입니다.
+
+1) Automation 화면 Repository 드롭다운 → **+ Add Repositories**
+2) 검색: website-expansion-automation
+3) qordjr2037-ctrl/website-expansion-automation 선택 → **Refresh**
+4) Repository: website-expansion-automation / branch main
+5) Agent Instruction (아래 한 줄만 넣어도 됨 — GitHub main 에 파일 있음):
+
+   @core/EXTRACTION_PROMPT.txt
+
+   @core/AGENT_INSTRUCTION_PROMPT.txt
+
+6) Triggers → Webhook (Run 버튼) 또는 원하는 스케줄
+7) **Save** (저장 안 하면 다시 비어짐)
+
+GitHub: https://github.com/qordjr2037-ctrl/website-expansion-automation
