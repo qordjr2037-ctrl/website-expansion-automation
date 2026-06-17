@@ -1,7 +1,7 @@
 {
-  "updated_at": "",
+  "updated_at": "2026-06-17T04:42:56Z",
   "scope": "collect_and_export_only",
-  "current_phase": 1,
+  "current_phase": 2,
   "all_pass": false,
   "ranking_model": "Tier S/A/B/F + on_page_score — DR 필수 아님 (SERP_RANKING_VS_INVISIBLE.txt)",
   "targets": {
@@ -11,31 +11,43 @@
   },
   "gates": {
     "keyword_quota": {
-      "ok": false,
-      "current": 0,
+      "ok": true,
+      "current": 13,
       "target": 13,
       "detail": "backlink_keywords.txt 키워드 수"
     },
     "sync_push": {
-      "ok": false,
-      "count": 0,
-      "pool_total": 0,
+      "ok": true,
+      "count": 20,
+      "pool_total": 38,
       "detail": "backlink_targets_sync.json"
     },
     "collect_round": {
-      "ok": false,
-      "exit_code": null,
-      "detail": "run_backlink_collect.py 미구현"
+      "ok": true,
+      "exit_code": 0,
+      "detail": "run_backlink_collect.py"
     }
   },
-  "keyword_coverage": {},
+  "keyword_coverage": {
+    "강남 가라오케": 6,
+    "강남 풀싸롱": 3,
+    "강남 하이퍼블릭": 7,
+    "강남 클럽": 1,
+    "강남 유흥": 3
+  },
   "failures": [
-    "Phase 1 — 1페이지 vs 미노출 비교 모델 정의 완료. serp_collector + on_page_score 구현 필요."
+    "키워드당 queued 부족 (0/13 키워드 충족)"
   ],
   "next_actions": [
-    "placement_scorer.py — on_page_score + Tier S/A/B/F",
-    "directory_listing SERP (roompang 유형) 우선 수집",
-    "serp_backlink_collector + export_backlink_bridge"
+    "키워드 deficit 우선 pick_batch",
+    "directory·guide_hub 시드 확대",
+    "fusion gangara-hub 호스팅 배포"
   ],
-  "serp_benchmark_note": "guide_hub(choicelounge) > single_landing > minimal — FAQ+가격표+내부링크"
+  "serp_benchmark_note": "guide_hub(choicelounge) > single_landing > minimal — FAQ+가격표+내부링크",
+  "tier_distribution": {
+    "S": 1,
+    "A": 9,
+    "B": 10
+  },
+  "board_urls_in_sync": 0
 }
