@@ -1,0 +1,17 @@
+# secrets
+**/local_defaults.py
+**/notify_secrets.json
+**/captcha_solver.json
+.env
+.env.*
+
+# runtime / local data
+**/logs/
+**/*.log
+**/verified_store.json
+**/deploy_queue.json
+
+# python
+**/.venv/
+__pycache__/
+*.pyc

@@ -1,0 +1,13 @@
+웹사이트 확장 자동화 — Cursor Automation 전용 (Track B)
+
+저장소: qordjr2037-ctrl/website-expansion-automation
+브랜치: main
+
+※ board-post-automation 과 별개. 이 repo에서만 작업.
+
+목표:
+  1) 키워드별 백링크 placement URL 수집
+  2) 앵커·머니사이트 규칙에 맞게 배포 큐 export
+  3) core/backlink_targets_sync.json push → N대 PC pull
+
+(상세 설계는 구현 Phase 0 이후 core/ 에 추가)

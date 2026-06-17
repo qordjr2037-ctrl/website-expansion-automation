@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "git_branch": "main",
+  "machines_in_fleet": 1,
+  "browsers_per_machine": 8,
+  "post_only": true,
+  "target_keywords": 13,
+  "placements_per_keyword": 10,
+  "urls_per_refresh": 20,
+  "pull_interval_minutes": 60,
+  "collect_interval_minutes": 120,
+  "_note": "게시판 repo machine_config 와 무관. 이 파일만 Track B에 적용."
+}
