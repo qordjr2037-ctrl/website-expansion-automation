@@ -29,11 +29,12 @@
   },
   "keyword_coverage": {},
   "failures": [
-    "Phase 0 — repo 스켈레ton. Phase 1 수집 MVP 구현 필요."
+    "Phase 0 — SERP 벤치마크 10곳 분석 완료 (core/SERP_WEBSITE_ANALYSIS.txt). Phase 1 수집 MVP 구현 필요."
   ],
   "next_actions": [
-    "backlink_keywords.txt 13키워드 확정",
-    "run_backlink_collect.py + export_backlink_bridge.py 추가",
-    "serp_backlink_collector.py smoke test"
-  ]
+    "placement_classifier: single_landing | guide_hub | saas_subdomain 추가",
+    "placement_qualifier: bbs/write.php REJECT",
+    "serp_backlink_collector + export_backlink_bridge.py"
+  ],
+  "serp_benchmark_note": "guide_hub(choicelounge) > single_landing > minimal — FAQ+가격표+내부링크"
 }

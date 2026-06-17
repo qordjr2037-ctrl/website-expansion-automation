@@ -1,7 +1,8 @@
-# {keyword} 치환 SERP 쿼리 — website 확장 수집/misc/_program/serp_backlink_collector.py
-{keyword} site:co.kr inurl:member
-{keyword} "프로필" "홈페이지"
-{keyword} inurl:join OR inurl:register
-{keyword} "링크" "등록" site:co.kr
-site:tistory.com {keyword}
-site:naver.com {keyword} blog
+# {keyword} 치환 — 게시판(write.php/bbs) 제외 SERP
+{keyword} -inurl:write.php -inurl:bbs site:co.kr
+{keyword} "FAQ" "주대" site:co.kr
+{keyword} "완벽 가이드" OR "이용안내" site:co.kr
+{keyword} inurl:pages site:clickn.co.kr OR site:clicknn.co.kr
+intitle:{keyword} site:co.kr -inurl:board
+{keyword} "010" "예약" site:co.kr -inurl:write.php
+site:tistory.com {keyword} -inurl:bbs
