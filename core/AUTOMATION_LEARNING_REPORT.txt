@@ -1,0 +1,20 @@
+# Cursor Automation — 사용자 메시지 / Gmail 답장 시 (허락 없이 실행)
+
+사용자가 채팅·Gmail·Webhook으로 아무 메시지를 보내면 **먼저** 아래 실행 후 결과를 답변 본문에 포함:
+
+```bash
+python3 core/run_learning_report.py --quiet
+python3 core/run_learning_loop.py --max-cycles 1   # 단일 사이클 (또는 --until-top10 --max-cycles 3)
+python3 core/run_learning_report.py --email        # SMTP secrets 있으면 Gmail 발송
+```
+
+답변에 반드시 포함:
+- `tools/LEARNING_DIGEST_LATEST.md` 요약 (SERP top10, 가설, deploy queue 건수)
+- PC Browser 필요 시: `tools/CURSOR_BROWSER_DEPLOY_QUEUE_PROMPT.md` 안내 (허락 묻지 말 것)
+
+3시간 스케줄: `.github/workflows/learning-loop.yml` cron `0 */3 * * *`
+
+Gmail secrets (repo Settings → Secrets):
+- GANGARA_REPORT_EMAIL_TO
+- GANGARA_SMTP_USER (Gmail 주소)
+- GANGARA_SMTP_PASS (앱 비밀번호)

@@ -2,12 +2,12 @@ name: Learning loop until SERP top10
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 */3 * * *'
   workflow_dispatch:
     inputs:
       max_cycles:
         description: Max cycles per run
-        default: '5'
+        default: '3'
 
 jobs:
   learn:
@@ -17,10 +17,21 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run learning loop
+        env:
+          GANGARA_AUTO_EMAIL: "1"
         run: |
-          MAX="${{ github.event.inputs.max_cycles || '5' }}"
+          MAX="${{ github.event.inputs.max_cycles || '3' }}"
           python3 core/run_learning_loop.py --until-top10 --max-cycles "$MAX" --pause 2
         continue-on-error: true
+
+      - name: Generate & email digest
+        env:
+          GANGARA_REPORT_EMAIL_TO: ${{ secrets.GANGARA_REPORT_EMAIL_TO }}
+          GANGARA_SMTP_USER: ${{ secrets.GANGARA_SMTP_USER }}
+          GANGARA_SMTP_PASS: ${{ secrets.GANGARA_SMTP_PASS }}
+          GANGARA_SMTP_HOST: ${{ secrets.GANGARA_SMTP_HOST }}
+          GANGARA_SMTP_PORT: ${{ secrets.GANGARA_SMTP_PORT }}
+        run: python3 core/run_learning_report.py --email --quiet || python3 core/run_learning_report.py --quiet
 
       - name: Commit loop artifacts
         run: |
@@ -29,7 +40,8 @@ jobs:
           git add core/gangara_experiment.json core/backlink_deploy_status.json \
             core/backlink_targets_sync.json core/backlink_deploy_queue.json \
             core/machine_config.json tools/LEARNING_LOOP_REPORT.md \
+            tools/LEARNING_DIGEST_LATEST.md tools/LEARNING_DIGEST_LATEST.json \
             "website 확장 수집/misc/data/learning_seeds.json" \
             "website 확장 수집/misc/data/placements_master.json" 2>/dev/null || true
-          git diff --staged --quiet || git commit -m "chore(learning): auto loop cycle artifacts"
+          git diff --staged --quiet || git commit -m "chore(learning): 3h loop + digest report"
           git push || true

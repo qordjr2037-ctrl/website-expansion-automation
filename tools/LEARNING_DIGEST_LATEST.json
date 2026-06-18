@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-06-18T23:57:08Z",
+  "goal_met": false,
+  "serp_top10": "0/3",
+  "serp_ranks": {
+    "강남 가라오케": null,
+    "강남 풀싸롱": null,
+    "강남 하이퍼블릭": null
+  },
+  "hypothesis_id": "backlink_quality_disavow_spam",
+  "hypothesis_ko": "RD 46 but spam 100% — quality+deploy.",
+  "learning_cycle": 5,
+  "pool_total": 88,
+  "sync_count": 30,
+  "deploy_queue_pending": 18,
+  "awaiting_pc_deploy": true,
+  "fusion_live": true,
+  "next_actions": [
+    "[cycle 5] PC Browser: core/backlink_deploy_queue.json 18건 배포",
+    "[cycle 5] GSC sitemap + site:gangara.co.kr",
+    "python3 core/run_learning_loop.py --until-top10 (SERP 0/3 top10)"
+  ],
+  "money_site": "https://gangara.co.kr/"
+}

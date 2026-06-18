@@ -47,6 +47,13 @@ SPAM_HOSTS = re.compile(r"postheaven\.net|blogspot\.com|bcbloggers\.com|ghostdea
 CITATION_GAP_TYPES = ["directory_listing", "guide_hub", "sibling_domain"]
 
 
+def _run_report(email: bool = False) -> None:
+    cmd = [sys.executable, str(REPO / "core/run_learning_report.py"), "--quiet"]
+    if email:
+        cmd.append("--email")
+    subprocess.call(cmd, cwd=str(REPO))
+
+
 def now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -321,6 +328,7 @@ def run_single_cycle(cycle: int) -> dict:
     st["updated_at"] = now_iso()
     save_json(STATUS, st)
 
+    _run_report(email=os.environ.get("GANGARA_AUTO_EMAIL", "") == "1")
     return {
         "cycle": cycle,
         "serp": serp,
@@ -361,6 +369,7 @@ def run_until_top10(max_cycles: int, min_keywords: int, pause_sec: float) -> dic
         exp.setdefault("learning_loop", {})["awaiting_pc_deploy"] = True
         save_json(EXPERIMENT, exp)
 
+    _run_report(email=os.environ.get("GANGARA_AUTO_EMAIL", "") == "1")
     return summary
 
 
