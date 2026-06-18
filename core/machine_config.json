@@ -9,7 +9,12 @@
   "urls_per_refresh": 30,
   "pull_interval_minutes": 60,
   "collect_interval_minutes": 120,
-  "refresh_times": ["00:00", "06:00", "12:00", "18:00"],
+  "refresh_times": [
+    "00:00",
+    "06:00",
+    "12:00",
+    "18:00"
+  ],
   "prefer_dofollow": true,
   "prefer_no_captcha": true,
   "verify_after_deploy": true,
@@ -23,5 +28,11 @@
   "anchor_plan_file": "website 확장 수집/misc/data/anchor_plan.json",
   "_fleet_note": "본부=Automation push sync. PC=post_only pull+배포.",
   "_track_note": "board-post-automation 과 무관.",
-  "_experiment_note": "gangara.co.kr 단일 사이트 백링크 집중 실험 — 3키워드"
+  "_experiment_note": "gangara.co.kr 단일 사이트 백링크 집중 실험 — 3키워드",
+  "learning_loop": {
+    "prioritize_platforms": [
+      "directory",
+      "guide_hub"
+    ]
+  }
 }

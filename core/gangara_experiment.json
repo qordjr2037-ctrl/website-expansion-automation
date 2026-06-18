@@ -2,7 +2,7 @@
   "experiment_id": "gangara-blitz-2026",
   "status": "active",
   "started_at": "2026-06-17T00:00:00Z",
-  "updated_at": "2026-06-17T06:26:58Z",
+  "updated_at": "2026-06-18T23:41:15Z",
   "hypothesis": "gangara.co.kr 단일 사이트에 directory+guide_hub 백링크 집중 시 3키워드 SERP 상승",
   "target": {
     "money_url": "https://gangara.co.kr/",
@@ -283,10 +283,58 @@
           ]
         }
       ]
+    },
+    {
+      "probed_at": "2026-06-18T23:41:15Z",
+      "target_domain": "gangara.co.kr",
+      "provider": "duckduckgo_lite",
+      "keywords_probed": 3,
+      "in_top10_count": 0,
+      "results": [
+        {
+          "keyword": "강남 가라오케",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://karaokeplan.com/",
+            "https://www.theperfectkaraoke.com/",
+            "https://www.karaokegangnam.net/",
+            "https://seoulafterdark.com/gangnam-karaoke-guide-2026/",
+            "https://gangnam-garaoke.com/"
+          ]
+        },
+        {
+          "keyword": "강남 풀싸롱",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://www.gangnamfullssalong.com/",
+            "https://www.levelhotelsalon.com/",
+            "https://gangnam-fullssa.com/",
+            "https://www.gugudano.com/post/%EA%B0%95%EB%82%A8-%ED%92%80%EC%8B%B8%EB%A1%B1-%EA%B0%80%EA%B2%A9-%EB%B0%8F-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%99%84%EC%A0%84-%EC%A0%95%EB%B3%B5-%EA%B0%80%EC%9D%B4%EB%93%9C-2026-%EC%B5%9C%EC%8B%A0%ED%8C%90",
+            "https://www.fullssawara.com/"
+          ]
+        },
+        {
+          "keyword": "강남 하이퍼블릭",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://gangnamkaraokeroom.com/gangnam-hyperpublic-guide/",
+            "https://roomhubs.com/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD/",
+            "https://www.roompang.com/guide/gangnam-hyperpublic",
+            "https://gangnam-highpublic.com/",
+            "https://gangnam-nightlife.co.kr/blog/0011.html"
+          ]
+        }
+      ]
     }
   ],
   "last_probe": {
-    "probed_at": "2026-06-17T06:26:58Z",
+    "probed_at": "2026-06-18T23:41:15Z",
     "target_domain": "gangara.co.kr",
     "provider": "duckduckgo_lite",
     "keywords_probed": 3,
@@ -298,11 +346,11 @@
         "in_top10": false,
         "in_top30": false,
         "sample_urls": [
-          "https://seoulafterdark.com/gangnam-karaoke-guide-2026/",
           "https://karaokeplan.com/",
           "https://www.theperfectkaraoke.com/",
           "https://www.karaokegangnam.net/",
-          "https://seoulafterdark.com/gangnam-karaoke-first-time-guide/"
+          "https://seoulafterdark.com/gangnam-karaoke-guide-2026/",
+          "https://gangnam-garaoke.com/"
         ]
       },
       {
@@ -312,10 +360,10 @@
         "in_top30": false,
         "sample_urls": [
           "https://www.gangnamfullssalong.com/",
+          "https://www.levelhotelsalon.com/",
+          "https://gangnam-fullssa.com/",
           "https://www.gugudano.com/post/%EA%B0%95%EB%82%A8-%ED%92%80%EC%8B%B8%EB%A1%B1-%EA%B0%80%EA%B2%A9-%EB%B0%8F-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%99%84%EC%A0%84-%EC%A0%95%EB%B3%B5-%EA%B0%80%EC%9D%B4%EB%93%9C-2026-%EC%B5%9C%EC%8B%A0%ED%8C%90",
-          "https://www.fullssawara.com/",
-          "https://www.classicnamu.com/",
-          "https://www.levelhotelsalon.com/"
+          "https://www.fullssawara.com/"
         ]
       },
       {
@@ -325,10 +373,10 @@
         "in_top30": false,
         "sample_urls": [
           "https://gangnamkaraokeroom.com/gangnam-hyperpublic-guide/",
-          "https://www.roompang.com/guide/gangnam-hyperpublic",
-          "https://gangnam-nightlife.co.kr/blog/0011.html",
           "https://roomhubs.com/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD/",
-          "https://gangnamhyperpublic.com/"
+          "https://www.roompang.com/guide/gangnam-hyperpublic",
+          "https://gangnam-highpublic.com/",
+          "https://gangnam-nightlife.co.kr/blog/0011.html"
         ]
       }
     ]
@@ -490,5 +538,119 @@
         }
       }
     ]
-  }
+  },
+  "learning_loop": {
+    "updated_at": "2026-06-18T23:41:15Z",
+    "hypothesis": {
+      "primary": "backlink_quality_disavow_spam",
+      "confidence": 0.85,
+      "statement_ko": "RD 46이나 샘플 100%가 postheaven/web2 스팸 — 숫자보다 유형·품질이 병목.",
+      "falsifiable_if": [
+        "directory 10건 live 배포 후 14일 내 site:gangara.co.kr 여전히 0",
+        "quality RD 80+ 후에도 3키워드 top30 미노출"
+      ],
+      "citation_gaps": [
+        "directory_listing",
+        "guide_hub",
+        "sibling_domain"
+      ]
+    },
+    "comparison": {
+      "you": {
+        "dr": 2,
+        "rd": 46,
+        "bl": 389,
+        "samples": [
+          "https://postheaven.net/ghostdeal22/gangnam-garaoke-gangnamgaraoke-gangnamjjeomo-gangnam-jjeomo-gangnam-syeoceurum-gangnamsyeoceurum"
+        ]
+      },
+      "peers_median": {
+        "dr": 5.5,
+        "rd": 98.5,
+        "bl": 424.5
+      },
+      "peers": {
+        "choicelounge.co.kr": {
+          "dr": 2,
+          "rd": 101,
+          "bl": 14494
+        },
+        "gangnamdalto.co.kr": {
+          "dr": 5,
+          "rd": 556,
+          "bl": 6194
+        },
+        "classicsalong.com": {
+          "dr": 6,
+          "rd": 48,
+          "bl": 463
+        },
+        "thesevensalon.com": {
+          "dr": 6,
+          "rd": 93,
+          "bl": 386
+        },
+        "applegangnam.com": {
+          "dr": 2,
+          "rd": 113,
+          "bl": 264
+        },
+        "gangnammirror.com": {
+          "dr": 6,
+          "rd": 96,
+          "bl": 208
+        }
+      },
+      "rd_gap_to_median": 52.5,
+      "dr_gap_to_median": 3.5,
+      "rd_target": 98,
+      "spam_sample_ratio": 1.0
+    },
+    "experiments": [
+      {
+        "id": "exp-directory-p0",
+        "action": "sync Tier S directory → PC Browser 배포 (roompang 우선)",
+        "metric": "verified_live_citations >= 3",
+        "priority": "P0"
+      },
+      {
+        "id": "exp-guide-hub-p1",
+        "action": "guide_hub A tier dofollow 5건 배포",
+        "metric": "guide_hub live link to gangara.co.kr",
+        "priority": "P1"
+      },
+      {
+        "id": "exp-spam-filter",
+        "action": "postheaven/web2 스팸 placement export 제외",
+        "metric": "sync spam domain 0건",
+        "priority": "P0"
+      },
+      {
+        "id": "exp-rd-target",
+        "action": "quality RD 98+ (directory+guide_hub만)",
+        "metric": "SST RD >= 98",
+        "priority": "P1"
+      },
+      {
+        "id": "exp-index",
+        "action": "GSC sitemap + site:gangara.co.kr 인덱스",
+        "metric": "indexed_pages >= 5",
+        "priority": "P0"
+      }
+    ],
+    "patches_applied": [
+      "gangara_experiment.json learning_loop",
+      "machine_config.json prioritize_platforms",
+      "placement_qualifier.py spam reject"
+    ]
+  },
+  "learning_cycles": [
+    {
+      "at": "2026-06-18T23:41:15Z",
+      "hypothesis_id": "backlink_quality_disavow_spam",
+      "confidence": 0.85,
+      "rd_gap": 52.5,
+      "serp_in_top10": 0
+    }
+  ]
 }

@@ -12,7 +12,10 @@ from placement_classifier import classify_url, is_board_url
 
 CTX = ssl.create_default_context()
 UA = "Mozilla/5.0 (compatible; TrackB-Collector/1.0)"
-SPAM_DOMAINS = re.compile(r"(news\.|naver\.com/news|daum\.net/v/)", re.I)
+SPAM_DOMAINS = re.compile(
+    r"(news\.|naver\.com/news|daum\.net/v/|postheaven\.net|bcbloggers\.com)",
+    re.I,
+)
 NOFOLLOW_HINT = re.compile(r'rel=["\']nofollow["\']', re.I)
 CAPTCHA_HINT = re.compile(r"(recaptcha|hcaptcha|turnstile|captcha)", re.I)
 SIGNUP_HINT = re.compile(r"(sign.?up|register|회원가입|가입하기)", re.I)
@@ -40,7 +43,7 @@ def qualify_placement(url: str, target_keyword: str, serp_rank: int = 99) -> dic
     if cls["reject"]:
         return {"qualified": False, "reject_reason": cls["reject_reason"], "url": url}
 
-    if SPAM_DOMAINS.search(url):
+    if SPAM_DOMAINS.search(url) or re.search(r"postheaven\.net|blogspot\.com", url, re.I):
         return {"qualified": False, "reject_reason": "news_spam", "url": url}
 
     status, snippet = _fetch_head(url)
