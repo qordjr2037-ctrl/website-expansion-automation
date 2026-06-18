@@ -182,7 +182,12 @@ def run(dry_check: bool = False) -> int:
     pool = merge_master(qualified)
     pool_cov = Counter(r.get("target_keyword", "") for r in pool)
     batch = pick_keyword_balanced_batch(
-        pool, collect_kw, batch_size, existing_coverage=dict(pool_cov), experiment_mode=experiment
+        pool,
+        collect_kw,
+        batch_size,
+        existing_coverage=dict(pool_cov),
+        experiment_mode=experiment,
+        min_trait=cfg.get("learning_loop", {}).get("min_trait_score", 40),
     )
     sync = export_sync(pool, batch)
 

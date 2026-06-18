@@ -33,6 +33,8 @@
     "prioritize_platforms": [
       "directory",
       "guide_hub"
-    ]
+    ],
+    "active_cycle": 5,
+    "min_trait_score": 65
   }
 }

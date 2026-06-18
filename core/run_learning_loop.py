@@ -1,18 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-가설 → 측정 → 비교 → 수정 → 재실험 (Track B 자동 학습 루프)
+자가 발전 학습 루프 — SERP 1페이지(in_top10) 달성까지 반복.
 
-목표: gangara.co.kr 3키워드 SERP 1페이지 진입
-현재 병목 가설: 백링크 유형·품질 (directory/guide_hub) + 인덱스
+  python3 core/run_learning_loop.py                    # 1사이클
+  python3 core/run_learning_loop.py --until-top10      # 3키워드 top10까지
+  python3 core/run_learning_loop.py --until-top10 --max-cycles 5
 
-1 Run = 1 사이클. 측정 → gap 분석 → config/qualifier 자동 패치 → 실험 로그.
+루프: 측정(SERP+RD) → 가설 → 자동수정(시드·스팸·sync) → 재측정 → 성공 시 종료
 """
 from __future__ import annotations
 
+import argparse
 import json
+import re
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import median
@@ -24,6 +28,10 @@ EXPERIMENT = REPO / "core/gangara_experiment.json"
 STATUS = REPO / "core/backlink_deploy_status.json"
 CONFIG = REPO / "core/machine_config.json"
 SERP_PROBE = REPO / "tools/serp_rank_probe_output.json"
+SEEDS_FILE = REPO / "website 확장 수집/misc/data/learning_seeds.json"
+MASTER = REPO / "website 확장 수집/misc/data/placements_master.json"
+SYNC = REPO / "core/backlink_targets_sync.json"
+DEPLOY_QUEUE = REPO / "core/backlink_deploy_queue.json"
 
 BENCHMARK_DOMAINS = [
     "choicelounge.co.kr",
@@ -33,8 +41,9 @@ BENCHMARK_DOMAINS = [
     "applegangnam.com",
     "gangnammirror.com",
 ]
-
 TARGET = "gangara.co.kr"
+KEYWORDS = ["강남 가라오케", "강남 풀싸롱", "강남 하이퍼블릭"]
+SPAM_HOSTS = re.compile(r"postheaven\.net|blogspot\.com|bcbloggers\.com|ghostdeal", re.I)
 CITATION_GAP_TYPES = ["directory_listing", "guide_hub", "sibling_domain"]
 
 
@@ -49,7 +58,22 @@ def load_json(path: Path, default: Any = None) -> Any:
 
 
 def save_json(path: Path, data: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def serp_goal_met(serp: dict, min_keywords: int = 3) -> bool:
+    results = serp.get("results") or []
+    top10 = sum(1 for r in results if r.get("in_top10"))
+    return top10 >= min_keywords
+
+
+def measure_serp() -> dict:
+    subprocess.call(
+        [sys.executable, str(REPO / "tools/serp_rank_probe.py"), "--merge-experiment"],
+        cwd=str(REPO),
+    )
+    return load_json(SERP_PROBE, {})
 
 
 def sst_map(audit: dict) -> dict[str, dict]:
@@ -70,64 +94,49 @@ def sst_map(audit: dict) -> dict[str, dict]:
     return out
 
 
-def measure_serp() -> dict:
-    subprocess.call(
-        [sys.executable, str(REPO / "tools/serp_rank_probe.py"), "--merge-experiment"],
-        cwd=str(REPO),
-    )
-    return load_json(SERP_PROBE, {})
-
-
 def measure_backlinks() -> dict[str, dict]:
-    audit = load_json(AUDIT, {})
-    if not audit.get("live_sst_summary"):
-        subprocess.call([sys.executable, str(REPO / "tools/backlink_audit.py"), "--all"], cwd=str(REPO))
-        audit = load_json(AUDIT, {})
-    return sst_map(audit)
+    return sst_map(load_json(AUDIT, {}))
 
 
 def compare(you: dict, peers: dict[str, dict]) -> dict:
     peer_rds = [p["referring_domains"] for p in peers.values() if p.get("referring_domains")]
     peer_drs = [p["dr"] for p in peers.values() if p.get("dr") is not None]
     peer_bls = [p["backlinks_total"] for p in peers.values() if p.get("backlinks_total")]
-
     your_rd = you.get("referring_domains") or 0
-    your_dr = you.get("dr")
-    your_bl = you.get("backlinks_total") or 0
     med_rd = median(peer_rds) if peer_rds else 0
     med_dr = median(peer_drs) if peer_drs else 0
-
     samples = you.get("sample_backlinks") or []
-    spam_ratio = sum(1 for s in samples if "postheaven" in s or "blogspot" in s) / max(len(samples), 1)
-
+    spam_ratio = sum(1 for s in samples if SPAM_HOSTS.search(s)) / max(len(samples), 1)
     return {
-        "you": {"dr": your_dr, "rd": your_rd, "bl": your_bl, "samples": samples},
+        "you": {"dr": you.get("dr"), "rd": your_rd, "bl": you.get("backlinks_total") or 0, "samples": samples},
         "peers_median": {"dr": med_dr, "rd": med_rd, "bl": median(peer_bls) if peer_bls else 0},
         "peers": {
             d: {"dr": p.get("dr"), "rd": p.get("referring_domains"), "bl": p.get("backlinks_total")}
             for d, p in peers.items()
         },
         "rd_gap_to_median": round(med_rd - your_rd, 1),
-        "dr_gap_to_median": round(med_dr - (your_dr or 0), 1),
         "rd_target": int(max(med_rd, 48)),
         "spam_sample_ratio": round(spam_ratio, 2),
     }
 
 
-def form_hypothesis(cmp: dict, serp: dict) -> dict:
+def form_hypothesis(cmp: dict, serp: dict, cycle: int) -> dict:
     in_top10 = serp.get("in_top10_count", 0) if isinstance(serp, dict) else 0
-    rd_gap = cmp["rd_gap_to_median"]
     spam = cmp["spam_sample_ratio"]
+    rd_gap = cmp["rd_gap_to_median"]
 
-    if spam >= 0.5:
+    if in_top10 > 0:
+        primary = "maintain_and_expand"
+        confidence = 0.9
+    elif spam >= 0.5:
         primary = "backlink_quality_disavow_spam"
         confidence = 0.85
     elif rd_gap > 30:
         primary = "backlink_volume_and_type"
         confidence = 0.78
-    elif in_top10 == 0 and cmp["you"]["rd"] >= cmp["peers_median"]["rd"] * 0.8:
-        primary = "index_and_citation_type"
-        confidence = 0.65
+    elif cycle >= 3:
+        primary = "index_and_deploy_directory"
+        confidence = 0.7
     else:
         primary = "backlink_quality_and_type"
         confidence = 0.72
@@ -135,179 +144,270 @@ def form_hypothesis(cmp: dict, serp: dict) -> dict:
     return {
         "primary": primary,
         "confidence": confidence,
+        "cycle": cycle,
         "statement_ko": _hypothesis_text(primary, cmp, in_top10),
-        "falsifiable_if": [
-            "directory 10건 live 배포 후 14일 내 site:gangara.co.kr 여전히 0",
-            "quality RD 80+ 후에도 3키워드 top30 미노출",
-        ],
         "citation_gaps": CITATION_GAP_TYPES,
     }
 
 
 def _hypothesis_text(primary: str, cmp: dict, in_top10: int) -> str:
-    if primary == "backlink_volume_and_type":
-        return (
-            f"RD {cmp['you']['rd']} vs 경쟁 중위 {cmp['peers_median']['rd']:.0f} — "
-            f"directory·guide_hub 부족. RD 목표 {cmp['rd_target']}."
-        )
-    if primary == "backlink_quality_disavow_spam":
-        return (
-            f"RD {cmp['you']['rd']}이나 샘플 {cmp['spam_sample_ratio']:.0%}가 postheaven/web2 스팸 — "
-            "숫자보다 유형·품질이 병목."
-        )
-    if primary == "index_and_citation_type":
-        return f"SERP {in_top10}/3 — 인덱스·directory live citation 미등록이 병목."
-    return (
-        "온페이지 fusion 후 top30 0 — 백링크 유형(directory/guide_hub) 확보가 1순위, "
-        f"RD 목표 {cmp['rd_target']} (classicsalong~choicelounge 밴드)."
-    )
+    texts = {
+        "maintain_and_expand": f"top10 {in_top10}/3 달성 구간 — citation 유지·확장.",
+        "backlink_quality_disavow_spam": f"RD {cmp['you']['rd']} but spam {cmp['spam_sample_ratio']:.0%} — quality+deploy.",
+        "backlink_volume_and_type": f"RD gap {cmp['rd_gap_to_median']:+.0f} — directory/guide_hub until {cmp['rd_target']}.",
+        "index_and_deploy_directory": "SERP 0 — sync Tier S PC Browser 배포 + GSC index P0.",
+        "backlink_quality_and_type": f"directory/guide_hub until RD {cmp['rd_target']}.",
+    }
+    return texts.get(primary, texts["backlink_quality_and_type"])
 
 
-def plan_experiments(cmp: dict) -> list[dict]:
-    return [
-        {
-            "id": "exp-directory-p0",
-            "action": "sync Tier S directory → PC Browser 배포 (roompang 우선)",
-            "metric": "verified_live_citations >= 3",
-            "priority": "P0",
-        },
-        {
-            "id": "exp-guide-hub-p1",
-            "action": "guide_hub A tier dofollow 5건 배포",
-            "metric": "guide_hub live link to gangara.co.kr",
-            "priority": "P1",
-        },
-        {
-            "id": "exp-spam-filter",
-            "action": "postheaven/web2 스팸 placement export 제외",
-            "metric": "sync spam domain 0건",
-            "priority": "P0",
-        },
-        {
-            "id": "exp-rd-target",
-            "action": f"quality RD {cmp['rd_target']}+ (directory+guide_hub만)",
-            "metric": f"SST RD >= {cmp['rd_target']}",
-            "priority": "P1",
-        },
-        {
-            "id": "exp-index",
-            "action": "GSC sitemap + site:gangara.co.kr 인덱스",
-            "metric": "indexed_pages >= 5",
-            "priority": "P0",
-        },
-    ]
+def inject_serp_seeds(serp: dict) -> int:
+    """SERP 1페이지 URL → learning_seeds.json (collector가 읽음)."""
+    data = load_json(SEEDS_FILE, {"seeds": [], "updated_at": None})
+    existing = {(s["keyword"], s["url"]) for s in data.get("seeds", [])}
+    added = 0
+    for row in serp.get("results") or []:
+        kw = row.get("keyword", "")
+        for url in row.get("sample_urls") or []:
+            if TARGET in url.lower():
+                continue
+            if (kw, url) not in existing:
+                data.setdefault("seeds", []).append(
+                    {"keyword": kw, "url": url, "source": "serp_top5", "added_at": now_iso()}
+                )
+                existing.add((kw, url))
+                added += 1
+    data["updated_at"] = now_iso()
+    save_json(SEEDS_FILE, data)
+    return added
 
 
-def apply_patches() -> list[str]:
+def purge_spam_master() -> int:
+    master = load_json(MASTER, {"placements": []})
+    before = len(master.get("placements", []))
+    kept = []
+    for p in master.get("placements", []):
+        url = p.get("deploy_url") or p.get("url") or ""
+        if SPAM_HOSTS.search(url):
+            continue
+        kept.append(p)
+    master["placements"] = kept
+    master["updated_at"] = now_iso()
+    save_json(MASTER, master)
+    return before - len(kept)
+
+
+def export_deploy_queue() -> int:
+    """Tier S/A directory·guide_hub → PC Browser 배포 큐."""
+    sync = load_json(SYNC, {})
+    rows = sync.get("table_rows") or []
+    priority = []
+    for r in rows:
+        pt = r.get("platform_type", "")
+        tier = r.get("tier_hint", "B")
+        if pt in ("directory", "guide_hub") and tier in ("S", "A"):
+            priority.append(
+                {
+                    "target_keyword": r.get("target_keyword"),
+                    "platform_type": pt,
+                    "tier_hint": tier,
+                    "deploy_url": r.get("deploy_url"),
+                    "money_url": r.get("money_url"),
+                    "anchor_text": r.get("anchor_text"),
+                    "status": "queued",
+                }
+            )
+    queue = {
+        "updated_at": now_iso(),
+        "money_site": sync.get("money_site", "https://gangara.co.kr/"),
+        "count": len(priority),
+        "note": "PC Cursor Browser — placement URL에 money_url·anchor 삽입",
+        "rows": priority[:20],
+    }
+    save_json(DEPLOY_QUEUE, queue)
+    return len(priority)
+
+
+def apply_patches(hyp: dict, cycle: int) -> list[str]:
     changes: list[str] = []
-
     exp = load_json(EXPERIMENT, {})
-    exp.setdefault("learning_loop", {})["exclude_spam_domains"] = [
-        "postheaven.net",
-        "blogspot.com",
-        "bcbloggers.com",
-    ]
-    exp["updated_at"] = now_iso()
+    ll = exp.setdefault("learning_loop", {})
+    ll.update(
+        {
+            "cycle": cycle,
+            "last_hypothesis": hyp["primary"],
+            "exclude_spam_domains": ["postheaven.net", "blogspot.com", "bcbloggers.com"],
+            "stop_when": "all_keywords_top10",
+        }
+    )
     save_json(EXPERIMENT, exp)
-    changes.append("gangara_experiment.json learning_loop")
+    changes.append("gangara_experiment learning_loop")
 
     cfg = load_json(CONFIG, {})
-    cfg.setdefault("learning_loop", {})["prioritize_platforms"] = ["directory", "guide_hub"]
+    llc = cfg.setdefault("learning_loop", {})
+    llc["prioritize_platforms"] = ["directory", "guide_hub"]
+    llc["active_cycle"] = cycle
+    if hyp["primary"] in ("backlink_quality_disavow_spam", "backlink_volume_and_type"):
+        llc["min_trait_score"] = 55 + min(cycle * 2, 15)
     save_json(CONFIG, cfg)
-    changes.append("machine_config.json prioritize_platforms")
+    changes.append("machine_config min_trait escalation")
 
-    qual_path = REPO / "website 확장 수집/misc/_program/placement_qualifier.py"
-    text = qual_path.read_text(encoding="utf-8")
-    if "postheaven" not in text:
-        text = text.replace(
-            'SPAM_DOMAINS = re.compile(r"(news\\.|naver\\.com/news|daum\\.net/v/)", re.I)',
-            'SPAM_DOMAINS = re.compile(\n'
-            '    r"(news\\.|naver\\.com/news|daum\\.net/v/|postheaven\\.net|bcbloggers\\.com)",\n'
-            "    re.I,\n"
-            ")",
-        )
-        text = text.replace(
-            "    if SPAM_DOMAINS.search(url):",
-            "    if SPAM_DOMAINS.search(url) or re.search(r\"postheaven\\.net|blogspot\\.com\", url, re.I):",
-        )
-        qual_path.write_text(text, encoding="utf-8")
-        changes.append("placement_qualifier.py spam reject")
+    removed = purge_spam_master()
+    if removed:
+        changes.append(f"placements_master purged {removed} spam")
 
     return changes
 
 
-def run_cycle() -> dict:
-    print("=== Learning Loop Cycle ===")
-    serp = measure_serp()
-    sst = measure_backlinks()
+def run_collect() -> int:
+    return subprocess.call([sys.executable, str(REPO / "core/run_backlink_collect.py")], cwd=str(REPO))
 
-    you = sst.get(TARGET, {"domain": TARGET, "referring_domains": 0})
+
+def run_single_cycle(cycle: int) -> dict:
+    print(f"\n{'='*60}\nLearning Loop — cycle {cycle}\n{'='*60}")
+    serp = measure_serp()
+    in_top10 = serp.get("in_top10_count", 0)
+    print(f"SERP in_top10: {in_top10}/3")
+
+    seeds_added = inject_serp_seeds(serp)
+    print(f"SERP seeds added: {seeds_added}")
+
+    sst = measure_backlinks()
+    you = sst.get(TARGET, {"referring_domains": 0})
     peers = {d: sst[d] for d in BENCHMARK_DOMAINS if d in sst}
     cmp = compare(you, peers)
-    hyp = form_hypothesis(cmp, serp if isinstance(serp, dict) else {})
-    experiments = plan_experiments(cmp)
-    patches = apply_patches()
+    hyp = form_hypothesis(cmp, serp, cycle)
+    patches = apply_patches(hyp, cycle)
+
+    run_collect()
+    queue_n = export_deploy_queue()
 
     exp = load_json(EXPERIMENT, {})
-    exp["learning_loop"] = {
-        "updated_at": now_iso(),
-        "hypothesis": hyp,
-        "comparison": cmp,
-        "experiments": experiments,
-        "patches_applied": patches,
-    }
     exp.setdefault("learning_cycles", []).append(
         {
+            "cycle": cycle,
             "at": now_iso(),
             "hypothesis_id": hyp["primary"],
-            "confidence": hyp["confidence"],
+            "serp_in_top10": in_top10,
             "rd_gap": cmp["rd_gap_to_median"],
-            "serp_in_top10": serp.get("in_top10_count") if isinstance(serp, dict) else None,
+            "seeds_added": seeds_added,
+            "deploy_queue": queue_n,
+            "patches": patches,
+            "ranks": {r["keyword"]: r.get("rank") for r in serp.get("results", [])},
         }
     )
+    exp["learning_loop"] = {
+        "updated_at": now_iso(),
+        "cycle": cycle,
+        "hypothesis": hyp,
+        "comparison": cmp,
+        "goal_met": serp_goal_met(serp),
+    }
     save_json(EXPERIMENT, exp)
 
     st = load_json(STATUS, {})
-    st["learning_loop"] = {"hypothesis": hyp["primary"], "confidence": hyp["confidence"], "rd_target": cmp["rd_target"]}
+    st["learning_loop"] = {
+        "cycle": cycle,
+        "hypothesis": hyp["primary"],
+        "serp_in_top10": in_top10,
+        "goal_met": serp_goal_met(serp),
+        "rd_target": cmp["rd_target"],
+    }
     st["next_actions"] = [
-        f"[학습] {experiments[0]['action']}",
-        f"[학습] {experiments[2]['action']}",
-        f"RD 목표 {cmp['rd_target']} (현재 {cmp['you']['rd']}, 중위 {cmp['peers_median']['rd']:.0f})",
-        "python3 core/run_learning_loop.py 주 1회",
+        f"[cycle {cycle}] PC Browser: core/backlink_deploy_queue.json {queue_n}건 배포",
+        f"[cycle {cycle}] GSC sitemap + site:gangara.co.kr",
+        f"python3 core/run_learning_loop.py --until-top10 (SERP {in_top10}/3 top10)",
     ]
     st["updated_at"] = now_iso()
     save_json(STATUS, st)
 
-    subprocess.call([sys.executable, str(REPO / "core/run_backlink_collect.py")], cwd=str(REPO))
+    return {
+        "cycle": cycle,
+        "serp": serp,
+        "hypothesis": hyp,
+        "comparison": cmp,
+        "goal_met": serp_goal_met(serp),
+        "deploy_queue": queue_n,
+        "patches": patches,
+    }
 
-    cycle = {"at": now_iso(), "hypothesis": hyp, "comparison": cmp, "experiments": experiments, "patches_applied": patches}
-    (REPO / "tools/LEARNING_LOOP_REPORT.md").write_text(_render_report(cycle), encoding="utf-8")
-    return cycle
+
+def run_until_top10(max_cycles: int, min_keywords: int, pause_sec: float) -> dict:
+    summary = {"cycles_run": 0, "goal_met": False, "final_serp": None}
+    for cycle in range(1, max_cycles + 1):
+        result = run_single_cycle(cycle)
+        summary["cycles_run"] = cycle
+        summary["final_serp"] = result["serp"]
+        summary["goal_met"] = serp_goal_met(result["serp"], min_keywords)
+
+        report = _render_multi_report(cycle, result, summary["goal_met"])
+        (REPO / "tools/LEARNING_LOOP_REPORT.md").write_text(report, encoding="utf-8")
+
+        if summary["goal_met"]:
+            print(f"\n*** GOAL MET: {min_keywords}+ keywords in top10 after cycle {cycle} ***")
+            exp = load_json(EXPERIMENT, {})
+            exp["status"] = "goal_reached"
+            exp["goal_reached_at"] = now_iso()
+            save_json(EXPERIMENT, exp)
+            break
+
+        if cycle < max_cycles:
+            print(f"Goal not met — next cycle in {pause_sec}s...")
+            time.sleep(pause_sec)
+
+    if not summary["goal_met"]:
+        print(f"\n--- Max cycles ({max_cycles}) reached. SERP still 0/3. PC deploy queue required. ---")
+        exp = load_json(EXPERIMENT, {})
+        exp.setdefault("learning_loop", {})["awaiting_pc_deploy"] = True
+        save_json(EXPERIMENT, exp)
+
+    return summary
 
 
-def _render_report(cycle: dict) -> str:
-    h, c = cycle["hypothesis"], cycle["comparison"]
+def _render_multi_report(cycle: int, result: dict, goal_met: bool) -> str:
+    h, c, serp = result["hypothesis"], result["comparison"], result["serp"]
     lines = [
-        f"# 자동 학습 루프 — {cycle['at']}",
+        f"# 자가 발전 학습 루프 — cycle {cycle} ({now_iso()})",
+        "",
+        f"**SERP top10:** {serp.get('in_top10_count', 0)}/3 | **goal_met:** {goal_met}",
         "",
         f"## 가설 ({h['confidence']:.0%})",
         h["statement_ko"],
         "",
-        "| 도메인 | DR | RD | BL |",
-        "|--------|----|----|-----|",
-        f"| **gangara.co.kr** | {c['you']['dr']} | {c['you']['rd']} | {c['you']['bl']} |",
+        "| 키워드 | rank | top10 |",
+        "|--------|------|-------|",
     ]
-    for d, p in sorted(c["peers"].items(), key=lambda x: -(x[1].get("rd") or 0)):
-        lines.append(f"| {d} | {p.get('dr')} | {p.get('rd')} | {p.get('bl')} |")
-    lines.append(f"\nRD 목표: **{c['rd_target']}** (격차 {c['rd_gap_to_median']:+.0f})\n")
-    for e in cycle["experiments"]:
-        lines.append(f"- [{e['priority']}] {e['action']}")
+    for r in serp.get("results", []):
+        rank = r.get("rank") if r.get("rank") else "—"
+        lines.append(f"| {r['keyword']} | {rank} | {'✅' if r.get('in_top10') else '❌'} |")
+    lines += [
+        "",
+        f"RD: gangara {c['you']['rd']} / target {c['rd_target']}",
+        f"Deploy queue: {result['deploy_queue']}건 → `core/backlink_deploy_queue.json`",
+        "",
+        "## 재실행",
+        "```bash",
+        "python3 core/run_learning_loop.py --until-top10 --max-cycles 20",
+        "```",
+    ]
     return "\n".join(lines) + "\n"
 
 
 def main() -> int:
-    cycle = run_cycle()
-    print(json.dumps(cycle["hypothesis"], ensure_ascii=False, indent=2))
+    ap = argparse.ArgumentParser(description="gangara SERP 1페이지 자가 학습 루프")
+    ap.add_argument("--until-top10", action="store_true", help="3키워드 top10까지 반복")
+    ap.add_argument("--max-cycles", type=int, default=20, help="최대 사이클 (안전 상한)")
+    ap.add_argument("--min-keywords", type=int, default=3, help="성공 조건 top10 키워드 수")
+    ap.add_argument("--pause", type=float, default=3.0, help="사이클 간 대기(초)")
+    args = ap.parse_args()
+
+    if args.until_top10:
+        summary = run_until_top10(args.max_cycles, args.min_keywords, args.pause)
+        print(json.dumps(summary, ensure_ascii=False, indent=2, default=str))
+        return 0 if summary["goal_met"] else 2
+
+    result = run_single_cycle(1)
+    print(json.dumps(result["hypothesis"], ensure_ascii=False, indent=2))
     return 0
 
 

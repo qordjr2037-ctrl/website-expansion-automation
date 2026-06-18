@@ -1,0 +1,35 @@
+name: Learning loop until SERP top10
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      max_cycles:
+        description: Max cycles per run
+        default: '5'
+
+jobs:
+  learn:
+    runs-on: ubuntu-latest
+    if: github.repository == 'qordjr2037-ctrl/website-expansion-automation'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run learning loop
+        run: |
+          MAX="${{ github.event.inputs.max_cycles || '5' }}"
+          python3 core/run_learning_loop.py --until-top10 --max-cycles "$MAX" --pause 2
+        continue-on-error: true
+
+      - name: Commit loop artifacts
+        run: |
+          git config user.name "cursor[bot]"
+          git config user.email "cursor[bot]@users.noreply.github.com"
+          git add core/gangara_experiment.json core/backlink_deploy_status.json \
+            core/backlink_targets_sync.json core/backlink_deploy_queue.json \
+            core/machine_config.json tools/LEARNING_LOOP_REPORT.md \
+            "website 확장 수집/misc/data/learning_seeds.json" \
+            "website 확장 수집/misc/data/placements_master.json" 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "chore(learning): auto loop cycle artifacts"
+          git push || true

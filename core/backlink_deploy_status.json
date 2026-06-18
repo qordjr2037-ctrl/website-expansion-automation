@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-18T23:42:46Z",
+  "updated_at": "2026-06-18T23:54:33Z",
   "scope": "collect_and_export_only",
   "current_phase": 2,
   "all_pass": true,
@@ -19,7 +19,7 @@
     "sync_push": {
       "ok": true,
       "count": 30,
-      "pool_total": 71,
+      "pool_total": 88,
       "detail": "backlink_targets_sync.json"
     },
     "collect_round": {
@@ -29,47 +29,48 @@
     }
   },
   "keyword_coverage": {
-    "강남 가라오케": 21,
-    "강남 풀싸롱": 18,
-    "강남 하이퍼블릭": 18,
+    "강남 가라오케": 28,
+    "강남 풀싸롱": 24,
+    "강남 하이퍼블릭": 22,
     "서울 가라오케": 4,
     "강남 유흥": 7,
     "강남 클럽": 3
   },
   "failures": [],
   "next_actions": [
-    "[학습] sync Tier S directory → PC Browser 배포 (roompang 우선)",
-    "[학습] postheaven/web2 스팸 placement export 제외",
-    "RD 목표 98 (현재 46, 중위 98)",
-    "python3 core/run_learning_loop.py 주 1회"
+    "[cycle 5] PC Browser: core/backlink_deploy_queue.json 18건 배포",
+    "[cycle 5] GSC sitemap + site:gangara.co.kr",
+    "python3 core/run_learning_loop.py --until-top10 (SERP 0/3 top10)"
   ],
   "serp_benchmark_note": "guide_hub(choicelounge) > single_landing > minimal — FAQ+가격표+내부링크",
   "tier_distribution": {
     "S": 6,
-    "A": 19,
-    "B": 5
+    "A": 23,
+    "B": 1
   },
   "board_urls_in_sync": 0,
   "experiment_mode": true,
   "money_site": "https://gangara.co.kr/",
   "fusion_live": {
     "deployed": true,
-    "verified_at": "2026-06-18T23:42:46Z",
+    "verified_at": "2026-06-18T23:54:33Z",
     "h1": "강남 가라오케 · 하이퍼블릭 · 풀싸롱 · 쩜오 2026 완벽 가이드",
     "canonical": "https://gangara.co.kr/",
     "sitemap_urls": 5
   },
   "pool_keyword_coverage": {
-    "강남 가라오케": 21,
-    "강남 풀싸롱": 18,
-    "강남 하이퍼블릭": 18,
+    "강남 가라오케": 28,
+    "강남 풀싸롱": 24,
+    "강남 하이퍼블릭": 22,
     "서울 가라오케": 4,
     "강남 유흥": 7,
     "강남 클럽": 3
   },
   "learning_loop": {
+    "cycle": 5,
     "hypothesis": "backlink_quality_disavow_spam",
-    "confidence": 0.85,
+    "serp_in_top10": 0,
+    "goal_met": false,
     "rd_target": 98
   }
 }

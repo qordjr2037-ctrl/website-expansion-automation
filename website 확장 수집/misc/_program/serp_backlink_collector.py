@@ -7,12 +7,14 @@ import ssl
 import time
 import urllib.parse
 import urllib.request
+import json
 from pathlib import Path
 
 from placement_classifier import is_board_url
 
 REPO = Path(__file__).resolve().parents[3]
 QUERIES_FILE = REPO / "website 확장 수집/misc/data/serp_backlink_queries.txt"
+LEARNING_SEEDS = REPO / "website 확장 수집/misc/data/learning_seeds.json"
 CTX = ssl.create_default_context()
 UA = "Mozilla/5.0 (compatible; TrackB-Collector/1.0)"
 
@@ -60,6 +62,33 @@ SEED_URLS: list[tuple[str, str]] = [
     ("강남 하이퍼블릭", "https://gangnam-highpublic.com/"),
     ("강남 가라오케", "https://www.karaokegangnam.net/"),
 ]
+
+
+def load_learning_seeds() -> list[tuple[str, str]]:
+    """학습 루프가 SERP top URL로 추가한 동적 시드."""
+    if not LEARNING_SEEDS.exists():
+        return []
+    try:
+        data = json.loads(LEARNING_SEEDS.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    out: list[tuple[str, str]] = []
+    for row in data.get("seeds", []):
+        kw, url = row.get("keyword"), row.get("url")
+        if kw and url:
+            out.append((kw, url))
+    return out
+
+
+def all_seed_urls() -> list[tuple[str, str]]:
+    seen: set[tuple[str, str]] = set()
+    combined: list[tuple[str, str]] = []
+    for item in SEED_URLS + load_learning_seeds():
+        if item not in seen:
+            seen.add(item)
+            combined.append(item)
+    return combined
+
 
 RESULT_LINK = re.compile(r'uddg=([^&"]+)')
 
@@ -122,7 +151,7 @@ def collect_for_keyword(keyword: str, max_per_query: int = 6) -> list[dict]:
             }
         )
 
-    for kw, seed in SEED_URLS:
+    for kw, seed in all_seed_urls():
         if kw == keyword:
             add(seed, 1, "seed")
 

@@ -15,6 +15,7 @@ def pick_keyword_balanced_batch(
     batch_size: int,
     existing_coverage: dict[str, int] | None = None,
     experiment_mode: bool = False,
+    min_trait: int = 40,
 ) -> list[dict[str, Any]]:
     coverage = Counter(existing_coverage or {})
     for kw in keywords:
@@ -34,7 +35,7 @@ def pick_keyword_balanced_batch(
         tier = TIER_ORDER.get(row.get("tier_hint", "B"), 2)
         return (platform_penalty, tier, deficit, dofollow, captcha, rank, trait)
 
-    active = [r for r in pool if r.get("qualified", True) and r.get("trait_score", 0) >= 40]
+    active = [r for r in pool if r.get("qualified", True) and r.get("trait_score", 0) >= min_trait]
     if experiment_mode:
         preferred = [r for r in active if r.get("platform_type") in EXPERIMENT_PLATFORMS]
         if len(preferred) >= batch_size // 2:
