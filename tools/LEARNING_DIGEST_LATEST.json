@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T23:57:08Z",
+  "generated_at": "2026-06-19T00:06:39Z",
   "goal_met": false,
   "serp_top10": "0/3",
   "serp_ranks": {
@@ -9,7 +9,7 @@
   },
   "hypothesis_id": "backlink_quality_disavow_spam",
   "hypothesis_ko": "RD 46 but spam 100% — quality+deploy.",
-  "learning_cycle": 5,
+  "learning_cycle": 1,
   "pool_total": 88,
   "sync_count": 30,
   "deploy_queue_pending": 18,

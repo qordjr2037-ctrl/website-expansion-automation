@@ -10,6 +10,7 @@
 # runtime / local data
 **/logs/
 **/*.log
+!**/misc/logs/.gitkeep
 **/verified_store.json
 **/deploy_queue.json
 

@@ -4,9 +4,14 @@
 
 ```bash
 python3 core/run_learning_report.py --quiet
-python3 core/run_learning_loop.py --max-cycles 1   # 단일 사이클 (또는 --until-top10 --max-cycles 3)
-python3 core/run_learning_report.py --email        # SMTP secrets 있으면 Gmail 발송
+# 백그라운드 continuous 가 돌 중이면 digest만; 아니면:
+python3 core/run_learning_loop.py --continuous --max-cycles 5 --max-batches 200 --min-keywords 1 &
 ```
+
+**유의미한 결과까지 멈추지 않음** — `--continuous --min-keywords 1` (1키워드 top10 = 성공)
+
+백그라운드 tmux: `gangara-learning-continuous`
+로그: `tools/learning_continuous.log`
 
 답변에 반드시 포함:
 - `tools/LEARNING_DIGEST_LATEST.md` 요약 (SERP top10, 가설, deploy queue 건수)
