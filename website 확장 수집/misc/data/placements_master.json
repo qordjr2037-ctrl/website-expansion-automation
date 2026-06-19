@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-19T00:41:26Z",
+  "updated_at": "2026-06-19T00:50:27Z",
   "placements": [
     {
       "qualified": true,
@@ -1672,6 +1672,42 @@
       "trait_score": 85,
       "serp_rank": 1,
       "http_status": 200,
+      "reject_reason": "",
+      "source": "seed"
+    },
+    {
+      "qualified": true,
+      "url": "https://gangnamfr.com/",
+      "target_keyword": "강남 풀싸롱",
+      "platform_type": "web2",
+      "tier_hint": "B",
+      "domain": "gangnamfr.com",
+      "deploy_url": "https://gangnamfr.com/",
+      "entry_url": "https://gangnamfr.com/",
+      "dofollow_hint": true,
+      "write_captcha": false,
+      "signup_captcha": false,
+      "trait_score": 85,
+      "serp_rank": 1,
+      "http_status": 200,
+      "reject_reason": "",
+      "source": "seed"
+    },
+    {
+      "qualified": true,
+      "url": "https://gangnamkaraoke7.isweb.co.kr/",
+      "target_keyword": "강남 가라오케",
+      "platform_type": "web2",
+      "tier_hint": "B",
+      "domain": "isweb.co.kr",
+      "deploy_url": "https://gangnamkaraoke7.isweb.co.kr/",
+      "entry_url": "https://gangnamkaraoke7.isweb.co.kr/",
+      "dofollow_hint": true,
+      "write_captcha": false,
+      "signup_captcha": false,
+      "trait_score": 60,
+      "serp_rank": 1,
+      "http_status": 403,
       "reject_reason": "",
       "source": "seed"
     }
