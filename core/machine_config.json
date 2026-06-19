@@ -1,7 +1,7 @@
 {
   "enabled": true,
   "git_branch": "main",
-  "machines_in_fleet": 1,
+  "machines_in_fleet": 2,
   "browsers_per_machine": 8,
   "post_only": true,
   "target_keywords": 3,
@@ -19,7 +19,7 @@
   "prefer_no_captcha": true,
   "verify_after_deploy": true,
   "min_verify_live_pct": 80,
-  "daily_link_target": 500,
+  "daily_link_target": 1000,
   "campaign_id": "gangara-experiment",
   "experiment_mode": true,
   "experiment_config": "core/gangara_experiment.json",
@@ -40,5 +40,18 @@
     ],
     "active_cycle": 14,
     "min_trait_score": 70
+  },
+  "backlink_volume": {
+    "enabled": true,
+    "daily_target": 1000,
+    "daily_quota": {
+      "profile": 450,
+      "web2": 350,
+      "directory": 80,
+      "guide_hub": 40,
+      "comment": 80
+    },
+    "prioritize_new_signup": true,
+    "playbook": "core/BACKLINK_1000_DAY_PLAYBOOK.md"
   }
 }

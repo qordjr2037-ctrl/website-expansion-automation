@@ -1,0 +1,26 @@
+# Bulk volume — signup·post 플랫폼 시드 (SERP 수집용)
+# 1줄 1URL, # 주석 가능
+
+https://www.clickn.co.kr/
+https://www.isweb.co.kr/
+https://www.dothome.co.kr/
+https://www.tistory.com/
+https://velog.io/
+https://section.blog.naver.com/
+https://www.roompang.com/
+https://clicknn.co.kr/
+https://garaoke.clickn.co.kr/
+https://gangnamgaraoke.clickn.co.kr/
+https://pulssalong.clickn.co.kr/
+https://gangnamhigh.clickn.co.kr/
+https://karaokekr.clickn.co.kr/
+https://gangnamhapeo1.clickn.co.kr/
+https://harper.clickn.co.kr/
+https://fullssalong.clickn.co.kr/
+https://fulllssalon.clickn.co.kr/
+https://gangnamharper.clickn.co.kr/
+https://gangnamhyperb.clickn.co.kr/
+https://gangnamkaraoke.isweb.co.kr/
+https://gang-nam.isweb.co.kr/
+https://gangnamktv.isweb.co.kr/
+https://gangnamkaraoke7.isweb.co.kr/

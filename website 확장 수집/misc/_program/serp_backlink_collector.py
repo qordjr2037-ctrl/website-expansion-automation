@@ -15,6 +15,7 @@ from placement_classifier import is_board_url
 REPO = Path(__file__).resolve().parents[3]
 QUERIES_FILE = REPO / "website 확장 수집/misc/data/serp_backlink_queries.txt"
 LEARNING_SEEDS = REPO / "website 확장 수집/misc/data/learning_seeds.json"
+VOLUME_SEEDS = REPO / "website 확장 수집/misc/data/backlink_volume_seeds.txt"
 CTX = ssl.create_default_context()
 UA = "Mozilla/5.0 (compatible; TrackB-Collector/1.0)"
 
@@ -64,6 +65,20 @@ SEED_URLS: list[tuple[str, str]] = [
 ]
 
 
+def load_volume_seeds() -> list[tuple[str, str]]:
+    """bulk signup 플랫폼 시드 — 3키워드 공통."""
+    if not VOLUME_SEEDS.exists():
+        return []
+    kws = ["강남 가라오케", "강남 풀싸롱", "강남 하이퍼블릭"]
+    out: list[tuple[str, str]] = []
+    for i, line in enumerate(VOLUME_SEEDS.read_text(encoding="utf-8").splitlines()):
+        url = line.strip()
+        if not url or url.startswith("#") or not url.startswith("http"):
+            continue
+        out.append((kws[i % len(kws)], url))
+    return out
+
+
 def load_learning_seeds() -> list[tuple[str, str]]:
     """학습 루프가 SERP top URL로 추가한 동적 시드."""
     if not LEARNING_SEEDS.exists():
@@ -83,7 +98,7 @@ def load_learning_seeds() -> list[tuple[str, str]]:
 def all_seed_urls() -> list[tuple[str, str]]:
     seen: set[tuple[str, str]] = set()
     combined: list[tuple[str, str]] = []
-    for item in SEED_URLS + load_learning_seeds():
+    for item in SEED_URLS + load_learning_seeds() + load_volume_seeds():
         if item not in seen:
             seen.add(item)
             combined.append(item)
