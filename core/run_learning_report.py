@@ -28,6 +28,48 @@ DIGEST_MD = REPO / "tools/LEARNING_DIGEST_LATEST.md"
 DIGEST_JSON = REPO / "tools/LEARNING_DIGEST_LATEST.json"
 CONFIG = REPO / "core/machine_config.json"
 DEFAULT_REPORT_EMAIL = "qordjr2037@gmail.com"
+NOTIFY_SECRETS = REPO / "core/notify_secrets.json"
+ENV_FILE = REPO / ".env"
+SMTP_ENV_KEYS = (
+    "GANGARA_REPORT_EMAIL_TO",
+    "GANGARA_SMTP_USER",
+    "GANGARA_SMTP_PASS",
+    "GANGARA_SMTP_HOST",
+    "GANGARA_SMTP_PORT",
+)
+
+
+def _parse_env_file(path: Path) -> dict[str, str]:
+    out: dict[str, str] = {}
+    if not path.is_file():
+        return out
+    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, _, v = line.partition("=")
+        out[k.strip()] = v.strip().strip('"').strip("'")
+    return out
+
+
+def _load_smtp_env() -> None:
+    """env → .env → core/notify_secrets.json (gitignore) 순으로 SMTP 설정 병합."""
+    merged: dict[str, str] = {}
+    if NOTIFY_SECRETS.is_file():
+        try:
+            data = json.loads(NOTIFY_SECRETS.read_text(encoding="utf-8"))
+            if isinstance(data, dict):
+                for k in SMTP_ENV_KEYS:
+                    val = data.get(k) or data.get(k.lower())
+                    if val:
+                        merged[k] = str(val).strip()
+        except Exception:
+            pass
+    merged.update(_parse_env_file(ENV_FILE))
+    for k in SMTP_ENV_KEYS:
+        val = (os.environ.get(k) or merged.get(k) or "").strip()
+        if val:
+            os.environ[k] = val
 
 
 def now_iso() -> str:
@@ -134,6 +176,7 @@ def _report_email() -> str:
 
 
 def send_email(subject: str, body_md: str, digest: dict) -> bool:
+    _load_smtp_env()
     to_addr = _report_email()
     smtp_host = os.environ.get("GANGARA_SMTP_HOST", "smtp.gmail.com")
     smtp_port = int(os.environ.get("GANGARA_SMTP_PORT", "587"))
@@ -142,7 +185,14 @@ def send_email(subject: str, body_md: str, digest: dict) -> bool:
 
     if not smtp_pass:
         print(f"EMAIL skip: GANGARA_SMTP_PASS not set (to={to_addr})", file=sys.stderr)
-        print("GitHub Secrets 또는 env에 Gmail 앱 비밀번호 필요", file=sys.stderr)
+        print(
+            "core/notify_secrets.json (gitignore) 또는 GitHub Secret GANGARA_SMTP_PASS 필요",
+            file=sys.stderr,
+        )
+        print(
+            "호스팅/cPanel 비번 ≠ Gmail SMTP — 앱 비밀번호: https://myaccount.google.com/apppasswords",
+            file=sys.stderr,
+        )
         return False
 
     msg = MIMEMultipart("alternative")
@@ -161,7 +211,13 @@ def send_email(subject: str, body_md: str, digest: dict) -> bool:
         return True
     except smtplib.SMTPAuthenticationError as e:
         print(f"EMAIL auth failed: {e}", file=sys.stderr)
-        print("Gmail 앱 비밀번호 필요 → https://myaccount.google.com/apppasswords", file=sys.stderr)
+        print(
+            "로그인 거부 — cPanel/호스팅 비번으로는 Gmail SMTP 불가. "
+            "Google 계정 → 앱 비밀번호(16자) 생성 후 notify_secrets.json 또는 "
+            "GitHub Secret GANGARA_SMTP_PASS 에 등록",
+            file=sys.stderr,
+        )
+        print("https://myaccount.google.com/apppasswords", file=sys.stderr)
         return False
     except Exception as e:
         print(f"EMAIL failed: {e}", file=sys.stderr)

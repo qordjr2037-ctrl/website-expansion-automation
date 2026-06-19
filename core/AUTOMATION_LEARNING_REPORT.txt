@@ -19,7 +19,9 @@ python3 core/run_learning_loop.py --continuous --max-cycles 5 --max-batches 200 
 
 3시간 스케줄: `.github/workflows/learning-loop.yml` cron `0 */3 * * *`
 
-Gmail secrets (repo Settings → Secrets):
-- GANGARA_REPORT_EMAIL_TO = qordjr2037@gmail.com
-- GANGARA_SMTP_USER = qordjr2037@gmail.com
-- GANGARA_SMTP_PASS = Gmail 앱 비밀번호 (16자)
+SMTP (택1):
+A) core/notify_secrets.json (gitignore) — notify_secrets.json.example 복사 후 GANGARA_SMTP_PASS
+B) GitHub Secrets: GANGARA_REPORT_EMAIL_TO, GANGARA_SMTP_USER, GANGARA_SMTP_PASS
+
+주의: cPanel/호스팅 비번(wo74582323@) ≠ Gmail SMTP. Gmail은 앱 비밀번호만 허용:
+https://myaccount.google.com/apppasswords
