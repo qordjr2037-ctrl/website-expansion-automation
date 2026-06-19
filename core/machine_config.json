@@ -1,24 +1,69 @@
 {
   "enabled": true,
   "git_branch": "main",
-  "machines_in_fleet": 1,
+  "machines_in_fleet": 2,
   "browsers_per_machine": 8,
   "post_only": true,
-  "target_keywords": 13,
-  "placements_per_keyword": 10,
-  "urls_per_refresh": 20,
+  "target_keywords": 3,
+  "placements_per_keyword": 15,
+  "urls_per_refresh": 30,
   "pull_interval_minutes": 60,
   "collect_interval_minutes": 120,
-  "refresh_times": ["00:00", "06:00", "12:00", "18:00"],
+  "refresh_times": [
+    "00:00",
+    "06:00",
+    "12:00",
+    "18:00"
+  ],
   "prefer_dofollow": true,
   "prefer_no_captcha": true,
   "verify_after_deploy": true,
   "min_verify_live_pct": 80,
-  "daily_link_target": 500,
-  "campaign_id": "main-landing",
-  "keywords_file": "website 확장 수집/misc/data/backlink_keywords.txt",
+  "daily_link_target": 1000,
+  "campaign_id": "gangara-experiment",
+  "experiment_mode": true,
+  "experiment_config": "core/gangara_experiment.json",
+  "keywords_file": "website 확장 수집/misc/data/backlink_keywords_experiment.txt",
   "money_sites_file": "website 확장 수집/misc/data/money_sites.json",
   "anchor_plan_file": "website 확장 수집/misc/data/anchor_plan.json",
   "_fleet_note": "본부=Automation push sync. PC=post_only pull+배포.",
-  "_track_note": "board-post-automation 과 무관."
+  "_track_note": "board-post-automation 과 무관.",
+  "_experiment_note": "gangara.co.kr 단일 사이트 백링크 집중 실험 — 3키워드",
+  "learning_loop": {
+    "report_email": "qordjr2037@gmail.com",
+    "report_interval_hours": 3,
+    "report_email_on_schedule": true,
+    "report_email_on_user_message": false,
+    "prioritize_platforms": [
+      "directory",
+      "guide_hub"
+    ],
+    "active_cycle": 1,
+    "min_trait_score": 57
+  },
+  "backlink_volume": {
+    "enabled": true,
+    "daily_target": 1000,
+    "daily_quota": {
+      "profile": 450,
+      "web2": 350,
+      "directory": 80,
+      "guide_hub": 40,
+      "comment": 80
+    },
+    "prioritize_new_signup": true,
+    "playbook": "core/BACKLINK_1000_DAY_PLAYBOOK.md",
+    "success_milestone": 100,
+    "auto_enabled": true,
+    "auto_batch_size": 50,
+    "auto_interval_sec": 600
+  },
+  "backlink_intel": {
+    "enabled": true,
+    "report_interval_minutes": 10,
+    "email_each_cycle": true,
+    "mode": "fundamental_and_competitor",
+    "stop_file": "tools/BACKLINK_INTEL_STOP",
+    "_stop_note": "그만: touch tools/BACKLINK_INTEL_STOP 또는 enabled=false"
+  }
 }

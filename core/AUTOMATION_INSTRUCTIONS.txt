@@ -1,226 +1,76 @@
-웹사이트 확장 자동화 (Track B) — Cursor Automation Instructions
+웹사이트 확장 자동화 (Track B) — gangara 실험
 ================================================================================
+상세 프롬프트: core/AGENT_INSTRUCTION_PROMPT.txt (Cursor Automation @file)
+
 저장소: qordjr2037-ctrl/website-expansion-automation
-브랜치: main
+실험 사이트: gangara.co.kr (단일 money URL)
+키워드 3개: 강남 가라오케 · 강남 풀싸롱 · 강남 하이퍼블릭
 
-사용자가 Run(또는 Webhook)을 눌렀을 때만 실행한다.
-1 Run = 1사이클. 백그라운드 장시간 루프 금지.
-
-※ board-post-automation(Track A) 은 절대 수정·참조 pull 금지.
-  이 repo 만 clone · commit · push.
+※ board-post-automation(Track A) 수정·참조 금지
 
 ================================================================================
-목적 (빨간 박스 2가지 — 이 Automation의 전부)
+목표
 ================================================================================
-1. 키워드별 백링크 placement 수집
-   · 타깃 키워드 SERP + 플랫폼 시드 → URL 후보
-   · profile / comment / directory / web2_article 등 링크 삽입 가능 표면만
-   · dofollow·무캡챠·가입 가능성 적격 → placements_master 누적
-
-2. 통합 본부 export → N대 PC 배포 큐
-   · core/backlink_targets_sync.json push (guest_sync 역할)
-   · 키워드별 coverage 균형 (부족한 키워드 우선)
-   · PC는 pull 후 배포만 (post_only)
-
-※ 실제 Chrome 배포·live 검증(run_backlink_auto)은 Automation 1차 범위 밖.
-  Phase 3 이후 로컬 PC / 별도 Run. Automation은 수집·export·코드 구축 중심.
+1) SERP 1페이지 — 3키워드 top10
+2) 로컬 PC 1대 — verified live 백링크 1000건/일 (장기)
 
 ================================================================================
-현재 상태 (빈 repo — Phase 0부터 구축)
+현재 Phase (2026-06 실측)
 ================================================================================
-아직 구현 전. 매 Run 은 아래 순서 중 「가장 앞의 미완 Phase」 1개만 진행.
+Phase 2  수집·sync        → all_pass ✅
+Phase 3  로컬 배포·verify → 진행 중 (병목)
+Phase 4  adapter 자동화   → ClickN/web2/roompang 미완
 
-  Phase 0  스키마·설정·키워드·Instructions (본 파일 유지)
-  Phase 1  수집 MVP — SERP → classify → qualify → export sync
-  Phase 2  run_backlink_collect.py 1사이클 + backlink_deploy_status.json
-  Phase 3  배포 MVP — profile_link / directory adapter (로컬)
-  Phase 4  verified_store + keyword 균형 pick_batch
-  Phase 5  fleet bat + N대 pull (최신받기_백링크.bat)
-
-Run 전 항상 확인:
-  · core/backlink_deploy_status.json → current_phase, all_pass
-  · website 확장 수집/misc/logs/backlink_collect_live.log (있으면 tail)
+온페이지 fusion live ✅ | SERP 0/3 | verified live ~1건
 
 ================================================================================
-성공 조건 (all_pass)
+매 Run (에이전트)
 ================================================================================
-core/backlink_deploy_status.json 기준:
+1. supervisor 재기동: bash tools/start_gangara_supervisor.sh
+2. backlink_deploy_status.json · backlink_verified_store.json 확인
+3. run_backlink_collect.py (pool 부족 시)
+4. run_backlink_auto.py --batch 50 (배포·검증)
+5. run_learning_loop.py --max-cycles 1
+6. 실패 1건 → 최소 diff → push
+7. AGENT_INSTRUCTION_PROMPT.txt 하단 보고 형식
 
-  · keywords_covered ≥ target_keywords (machine_config, 기본 13)
-  · 각 키워드: sync에 queued ≥ placements_per_keyword (기본 10)
-  · core/backlink_targets_sync.json
-      count ≥ urls_per_refresh (기본 20)
-      pool_total ≥ keywords × placements_per_keyword (누적 풀)
-  · placement row 필수 필드:
-      target_keyword, platform_type, deploy_url 또는 entry_url,
-      dofollow_hint, write_captcha/signup_captcha, trait_score
-  · 가입 필요 시 user_id/password 있을 때만 export (없으면 제외)
-  · collect_round exit_code = 0
-
-all_pass: false → failures[] 1개만 골라 수정 (다음 Run).
+백그라운드: run_gangara_supervisor.py (10분 인텔·auto·15분 collect·20분 learning)
 
 ================================================================================
-타깃 파일 트리 (이 repo 에만 생성)
+성공 조건 (실험)
 ================================================================================
-website-expansion-automation/
-  core/
-    machine_config.json              ← example 복사 후 값 조정 (비밀 커밋 금지)
-    backlink_targets_sync.json       ← 본부 push · PC pull
-    backlink_deploy_status.json      ← Run 게이트·Phase
-    backlink_batch_state.json        ← 키워드 순환
-    backlink_deploy_status.example.json
-    run_backlink_collect.py          ← Automation 진입점 (Phase 2)
-    run_backlink_prepare.py
-    backlink_pool_rank.py
-    AUTOMATION_INSTRUCTIONS.txt      ← 본 파일
-    DESIGN.txt
-  website 확장 수집/
-    misc/data/
-      backlink_keywords.txt          ← 1줄 1키워드 (example → 실제)
-      money_sites.json               ← 머니 URL (로컬·example, 비밀 주의)
-      anchor_plan.json
-      placements_master.json         ← 누적 (민감 계정 로컬 merge)
-      serp_backlink_queries.txt
-    misc/_program/
-      serp_backlink_collector.py
-      placement_classifier.py
-      placement_qualifier.py
-      export_backlink_bridge.py
-      run_backlink_harvest.py
-    misc/logs/backlink_collect_live.log
-  website 확장 배포/                 ← Phase 3+
-    misc/_program/backlink_deployer.py
-    misc/_program/run_backlink_auto.py
-  최신받기_백링크.bat
-  백링크_스타트.bat
+· verified live href (gangara.co.kr) — queue done 아님
+· SERP: in_top10_count ≥ 1 (min-keywords=1) 또는 3키워드 top10
+· daily: verified_today → 1000 (로컬 KPI)
 
 ================================================================================
-machine_config.json (Track B 전용)
+수집 규칙 (유지)
 ================================================================================
-core/machine_config.example.json → machine_config.json 복사.
-
-  target_keywords: 13
-  placements_per_keyword: 10
-  urls_per_refresh: 20
-  post_only: true          ← PC 워커: 수집 생략, sync pull 만
-  prefer_dofollow: true
-  prefer_no_captcha: true
-  collect_interval_minutes: 120
-  git_branch: main
-
-Track A machine_config 와 값 공유하지 않음.
+· 게시판 URL reject · postheaven/blogspot purge
+· platform: directory(S) > guide_hub/profile(A) > web2(B)
+· trait_score ≥ 40 (실험 70+)
+· 키워드별 coverage 균형 — pick_keyword_balanced_batch
 
 ================================================================================
-키워드 · 머니사이트 · 앵커
+보고
 ================================================================================
-키워드: website 확장 수집/misc/data/backlink_keywords.txt
-  · # 주석 줄 무시, 1줄 1키워드
-  · example 3개 → 13개 채울 것 (Track A seo_keywords 와 동일 시드 가능)
-
-머니 URL: money_sites.json → campaigns[].money_url
-  · example.com placeholder 는 로컬에서 교체, 커밋 시 실제 도메인 주의
-
-앵커: anchor_plan.json
-  · exact / partial / brand / naked_url 비율
-  · anchor_builder.py (Phase 3) 가 HTML 생성
-
-================================================================================
-수집 규칙 (절대 변경 금지)
-================================================================================
-1) 키워드별 coverage — 한 키워드만 몰아넣지 않음 (pick_keyword_balanced_batch)
-2) 적격 파이프라인 4단계:
-   a) URL·도omain 스팸·뉴스 기사 REJECT
-   b) platform_type 분류 (profile|comment|directory|web2|forum|guest_post)
-   c) dofollow_hint false 이면 우선순위 하향 (제외 아님, 설정으로 제외 가능)
-   d) 가입 필요 → signup 성공 시만 export (실패 URL export 금지)
-3) SERP 쿼리는 serp_backlink_queries.txt 템플릿 ({keyword} 치환)
-4) placements_master 누적 — sync 는 그중 active batch 만
-5) export 시 credential 은 sync JSON 에 넣지 않음 (PC local merge)
-
-우선순위 (backlink_pool_rank):
-  dofollow → 무캡챠 → SERP rank → trait_score → 키워드 deficit
-
-================================================================================
-매 Run 절차 (1사이클)
-================================================================================
-0) Phase 판단
-   backlink_deploy_status.json 없으면 Phase 0 으로 status 파일 생성.
-
-1) 실행 (Phase ≥ 2 일 때)
-   python core/run_backlink_collect.py
-   python core/run_backlink_collect.py --dry-check   # 수집 없이 게이트만
-
-   venv: repo 내 .venv 또는 py -3 (Phase 1 에 ensure_python.bat 추가)
-
-2) Phase 0~1 (코드 없을 때) — 이번 Run 에 할 일 1개:
-   · example → 실제 파일 rename/copy
-   · serp_backlink_collector + classifier + qualifier 스켈레ton
-   · export_backlink_bridge → backlink_targets_sync.json 쓰기
-   · run_backlink_collect.py 래퍼 추가
-   · backlink_deploy_status.json 갱신 (phase, gates)
-
-3) 결과 읽기
-   · core/backlink_deploy_status.json
-   · core/backlink_targets_sync.json → keyword_coverage
-   · backlink_collect_live.log tail
-
-4) 실패 1개 → 최소 diff → 커밋·push
-   수집: serp_backlink_collector, placement_qualifier, export_backlink_bridge
-   분류: placement_classifier
-   export: backlink_pool_rank, run_backlink_collect
-
-5) Run 종료 보고 (아래 형식)
-
-================================================================================
-Run 종료 보고 형식 (필수)
-================================================================================
-  Phase: N / all_pass: true|false
-  키워드 coverage: K/13 (키워드별 queued/verified 한 줄씩)
-  sync: count/pool_total (backlink_targets_sync.json)
-  수정 파일: ...
-  가설: ...
-  다음 Run: ...
-
-================================================================================
-API · 캡차 (Runner env — AGENT_INSTRUCTION_PROMPT.txt 와 동일, 커밋 금지)
-================================================================================
-  TWOCAPTCHA_API_KEY, AHREFS_API_KEY, SEMRUSH_API_KEY, SEMRUSH_LOGIN_*,
-  SEOREVIEWTOOLS_API_KEY, BLAZEHIVE_API_KEY
-  로컬: .env, captcha_solver.json, local_defaults.py
-
-캡차·로그인 벽 → 2captcha 또는 env 계정으로 통과 후 수집/실측 계속.
+· 10분: run_backlink_intel_report.py → Gmail
+· 3시간: run_learning_report.py → Gmail
+· 100 live: milestone Gmail
+· 실패: failure_hypotheses.py → 다음 가설
 
 ================================================================================
 금지
 ================================================================================
-- board-post-automation repo 수정·push·submodule
-- Track A board_writer / run_auto / collector_sites 경로 사용
-- money_sites.json 실제 URL·계정·2captcha 키 커밋
-- placements_master / sync 에 password 평문 커밋
-- local_defaults.py, captcha_solver.json, .env 커밋
-- 터미널 백그라운드 무한 harvest
-- Phase 3 배포 E2E 를 Automation Run 에서 대량 실행 (수집 Run 과 분리)
+· Track A · 비밀 commit · supervisor 중단 방치 · 편집 불가 URL 배포 시도
 
 ================================================================================
-PC fleet (구현 후)
+Run 종료 보고
 ================================================================================
-  본부(Automation 또는 Runner): post_only=false → collect → push sync
-  워커 PC N: post_only=true → 최신받기_백링크.bat → run_backlink_auto
-
-  machines_in_fleet, MACHINE_ID, pull_interval — machine_config.json
-
-================================================================================
-Phase 1 최소 구현 체크리스트 (첫 all_pass 전)
-================================================================================
-  [ ] backlink_keywords.txt 13키워드
-  [ ] serp_backlink_collector.py (키워드 1개 SERP smoke)
-  [ ] placement_classifier.py (URL → platform_type)
-  [ ] placement_qualifier.py (dofollow·captcha hint)
-  [ ] export_backlink_bridge.py → backlink_targets_sync.json
-  [ ] run_backlink_collect.py
-  [ ] backlink_deploy_status.json gates
-  [ ] backlink_collect_live.log
-
-all_pass: true 될 때까지 Run 마다 1 Phase 또는 1 게이트만 진행.
+  SERP: /3 | verified live: /1000 | queue: 건
+  가설 판정: (가설대로 / 다르게 / 병목)
+  supervisor: running|stopped
+  push: ...
+  다음: ...
 
 ================================================================================

@@ -1,0 +1,24 @@
+name: Backlink automation loop
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  auto:
+    runs-on: ubuntu-latest
+    if: github.repository == 'qordjr2037-ctrl/website-expansion-automation'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run automation cycle
+        run: python3 core/run_backlink_automation.py --once
+        continue-on-error: true
+      - name: Commit artifacts
+        run: |
+          git config user.name "cursor[bot]"
+          git config user.email "cursor[bot]@users.noreply.github.com"
+          git add core/backlink_verified_store.json core/gangara_experiment.json \
+            tools/backlink_auto_last.json tools/LEARNING_DIGEST_LATEST.md 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "chore(backlink): auto cycle"
+          git push || true

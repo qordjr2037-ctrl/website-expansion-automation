@@ -1,0 +1,170 @@
+{
+  "updated_at": "2026-06-19T04:02:39Z",
+  "money_site": "https://gangara.co.kr/",
+  "count": 18,
+  "note": "PC Cursor Browser — placement URL에 money_url·anchor 삽입",
+  "rows": [
+    {
+      "target_keyword": "강남 가라오케",
+      "platform_type": "directory",
+      "tier_hint": "S",
+      "deploy_url": "https://roompang.com/",
+      "money_url": "https://gangara.co.kr/gangnam-garaoke.html",
+      "anchor_text": "강남 가라오케",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 가라오케",
+      "platform_type": "directory",
+      "tier_hint": "S",
+      "deploy_url": "https://roompang.com/search?q=강남+가라오케",
+      "money_url": "https://gangara.co.kr/gangnam-garaoke.html",
+      "anchor_text": "강남 가라오케",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 가라오케",
+      "platform_type": "directory",
+      "tier_hint": "S",
+      "deploy_url": "https://www.roompang.com/",
+      "money_url": "https://gangara.co.kr/gangnam-garaoke.html",
+      "anchor_text": "강남 가라오케",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 풀싸롱",
+      "platform_type": "directory",
+      "tier_hint": "S",
+      "deploy_url": "https://roompang.com/search?q=강남+풀싸롱",
+      "money_url": "https://gangara.co.kr/gangnam-poolsalon.html",
+      "anchor_text": "강남 풀싸롱",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 풀싸롱",
+      "platform_type": "directory",
+      "tier_hint": "S",
+      "deploy_url": "https://roompang.com/guide/gangnam-poolsalon",
+      "money_url": "https://gangara.co.kr/gangnam-poolsalon.html",
+      "anchor_text": "강남 풀싸롱 가이드",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 하이퍼블릭",
+      "platform_type": "directory",
+      "tier_hint": "S",
+      "deploy_url": "https://roompang.com/search?q=강남+하이퍼블릭",
+      "money_url": "https://gangara.co.kr/gangnam-hyperbolic.html",
+      "anchor_text": "강남 하이퍼블릭 가이드",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 하이퍼블릭",
+      "platform_type": "directory",
+      "tier_hint": "S",
+      "deploy_url": "https://www.roompang.com/guide/gangnam-hyperpublic",
+      "money_url": "https://gangara.co.kr/gangnam-hyperbolic.html",
+      "anchor_text": "강남 하이퍼블릭 가이드",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 가라오케",
+      "platform_type": "guide_hub",
+      "tier_hint": "A",
+      "deploy_url": "https://choicelounge.co.kr/",
+      "money_url": "https://gangara.co.kr/gangnam-garaoke.html",
+      "anchor_text": "강남가라",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 가라오케",
+      "platform_type": "guide_hub",
+      "tier_hint": "A",
+      "deploy_url": "https://choicelounge.co.kr/gangnam-garaoke/",
+      "money_url": "https://gangara.co.kr/gangnam-garaoke.html",
+      "anchor_text": "강남 가라오케",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 가라오케",
+      "platform_type": "guide_hub",
+      "tier_hint": "A",
+      "deploy_url": "https://seoulafterdark.com/gangnam-karaoke-guide-2026/",
+      "money_url": "https://gangara.co.kr/gangnam-garaoke.html",
+      "anchor_text": "강남 가라오케",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 가라오케",
+      "platform_type": "guide_hub",
+      "tier_hint": "A",
+      "deploy_url": "https://seoulafterdark.com/gangnam-karaoke-first-time-guide/",
+      "money_url": "https://gangara.co.kr/gangnam-garaoke.html",
+      "anchor_text": "강남 가라오케",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 풀싸롱",
+      "platform_type": "guide_hub",
+      "tier_hint": "A",
+      "deploy_url": "https://clicknn.co.kr/pages/gangnampoolsalon",
+      "money_url": "https://gangara.co.kr/gangnam-poolsalon.html",
+      "anchor_text": "강남가라",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 풀싸롱",
+      "platform_type": "guide_hub",
+      "tier_hint": "A",
+      "deploy_url": "https://choicelounge.co.kr/poolsalon/",
+      "money_url": "https://gangara.co.kr/gangnam-poolsalon.html",
+      "anchor_text": "강남가라",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 하이퍼블릭",
+      "platform_type": "guide_hub",
+      "tier_hint": "A",
+      "deploy_url": "https://clicknn.co.kr/pages/gangnamhyperbolic",
+      "money_url": "https://gangara.co.kr/gangnam-hyperbolic.html",
+      "anchor_text": "강남 하이퍼블릭 가이드",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 하이퍼블릭",
+      "platform_type": "guide_hub",
+      "tier_hint": "A",
+      "deploy_url": "https://choicelounge.co.kr/highpublic/",
+      "money_url": "https://gangara.co.kr/gangnam-hyperbolic.html",
+      "anchor_text": "강남 하이퍼블릭 가이드",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 하이퍼블릭",
+      "platform_type": "guide_hub",
+      "tier_hint": "A",
+      "deploy_url": "https://gangnamkaraokeroom.com/gangnam-hyperpublic-guide/",
+      "money_url": "https://gangara.co.kr/gangnam-hyperbolic.html",
+      "anchor_text": "강남 하이퍼블릭 가이드",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 하이퍼블릭",
+      "platform_type": "guide_hub",
+      "tier_hint": "A",
+      "deploy_url": "https://choicelounge.co.kr/highpublic/index.html",
+      "money_url": "https://gangara.co.kr/gangnam-hyperbolic.html",
+      "anchor_text": "강남가라",
+      "status": "queued"
+    },
+    {
+      "target_keyword": "강남 하이퍼블릭",
+      "platform_type": "guide_hub",
+      "tier_hint": "A",
+      "deploy_url": "http://choicelounge.co.kr/",
+      "money_url": "https://gangara.co.kr//",
+      "anchor_text": "gangara.co.kr",
+      "status": "queued"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+# Cursor Automation — 보고 정책
+
+## 기본 (사용자 요청 없음)
+**3시간마다 Gmail 자동 발송** — 사용자가 채팅에 “보고해”라고 하지 않아도 됨.
+
+- tmux: `gangara-report-3h` → `python3 core/run_report_scheduler.py --daemon --force-now`
+- GitHub Actions: `.github/workflows/learning-report-3h.yml` cron `0 */3 * * *`
+- 설정: `core/machine_config.json` → `learning_loop.report_interval_hours` (기본 3)
+
+```bash
+python3 core/run_learning_report.py --email --scheduled --quiet
+```
+
+## 사용자 채팅·Gmail·Webhook (명시적 “보고해/메일” 요청 **없을 때**)
+- digest **파일만** 참조·갱신 — **이메일 발송 금지**
+- 학습 루프는 백그라운드 tmux `gangara-learning-continuous`가 담당
+
+```bash
+python3 core/run_learning_report.py --quiet   # --email 붙이지 말 것
+```
+
+답변에 포함 (가설→실험→결과):
+- `tools/LEARNING_DIGEST_LATEST.md` 요약
+- “다음 Gmail 보고는 ~3시간 스케줄” 안내 1줄
+
+## 사용자가 “보고해 / 메일 보내 / 지금 보고” 등 **명시 요청**할 때만
+```bash
+python3 core/run_learning_report.py --email --force --quiet
+```
+
+## SMTP
+- `core/notify_secrets.json` (gitignore) 또는 GitHub Secrets `GANGARA_SMTP_*`
+
+## 백그라운드 (멈추지 않음)
+**통합 supervisor 1개** — tmux 죽어도 nohup으로 재기동:
+```bash
+bash tools/start_gangara_supervisor.sh
+```
+- 10분: 인텔 Gmail + auto batch
+- 15분: collect + daily plan
+- 20분: learning 1 cycle
+- 3시간: 학습 digest Gmail
+- 로그: `tools/gangara_supervisor.log`
+- 중지: `touch tools/GANGARA_SUPERVISOR_STOP`
+
+구 tmux 개별 세션 대신 supervisor 권장.
