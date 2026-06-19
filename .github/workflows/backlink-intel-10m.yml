@@ -1,0 +1,37 @@
+name: Backlink intel report 10m
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  intel:
+    runs-on: ubuntu-latest
+    if: github.repository == 'qordjr2037-ctrl/website-expansion-automation'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Skip if stopped
+        id: stop
+        run: |
+          if [ -f tools/BACKLINK_INTEL_STOP ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Intel report + email
+        if: steps.stop.outputs.skip != 'true'
+        env:
+          GANGARA_REPORT_EMAIL_TO: ${{ secrets.GANGARA_REPORT_EMAIL_TO }}
+          GANGARA_SMTP_USER: ${{ secrets.GANGARA_SMTP_USER }}
+          GANGARA_SMTP_PASS: ${{ secrets.GANGARA_SMTP_PASS }}
+        run: python3 core/run_backlink_intel_report.py --email --quiet
+      - name: Commit intel artifacts
+        if: steps.stop.outputs.skip != 'true'
+        run: |
+          git config user.name "cursor[bot]"
+          git config user.email "cursor[bot]@users.noreply.github.com"
+          git add tools/BACKLINK_INTEL_LATEST.md tools/BACKLINK_INTEL_LATEST.json \
+            tools/BACKLINK_INTEL_ACCUMULATED.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "chore(intel): 10m backlink research report"
+          git push || true

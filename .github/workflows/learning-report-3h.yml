@@ -1,0 +1,31 @@
+name: Learning report every 3h
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    if: github.repository == 'qordjr2037-ctrl/website-expansion-automation'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate digest & email (scheduled)
+        env:
+          GANGARA_REPORT_EMAIL_TO: ${{ secrets.GANGARA_REPORT_EMAIL_TO }}
+          GANGARA_SMTP_USER: ${{ secrets.GANGARA_SMTP_USER }}
+          GANGARA_SMTP_PASS: ${{ secrets.GANGARA_SMTP_PASS }}
+          GANGARA_SMTP_HOST: ${{ secrets.GANGARA_SMTP_HOST }}
+          GANGARA_SMTP_PORT: ${{ secrets.GANGARA_SMTP_PORT }}
+        run: python3 core/run_learning_report.py --email --scheduled --force --quiet
+
+      - name: Commit digest artifacts
+        run: |
+          git config user.name "cursor[bot]"
+          git config user.email "cursor[bot]@users.noreply.github.com"
+          git add tools/LEARNING_DIGEST_LATEST.md tools/LEARNING_DIGEST_LATEST.json \
+            tools/report_schedule_state.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "chore(report): 3h scheduled digest"
+          git push || true

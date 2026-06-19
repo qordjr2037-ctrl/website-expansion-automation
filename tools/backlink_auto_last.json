@@ -1,0 +1,19 @@
+{
+  "at": "2026-06-19T23:11:47Z",
+  "processed": 50,
+  "success_total": 1,
+  "stats": {
+    "verified_live": 0,
+    "skipped": 0,
+    "failed": 7,
+    "needs_deploy": 42,
+    "already_success": 1
+  },
+  "milestone": null,
+  "emailed": false,
+  "patches": [
+    "dominant_failure=deploy_not_saved",
+    "next_hypothesis=verify_and_retry_once",
+    "gangara_experiment next_hypothesis_on_failure"
+  ]
+}

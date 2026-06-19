@@ -1,41 +1,75 @@
 {
-  "updated_at": "",
+  "updated_at": "2026-06-19T23:02:10Z",
   "scope": "collect_and_export_only",
-  "current_phase": 1,
-  "all_pass": false,
+  "current_phase": 2,
+  "all_pass": true,
   "ranking_model": "Tier S/A/B/F + on_page_score — DR 필수 아님 (SERP_RANKING_VS_INVISIBLE.txt)",
   "targets": {
-    "keywords": 13,
-    "placements_per_keyword": 10,
-    "urls_per_refresh": 20
+    "keywords": 3,
+    "placements_per_keyword": 15,
+    "urls_per_refresh": 30
   },
   "gates": {
     "keyword_quota": {
-      "ok": false,
-      "current": 0,
-      "target": 13,
-      "detail": "backlink_keywords.txt 키워드 수"
+      "ok": true,
+      "current": 3,
+      "target": 3,
+      "detail": "website 확장 수집/misc/data/backlink_keywords_experiment.txt"
     },
     "sync_push": {
-      "ok": false,
-      "count": 0,
-      "pool_total": 0,
+      "ok": true,
+      "count": 30,
+      "pool_total": 117,
       "detail": "backlink_targets_sync.json"
     },
     "collect_round": {
-      "ok": false,
-      "exit_code": null,
-      "detail": "run_backlink_collect.py 미구현"
+      "ok": true,
+      "exit_code": 0,
+      "detail": "run_backlink_collect.py"
     }
   },
-  "keyword_coverage": {},
-  "failures": [
-    "Phase 1 — 1페이지 vs 미노출 비교 모델 정의 완료. serp_collector + on_page_score 구현 필요."
-  ],
+  "keyword_coverage": {
+    "강남 가라오케": 36,
+    "강남 풀싸롱": 37,
+    "강남 하이퍼블릭": 30,
+    "서울 가라오케": 4,
+    "강남 유흥": 7,
+    "강남 클럽": 3
+  },
+  "failures": [],
   "next_actions": [
-    "placement_scorer.py — on_page_score + Tier S/A/B/F",
-    "directory_listing SERP (roompang 유형) 우선 수집",
-    "serp_backlink_collector + export_backlink_bridge"
+    "[cycle 1] PC Browser: core/backlink_deploy_queue.json 988건 배포",
+    "[cycle 1] GSC sitemap + site:gangara.co.kr",
+    "python3 core/run_learning_loop.py --until-top10 (SERP 0/3 top10)"
   ],
-  "serp_benchmark_note": "guide_hub(choicelounge) > single_landing > minimal — FAQ+가격표+내부링크"
+  "serp_benchmark_note": "guide_hub(choicelounge) > single_landing > minimal — FAQ+가격표+내부링크",
+  "tier_distribution": {
+    "S": 8,
+    "A": 22
+  },
+  "board_urls_in_sync": 0,
+  "experiment_mode": true,
+  "money_site": "https://gangara.co.kr/",
+  "fusion_live": {
+    "deployed": true,
+    "verified_at": "2026-06-19T23:02:10Z",
+    "h1": "강남 가라오케 · 하이퍼블릭 · 풀싸롱 · 쩜오 2026 완벽 가이드",
+    "canonical": "https://gangara.co.kr/",
+    "sitemap_urls": 5
+  },
+  "pool_keyword_coverage": {
+    "강남 가라오케": 36,
+    "강남 풀싸롱": 37,
+    "강남 하이퍼블릭": 30,
+    "서울 가라오케": 4,
+    "강남 유흥": 7,
+    "강남 클럽": 3
+  },
+  "learning_loop": {
+    "cycle": 1,
+    "hypothesis": "backlink_quality_disavow_spam",
+    "serp_in_top10": 0,
+    "goal_met": false,
+    "rd_target": 98
+  }
 }
