@@ -38,8 +38,8 @@
       "directory",
       "guide_hub"
     ],
-    "active_cycle": 26,
-    "min_trait_score": 70
+    "active_cycle": 1,
+    "min_trait_score": 57
   },
   "backlink_volume": {
     "enabled": true,
@@ -57,5 +57,13 @@
     "auto_enabled": true,
     "auto_batch_size": 50,
     "auto_interval_sec": 600
+  },
+  "backlink_intel": {
+    "enabled": true,
+    "report_interval_minutes": 10,
+    "email_each_cycle": true,
+    "mode": "fundamental_and_competitor",
+    "stop_file": "tools/BACKLINK_INTEL_STOP",
+    "_stop_note": "그만: touch tools/BACKLINK_INTEL_STOP 또는 enabled=false"
   }
 }

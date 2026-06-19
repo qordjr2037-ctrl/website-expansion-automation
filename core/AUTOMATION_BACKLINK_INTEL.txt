@@ -1,0 +1,24 @@
+# -*- coding: utf-8 -*-
+"""백링크 인텔 — 사용자가 '그만' 할 때까지 10분 보고."""
+
+## 실행 (기본 ON)
+- tmux: `gangara-backlink-intel` → 10분마다 Gmail
+- GitHub: `.github/workflows/backlink-intel-10m.yml`
+
+## 중지
+```bash
+touch tools/BACKLINK_INTEL_STOP
+# 또는 machine_config.json → backlink_intel.enabled = false
+```
+
+## 재개
+```bash
+rm tools/BACKLINK_INTEL_STOP
+python3 core/run_backlink_intel_report.py --daemon
+```
+
+## 보고 구조
+- **A. 원론적 방식** — Track B 코드 원리 (classifier, qualifier, trait, purge)
+- **B. 경쟁자 추적** — RD·SERP·홈페이지 링크 scrape·패턴→gangara 적용
+
+출력: `tools/BACKLINK_INTEL_LATEST.md`

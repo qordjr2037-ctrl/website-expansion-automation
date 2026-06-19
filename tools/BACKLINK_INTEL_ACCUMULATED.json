@@ -1,0 +1,553 @@
+{
+  "cycles": 1,
+  "findings": [
+    {
+      "cycle": 1,
+      "type": "competitor_scrape",
+      "domain": "choicelounge.co.kr",
+      "text": "choicelounge.co.kr 외부링크 유형: {'external_other': 30, 'internal': 2}"
+    },
+    {
+      "cycle": 1,
+      "type": "competitor_scrape",
+      "domain": "gangnamdalto.co.kr",
+      "text": "gangnamdalto.co.kr 외부링크 유형: {'external_other': 13, 'internal': 12}"
+    },
+    {
+      "cycle": 1,
+      "type": "competitor_scrape",
+      "domain": "classicsalong.com",
+      "text": "classicsalong.com 외부링크 유형: {'external_other': 14}"
+    },
+    {
+      "cycle": 1,
+      "type": "competitor_scrape",
+      "domain": "thesevensalon.com",
+      "text": "thesevensalon.com 외부링크 유형: {'external_other': 17}"
+    },
+    {
+      "cycle": 1,
+      "type": "competitor_scrape",
+      "domain": "applegangnam.com",
+      "text": "applegangnam.com 외부링크 유형: {'external_other': 16}"
+    },
+    {
+      "cycle": 1,
+      "type": "competitor_scrape",
+      "domain": "gangnammirror.com",
+      "text": "gangnammirror.com 외부링크 유형: {'external_other': 14}"
+    },
+    {
+      "cycle": 1,
+      "type": "competitor_scrape",
+      "domain": "gangara.co.kr",
+      "text": "gangara.co.kr 외부링크 유형: {'external_other': 14}"
+    },
+    {
+      "cycle": 1,
+      "type": "fundamental",
+      "id": "surface_editable",
+      "text": "[원론] 편집 가능 surface만 placement: 백링크는 '링크를 넣을 수 있는 UI'가 있는 URL만 자산. search 결과·타인 site 열람 URL은 RD에 기여 안 함."
+    },
+    {
+      "cycle": 1,
+      "type": "fundamental",
+      "id": "platform_tier",
+      "text": "[원론] platform_type × tier_hint: directory(S) > guide_hub/profile(A) > web2(B). SERP 1페이지는 roompang directory + 허브 내부링크 패턴."
+    },
+    {
+      "cycle": 1,
+      "type": "competitor_pattern",
+      "domain": "gangnamdalto.co.kr",
+      "text": "[경쟁] single_landing + roompang directory + sibling_domain 상호링크 → gangara: roompang 업소등록 + .co.kr 형제도메인 네트워크 (장기)"
+    },
+    {
+      "cycle": 1,
+      "type": "competitor_pattern",
+      "domain": "choicelounge.co.kr",
+      "text": "[경쟁] guide_hub 8매장 카드 → 내부 PageRank 24+ 하부 URL → gangara: gangara fusion 허브 내부링크 5 URL (이미 live) + 외부 citation"
+    },
+    {
+      "cycle": 1,
+      "type": "competitor_pattern",
+      "domain": "thesevensalon.com",
+      "text": "[경쟁] 중위 RD — directory+profile mix → gangara: RD 98 중위 목표 — profile bulk로 수량, roompang으로 품질"
+    }
+  ],
+  "fundamental": [],
+  "competitor": [],
+  "updated_at": "2026-06-19T04:27:52Z",
+  "last_report": {
+    "generated_at": "2026-06-19T04:27:52Z",
+    "cycle": 1,
+    "fundamental": {
+      "principles": [
+        {
+          "id": "surface_editable",
+          "title": "편집 가능 surface만 placement",
+          "theory": "백링크는 '링크를 넣을 수 있는 UI'가 있는 URL만 자산. search 결과·타인 site 열람 URL은 RD에 기여 안 함.",
+          "code": "placement_classifier.is_board_url → reject; run_backlink_auto SKIP_URL"
+        },
+        {
+          "id": "platform_tier",
+          "title": "platform_type × tier_hint",
+          "theory": "directory(S) > guide_hub/profile(A) > web2(B). SERP 1페이지는 roompang directory + 허브 내부링크 패턴.",
+          "code": "placement_classifier PLATFORM_RULES; qualifier trait +25 directory"
+        },
+        {
+          "id": "trait_score",
+          "title": "trait_score 적격 (dofollow·无captcha·SERP proximity)",
+          "theory": "dofollow +10, no captcha +10, SERP top10 URL +10. 40+ qualified, experiment는 70+.",
+          "code": "placement_qualifier.qualify_placement()"
+        },
+        {
+          "id": "keyword_balanced_export",
+          "title": "키워드 균형 batch export",
+          "theory": "3키워드 실험 — 부족한 키워드 placement 우선 sync 30건.",
+          "code": "backlink_pool_rank.pick_keyword_balanced_batch()"
+        },
+        {
+          "id": "anchor_diversity",
+          "title": "anchor rotation",
+          "theory": "money_url 키워드별 landing + anchor_for_index로 앵커 분산.",
+          "code": "anchor_builder.anchor_for_index() in export_sync"
+        },
+        {
+          "id": "spam_purge",
+          "title": "postheaven/web2 스팸 purge",
+          "theory": "RD 숫자만 키우면 안 됨 — 스팸 RD는 SERP 무기여. purge 후 directory/profile.",
+          "code": "run_learning_loop.purge_spam_master(); SPAM_DOMAINS"
+        },
+        {
+          "id": "verify_live",
+          "title": "live href 검증 = 성공 정의",
+          "theory": "queue done ≠ 성공. deploy_url HTML에 money domain href 존재해야 verified.",
+          "code": "run_backlink_auto.process_row(); backlink_verified_store"
+        },
+        {
+          "id": "volume_profile_farm",
+          "title": "1000/일 = profile farm + web2 (이론)",
+          "theory": "ClickN/isweb 3분/건 × 8브라우저 × 2PC ≈ 1000. directory는 볼륨小·품질大.",
+          "code": "run_backlink_daily_plan DEFAULT_DAILY_QUOTA"
+        }
+      ],
+      "code_modules": [
+        {
+          "module": "serp_backlink_collector",
+          "doc_first_line": "SERP → URL 후보 수집 (게시판 제외). DuckDuckGo lite + 시드.",
+          "key_functions": "load_volume_seeds, load_learning_seeds, all_seed_urls, load_query_templates, ddg_search, collect_for_keyword, collect_keywords, add",
+          "rules_sample": "-*- coding: utf-8 -*-; P0/P1/P2 시드 — roompang·clickn·guide_hub·directory; experiment: directory·guide_hub 집중 시드; 풀싸롱 SERP 벤치마크 시드 (coverage 보강)"
+        },
+        {
+          "module": "placement_classifier",
+          "doc_first_line": "URL → platform_type 분류 (게시판 REJECT).",
+          "key_functions": "registrable_domain, is_board_url, classify_url",
+          "rules_sample": "-*- coding: utf-8 -*-; \"\"\"URL → platform_type 분류 (게시판 REJECT).\"\"\"; BOARD_REJECT = re.compile(; return bool(BOARD_REJECT.search(url))"
+        },
+        {
+          "module": "placement_qualifier",
+          "doc_first_line": "placement 적격 판정 — dofollow·captcha hint·trait_score.",
+          "key_functions": "_fetch_head, qualify_placement",
+          "rules_sample": "-*- coding: utf-8 -*-; SPAM_DOMAINS = re.compile(; \"\"\"Return qualified row or reject dict.\"\"\"; if cls[\"reject\"]:"
+        },
+        {
+          "module": "export_backlink_bridge",
+          "doc_first_line": "placements_master → core/backlink_targets_sync.json export.",
+          "key_functions": "load_json, save_json, merge_master, export_sync",
+          "rules_sample": "-*- coding: utf-8 -*-"
+        },
+        {
+          "module": "backlink_pool_rank",
+          "doc_first_line": "placement 풀 랭킹 — experiment 모드: S/A directory·guide_hub 우선.",
+          "key_functions": "pick_keyword_balanced_batch, sort_key",
+          "rules_sample": "-*- coding: utf-8 -*-"
+        },
+        {
+          "module": "run_backlink_collect",
+          "doc_first_line": "Track B 백링크 수집 1사이클 — SERP → qualify → master → sync.",
+          "key_functions": "load_keywords, load_json, save_json, log, update_status, run, main",
+          "rules_sample": "-*- coding: utf-8 -*-"
+        },
+        {
+          "module": "run_backlink_auto",
+          "doc_first_line": "백링크 자동 배포·검증 1배치.",
+          "key_functions": "now_iso, load_json, load_queue, save_queue, fetch_html, try_clickn_deploy, process_row, apply_failure_patches",
+          "rules_sample": "!/usr/bin/env python3; -*- coding: utf-8 -*-; 로그인 시도 (UI 변경 시 실패 가능); live citation 없음 → 배포 필요 (자동 UI 없으면 failed + 다음 가설)"
+        },
+        {
+          "module": "failure_hypotheses",
+          "doc_first_line": "실패 유형 → 다음 실험 가설 (자동 학습·보고용).",
+          "key_functions": "classify_failure, get_next_hypothesis, render_failure_report",
+          "rules_sample": "-*- coding: utf-8 -*-; failure_code → 실패 설명 + 다음 가설 + 즉시 실행 액션; \"spam_rejected\": {; return \"spam_rejected\""
+        },
+        {
+          "module": "backlink_live_collect",
+          "doc_first_line": "SmallSEOTools 백링크 체커 + 2captcha(Turnstile) → DR/RD/백링크 실측.",
+          "key_functions": "solve_turnstile, extract_csrf, parse_sst_metrics, fetch_smallseotools, merge_into_audit, update_comparison_doc, main, __init__",
+          "rules_sample": "-*- coding: utf-8 -*-"
+        }
+      ],
+      "track_b_pipeline": [
+        "SERP+seed → classify(reject board) → qualify(trait) → placements_master",
+        "→ pick_keyword_balanced_batch → backlink_targets_sync → deploy_queue",
+        "→ auto verify / Browser deploy → verified_store → milestone 100"
+      ]
+    },
+    "competitor": {
+      "profiles": [
+        {
+          "domain": "choicelounge.co.kr",
+          "dr": 2,
+          "rd": 101,
+          "backlinks": 14494,
+          "known_citations": [
+            {
+              "type": "guide_hub_internal",
+              "url": "https://choicelounge.co.kr/",
+              "note": "허브→8매장 카드 내부 PageRank"
+            }
+          ],
+          "sample_backlinks": [
+            "https://xanderfogd369922.bcbloggers.com/40010417/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD-%ED%9E%99%EC%8A%A4%ED%84%B0%EB%93%A4%EC%9D%98-%EC%84%B1%EC%A7%80%EB%A1%9C-%EB%96%A0%EC%98%A4%EB%A5%B4%EB%8A%94-%EC%9D%B4%EC%9C%A0"
+          ],
+          "fetched": true,
+          "page_bytes": 54329,
+          "total_hrefs": 33,
+          "internal_link_count": 1,
+          "external_by_type": {
+            "external_other": 30,
+            "internal": 2
+          },
+          "sample_external": [
+            "sitemap.xml",
+            "https://fonts.googleapis.com",
+            "https://fonts.gstatic.com",
+            "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Displ",
+            "index.html",
+            "highpublic/index.html",
+            "nightlife/index.html",
+            "tel:01081191677"
+          ]
+        },
+        {
+          "domain": "gangnamdalto.co.kr",
+          "dr": 5,
+          "rd": 556,
+          "backlinks": 6194,
+          "known_citations": [
+            {
+              "type": "directory_listing",
+              "url": "https://www.roompang.com/firm/4d378a0b-f740-433c-9e98-86a03f1c850c/",
+              "note": "룸빵닷컴 업소页 — 2026-06-17 HTTP 404, 재등록 URL 필요"
+            },
+            {
+              "type": "sibling_domain",
+              "url": "https://runningrabbit.kr",
+              "note": "형제 도메인 상호링크 (벤치마크)"
+            },
+            {
+              "type": "sibling_domain",
+              "url": "https://runningrabbit.net",
+              "note": "형제 도메인"
+            }
+          ],
+          "sample_backlinks": [
+            "https://runningrabbitt-gn.com/"
+          ],
+          "fetched": true,
+          "page_bytes": 55643,
+          "total_hrefs": 27,
+          "internal_link_count": 2,
+          "external_by_type": {
+            "external_other": 13,
+            "internal": 12
+          },
+          "sample_external": [
+            "https://fonts.googleapis.com",
+            "https://fonts.gstatic.com",
+            "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&fa",
+            "tel:010-4826-6033",
+            "https://map.naver.com/v5/search/강남달토삼정호텔"
+          ]
+        },
+        {
+          "domain": "classicsalong.com",
+          "dr": 6,
+          "rd": 48,
+          "backlinks": 463,
+          "known_citations": [],
+          "sample_backlinks": [
+            "http://knows.sbs/domain/domain/part/51761"
+          ],
+          "fetched": true,
+          "page_bytes": 99980,
+          "total_hrefs": 14,
+          "internal_link_count": 0,
+          "external_by_type": {
+            "external_other": 14
+          },
+          "sample_external": [
+            "https://static.wixstatic.com/media/3de3ab_0ef5b438f36541ba811c93417ad8e32f%7Emv2.jpg/v1/fill/w_192%2",
+            "https://static.wixstatic.com/media/3de3ab_0ef5b438f36541ba811c93417ad8e32f%7Emv2.jpg/v1/fill/w_32%2C",
+            "https://static.wixstatic.com/media/3de3ab_0ef5b438f36541ba811c93417ad8e32f%7Emv2.jpg/v1/fill/w_180%2",
+            "https://static.parastorage.com/services/editor-elements-library/dist/thunderbolt/rb_wixui.thunderbol"
+          ]
+        },
+        {
+          "domain": "thesevensalon.com",
+          "dr": 6,
+          "rd": 93,
+          "backlinks": 386,
+          "known_citations": [],
+          "sample_backlinks": [
+            "https://m.salonlofts.com/angela_alexander"
+          ],
+          "fetched": true,
+          "page_bytes": 99980,
+          "total_hrefs": 17,
+          "internal_link_count": 0,
+          "external_by_type": {
+            "external_other": 17
+          },
+          "sample_external": [
+            "https://static.wixstatic.com/media/305f57_6c6c4ff7145241e9b94838e7206d2514%7Emv2.jpg/v1/fill/w_192%2",
+            "https://static.wixstatic.com/media/305f57_6c6c4ff7145241e9b94838e7206d2514%7Emv2.jpg/v1/fill/w_32%2C",
+            "https://static.wixstatic.com/media/305f57_6c6c4ff7145241e9b94838e7206d2514%7Emv2.jpg/v1/fill/w_180%2",
+            "https://static.parastorage.com/services/editor-elements-library/dist/thunderbolt/rb_wixui.thunderbol"
+          ]
+        },
+        {
+          "domain": "applegangnam.com",
+          "dr": 2,
+          "rd": 113,
+          "backlinks": 264,
+          "known_citations": [],
+          "sample_backlinks": [
+            "https://www.applegangnam.com/"
+          ],
+          "fetched": true,
+          "page_bytes": 99980,
+          "total_hrefs": 16,
+          "internal_link_count": 0,
+          "external_by_type": {
+            "external_other": 16
+          },
+          "sample_external": [
+            "https://static.wixstatic.com/media/1c36f5_a293fed41d7b4a33ae8d2ec55559e693%7Emv2.jpg/v1/fill/w_192%2",
+            "https://static.wixstatic.com/media/1c36f5_a293fed41d7b4a33ae8d2ec55559e693%7Emv2.jpg/v1/fill/w_32%2C",
+            "https://static.wixstatic.com/media/1c36f5_a293fed41d7b4a33ae8d2ec55559e693%7Emv2.jpg/v1/fill/w_180%2",
+            "https://static.parastorage.com/services/editor-elements-library/dist/thunderbolt/rb_wixui.thunderbol"
+          ]
+        },
+        {
+          "domain": "gangnammirror.com",
+          "dr": 6,
+          "rd": 96,
+          "backlinks": 208,
+          "known_citations": [],
+          "sample_backlinks": [
+            "https://ptowplqwe.blogspot.com/"
+          ],
+          "fetched": true,
+          "page_bytes": 99980,
+          "total_hrefs": 14,
+          "internal_link_count": 0,
+          "external_by_type": {
+            "external_other": 14
+          },
+          "sample_external": [
+            "https://static.wixstatic.com/media/1c36f5_b8b723f4001d4a72b54902d8fd1ed7ee%7Emv2.png/v1/fill/w_192%2",
+            "https://static.wixstatic.com/media/1c36f5_b8b723f4001d4a72b54902d8fd1ed7ee%7Emv2.png/v1/fill/w_32%2C",
+            "https://static.wixstatic.com/media/1c36f5_b8b723f4001d4a72b54902d8fd1ed7ee%7Emv2.png/v1/fill/w_180%2",
+            "https://static.parastorage.com/services/editor-elements-library/dist/thunderbolt/rb_wixui.thunderbol"
+          ]
+        },
+        {
+          "domain": "gangnamko.co.kr",
+          "dr": 2,
+          "rd": 404,
+          "backlinks": 3560,
+          "known_citations": [],
+          "sample_backlinks": [
+            "https://yeonjehobba.co.kr/"
+          ],
+          "fetched": false,
+          "page_bytes": 0,
+          "total_hrefs": 0,
+          "internal_link_count": 0,
+          "external_by_type": {},
+          "sample_external": []
+        },
+        {
+          "domain": "gangara.co.kr",
+          "dr": 2,
+          "rd": 46,
+          "backlinks": 389,
+          "known_citations": [],
+          "sample_backlinks": [
+            "https://postheaven.net/ghostdeal22/gangnam-garaoke-gangnamgaraoke-gangnamjjeomo-gangnam-jjeomo-gangnam-syeoceurum-gangnamsyeoceurum"
+          ],
+          "fetched": true,
+          "page_bytes": 7247,
+          "total_hrefs": 16,
+          "internal_link_count": 2,
+          "external_by_type": {
+            "external_other": 14
+          },
+          "sample_external": [
+            "assets/site.css",
+            "gangnam-garaoke.html",
+            "gangnam-hyperbolic.html",
+            "gangnam-poolsalon.html",
+            "gangnam-jjom.html",
+            "tel:01025949736"
+          ]
+        }
+      ],
+      "serp_surfaces": [
+        {
+          "keyword": "강남 가라오케",
+          "gangara_rank": null,
+          "top5_domains": [
+            "karaokeplan.com",
+            "www.theperfectkaraoke.com",
+            "www.karaokegangnam.net",
+            "seoulafterdark.com",
+            "gangnam-garaoke.com"
+          ]
+        },
+        {
+          "keyword": "강남 풀싸롱",
+          "gangara_rank": null,
+          "top5_domains": [
+            "www.gangnamfullssalong.com",
+            "www.levelhotelsalon.com",
+            "gangnam-fullssa.com",
+            "gangnamroomsalon.org",
+            "www.gugudano.com"
+          ]
+        },
+        {
+          "keyword": "강남 하이퍼블릭",
+          "gangara_rank": null,
+          "top5_domains": [
+            "gangnamkaraokeroom.com",
+            "gangnam-nightlife.co.kr",
+            "roomhubs.com",
+            "gangnam-highpublic.com",
+            "gangnamhub.club"
+          ]
+        }
+      ],
+      "pattern_summary": [
+        {
+          "competitor": "gangnamdalto.co.kr",
+          "rd": 556,
+          "pattern": "single_landing + roompang directory + sibling_domain 상호링크",
+          "actionable": "roompang 업소등록 + .co.kr 형제도메인 네트워크 (장기)"
+        },
+        {
+          "competitor": "choicelounge.co.kr",
+          "rd": 101,
+          "pattern": "guide_hub 8매장 카드 → 내부 PageRank 24+ 하부 URL",
+          "actionable": "gangara fusion 허브 내부링크 5 URL (이미 live) + 외부 citation"
+        },
+        {
+          "competitor": "thesevensalon.com",
+          "rd": 93,
+          "pattern": "중위 RD — directory+profile mix",
+          "actionable": "RD 98 중위 목표 — profile bulk로 수량, roompang으로 품질"
+        },
+        {
+          "competitor": "gangara.co.kr",
+          "rd": 46,
+          "pattern": "postheaven 스팸 RD 100% — SERP 0/3",
+          "actionable": "스팸 purge + live citation 100건 milestone"
+        }
+      ],
+      "gap_vs_gangara": [
+        "choicelounge.co.kr RD 101 vs gangara 46 (+55)",
+        "gangnamdalto.co.kr RD 556 vs gangara 46 (+510)",
+        "classicsalong.com RD 48 vs gangara 46 (+2)",
+        "thesevensalon.com RD 93 vs gangara 46 (+47)",
+        "applegangnam.com RD 113 vs gangara 46 (+67)",
+        "gangnammirror.com RD 96 vs gangara 46 (+50)"
+      ]
+    },
+    "new_findings": [
+      {
+        "cycle": 1,
+        "type": "competitor_scrape",
+        "domain": "choicelounge.co.kr",
+        "text": "choicelounge.co.kr 외부링크 유형: {'external_other': 30, 'internal': 2}"
+      },
+      {
+        "cycle": 1,
+        "type": "competitor_scrape",
+        "domain": "gangnamdalto.co.kr",
+        "text": "gangnamdalto.co.kr 외부링크 유형: {'external_other': 13, 'internal': 12}"
+      },
+      {
+        "cycle": 1,
+        "type": "competitor_scrape",
+        "domain": "classicsalong.com",
+        "text": "classicsalong.com 외부링크 유형: {'external_other': 14}"
+      },
+      {
+        "cycle": 1,
+        "type": "competitor_scrape",
+        "domain": "thesevensalon.com",
+        "text": "thesevensalon.com 외부링크 유형: {'external_other': 17}"
+      },
+      {
+        "cycle": 1,
+        "type": "competitor_scrape",
+        "domain": "applegangnam.com",
+        "text": "applegangnam.com 외부링크 유형: {'external_other': 16}"
+      },
+      {
+        "cycle": 1,
+        "type": "competitor_scrape",
+        "domain": "gangnammirror.com",
+        "text": "gangnammirror.com 외부링크 유형: {'external_other': 14}"
+      },
+      {
+        "cycle": 1,
+        "type": "competitor_scrape",
+        "domain": "gangara.co.kr",
+        "text": "gangara.co.kr 외부링크 유형: {'external_other': 14}"
+      },
+      {
+        "cycle": 1,
+        "type": "fundamental",
+        "id": "surface_editable",
+        "text": "[원론] 편집 가능 surface만 placement: 백링크는 '링크를 넣을 수 있는 UI'가 있는 URL만 자산. search 결과·타인 site 열람 URL은 RD에 기여 안 함."
+      },
+      {
+        "cycle": 1,
+        "type": "fundamental",
+        "id": "platform_tier",
+        "text": "[원론] platform_type × tier_hint: directory(S) > guide_hub/profile(A) > web2(B). SERP 1페이지는 roompang directory + 허브 내부링크 패턴."
+      },
+      {
+        "cycle": 1,
+        "type": "competitor_pattern",
+        "domain": "gangnamdalto.co.kr",
+        "text": "[경쟁] single_landing + roompang directory + sibling_domain 상호링크 → gangara: roompang 업소등록 + .co.kr 형제도메인 네트워크 (장기)"
+      },
+      {
+        "cycle": 1,
+        "type": "competitor_pattern",
+        "domain": "choicelounge.co.kr",
+        "text": "[경쟁] guide_hub 8매장 카드 → 내부 PageRank 24+ 하부 URL → gangara: gangara fusion 허브 내부링크 5 URL (이미 live) + 외부 citation"
+      },
+      {
+        "cycle": 1,
+        "type": "competitor_pattern",
+        "domain": "thesevensalon.com",
+        "text": "[경쟁] 중위 RD — directory+profile mix → gangara: RD 98 중위 목표 — profile bulk로 수량, roompang으로 품질"
+      }
+    ],
+    "stop_note": "중지: tools/BACKLINK_INTEL_STOP 파일 생성 또는 backlink_intel.enabled=false"
+  }
+}
