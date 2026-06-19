@@ -1,0 +1,25 @@
+{
+  "at": "2026-06-19T23:11:50Z",
+  "verified_live": 1,
+  "delta_10m": 1,
+  "daily_target": 1000,
+  "daily_pct": 0.1,
+  "failed_total": 273,
+  "platform_success": {
+    "web2": 1
+  },
+  "queue": {
+    "path": "backlink_deploy_queue_machine1.json",
+    "total": 988,
+    "queued": 46,
+    "done": 1,
+    "failed": 54,
+    "new_signup": 887,
+    "skipped": 0
+  },
+  "serp_in_top10": 0,
+  "serp_keywords": 3,
+  "milestone_next": 100,
+  "hypothesis": "backlink_quality_disavow_spam",
+  "reports_total": 1
+}

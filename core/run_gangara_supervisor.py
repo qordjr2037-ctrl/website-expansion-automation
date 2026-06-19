@@ -82,15 +82,30 @@ def due(st: dict, key: str, interval_sec: int) -> bool:
 
 
 def tick(st: dict) -> None:
-    # 10분 — 인텔 Gmail
+    # 10분 — 배포+검증 (auto + Playwright roompang/ClickN)
+    if due(st, "last_deploy", 600):
+        run_cmd([PY, "core/run_backlink_auto.py", "--batch", "50", "--pause", "0.2"], "auto_batch", timeout=600)
+        run_cmd(
+            [PY, "tools/deploy_backlink_playwright.py", "--limit", "8", "--tier", "S", "--platform", "directory"],
+            "deploy_directory",
+            timeout=600,
+        )
+        run_cmd(
+            [PY, "tools/deploy_backlink_playwright.py", "--limit", "15", "--platform", "profile"],
+            "deploy_profile",
+            timeout=600,
+        )
+        st["last_deploy"] = now_iso()
+
+    # 10분 — 백링크 live 숫자 Gmail 보고 (배포 직후)
+    if due(st, "last_progress", 600):
+        run_cmd([PY, "core/run_backlink_progress_report.py", "--email", "--quiet"], "progress_10m", timeout=120)
+        st["last_progress"] = now_iso()
+
+    # 10분 — 인텔 Gmail (원론+경쟁자)
     if due(st, "last_intel", 600):
         run_cmd([PY, "core/run_backlink_intel_report.py", "--email", "--quiet"], "intel_10m", timeout=300)
         st["last_intel"] = now_iso()
-
-    # 10분 — 백링크 auto (intel과 2분 어긋남 방지: last_auto 별도)
-    if due(st, "last_auto", 600):
-        run_cmd([PY, "core/run_backlink_auto.py", "--batch", "30", "--pause", "0.2"], "auto_batch", timeout=600)
-        st["last_auto"] = now_iso()
 
     # 15분 — 수집+플랜 (가벼운 automation cycle)
     if due(st, "last_collect", 900):

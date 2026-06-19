@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-19T22:58:24Z",
+  "generated_at": "2026-06-19T23:02:10Z",
   "goal_met": false,
   "serp_top10": "0/3",
   "serp_ranks": {
@@ -11,13 +11,13 @@
   "hypothesis_ko": "RD 46 but spam 100% — quality+deploy.",
   "hypothesis_confidence": "85%",
   "learning_cycle": 1,
-  "pool_total": 113,
+  "pool_total": 117,
   "sync_count": 30,
-  "deploy_queue_pending": 17,
+  "deploy_queue_pending": 988,
   "awaiting_pc_deploy": false,
   "fusion_live": true,
   "next_actions": [
-    "[cycle 1] PC Browser: core/backlink_deploy_queue.json 17건 배포",
+    "[cycle 1] PC Browser: core/backlink_deploy_queue.json 988건 배포",
     "[cycle 1] GSC sitemap + site:gangara.co.kr",
     "python3 core/run_learning_loop.py --until-top10 (SERP 0/3 top10)"
   ],
@@ -34,8 +34,8 @@
       "min_trait_score 상향으로 저품질 placement 제외"
     ],
     "cycle_actions": {
-      "seeds_added": 0,
-      "deploy_queue": 17,
+      "seeds_added": 4,
+      "deploy_queue": 988,
       "patches": [
         "gangara_experiment learning_loop",
         "machine_config min_trait escalation"
@@ -47,14 +47,15 @@
       "스팸 비율 감소"
     ],
     "matched": [
-      "sync 30 / pool 113 — 수집·export 파이프라인 동작"
+      "SERP 시드 4건 주입 — 경쟁 URL 기반 수집 확장",
+      "sync 30 / pool 117 — 수집·export 파이프라인 동작"
     ],
     "diverged": [
       "SERP top10 0/3 — 가설 예측(≥1키워드 top10) 미달",
       "deploy live citation — queue만 쌓이고 PC Browser 배포 미실행"
     ],
     "blockers": [
-      "Browser deploy_queue 17건 미배포 — live citation 미반영으로 SERP 변화 지연"
+      "Browser deploy_queue 988건 미배포 — live citation 미반영으로 SERP 변화 지연"
     ],
     "rank_changes": {
       "강남 가라오케": "미노출 → 미노출",
@@ -63,7 +64,7 @@
     },
     "verdict": "blocked",
     "verdict_ko": "가설 검증 불가(실행 병목)",
-    "summary_ko": "cycle 1에서 「스팸 백링크 정리 + 고품질 citation 배포」 가설을 실험했지만, **가설과 다르게** SERP는 여전히 0/3입니다. 수집·purge는 진행됐으나 **Browser deploy_queue 17건 미배포 — live citation 미반영으로 SERP 변화 지연** 때문에 citation live 반영이 없어 가설 검증이 지연됐습니다."
+    "summary_ko": "cycle 1에서 「스팸 백링크 정리 + 고품질 citation 배포」 가설을 실험했지만, **가설과 다르게** SERP는 여전히 0/3입니다. 수집·purge는 진행됐으나 **Browser deploy_queue 988건 미배포 — live citation 미반영으로 SERP 변화 지연** 때문에 citation live 반영이 없어 가설 검증이 지연됐습니다."
   },
-  "failure_hypotheses_md": "### 최근 실패 → 다음 가설\n\n**실패:** 편집했으나 gangara.co.kr href live 미확인\n**다음 가설:** 「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement.\n**액션:**\n- run_backlink_verify.py --row-id\n- HTML `<a href>` dofollow 위치 변경 (본문 vs footer)\n- 2회 실패 → status failed_permanent\n"
+  "failure_hypotheses_md": "### 최근 실패 → 다음 가설\n\n**실패:** 편집했으나 gangara.co.kr href live 미확인\n**다음 가설:** 「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement.\n**액션:**\n- run_backlink_verify.py --row-id\n- HTML `<a href>` dofollow 위치 변경 (본문 vs footer)\n- 2회 실패 → status failed_permanent\n\n**실패:** deploy_url에 편집 UI 없음 (roompang search?q=, 타인 guide_hub 등)\n**다음 가설:** 「편집 불가 URL은 skip하고 ClickN/isweb 신규 profile bulk」— editable surface만 queue에 넣으면 성공률이 오른다.\n**액션:**\n- queue에서 roompang search·choicelounge 타인 URL 제외\n- NEW_SIGNUP:profile 슬롯 비율 ↑ (daily_quota.profile)\n- run_backlink_daily_plan.py 재생성\n\n**실패:** 미분류 실패\n**다음 가설:** 「실패 URL skip + pool 다음 row」— 로그 수집 후 failure_code 수동 매핑.\n**액션:**\n- failed 기록\n- 다음 queued row\n\n**실패:** 로그인·계정 없음 (roompang, clickn 등)\n**다음 가설:** 「PC notify_secrets에 CLICKN/ROOMPANG 계정 → Playwright 자동 로그인」— 계정 없으면 profile 신규 가입 bulk가 유일한 자동 경로.\n**액션:**\n- core/notify_secrets.json → CLICKN_USER, CLICKN_PASS (gitignore)\n- run_backlink_auto.py --adapter profile\n- 계정 없으면 Browser 수동 1회 후 cookie export\n"
 }

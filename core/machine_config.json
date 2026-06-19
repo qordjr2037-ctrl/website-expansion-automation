@@ -65,5 +65,12 @@
     "mode": "fundamental_and_competitor",
     "stop_file": "tools/BACKLINK_INTEL_STOP",
     "_stop_note": "그만: touch tools/BACKLINK_INTEL_STOP 또는 enabled=false"
+  },
+  "backlink_progress": {
+    "enabled": true,
+    "report_interval_minutes": 10,
+    "email_each_cycle": true,
+    "stop_file": "tools/BACKLINK_PROGRESS_STOP",
+    "_note": "10분마다 verified live 건수 Gmail — run_backlink_progress_report.py"
   }
 }

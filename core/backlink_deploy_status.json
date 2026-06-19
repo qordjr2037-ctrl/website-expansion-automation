@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-19T22:58:24Z",
+  "updated_at": "2026-06-19T23:02:10Z",
   "scope": "collect_and_export_only",
   "current_phase": 2,
   "all_pass": true,
@@ -19,7 +19,7 @@
     "sync_push": {
       "ok": true,
       "count": 30,
-      "pool_total": 113,
+      "pool_total": 117,
       "detail": "backlink_targets_sync.json"
     },
     "collect_round": {
@@ -30,7 +30,7 @@
   },
   "keyword_coverage": {
     "강남 가라오케": 36,
-    "강남 풀싸롱": 33,
+    "강남 풀싸롱": 37,
     "강남 하이퍼블릭": 30,
     "서울 가라오케": 4,
     "강남 유흥": 7,
@@ -38,7 +38,7 @@
   },
   "failures": [],
   "next_actions": [
-    "[cycle 1] PC Browser: core/backlink_deploy_queue.json 17건 배포",
+    "[cycle 1] PC Browser: core/backlink_deploy_queue.json 988건 배포",
     "[cycle 1] GSC sitemap + site:gangara.co.kr",
     "python3 core/run_learning_loop.py --until-top10 (SERP 0/3 top10)"
   ],
@@ -52,14 +52,14 @@
   "money_site": "https://gangara.co.kr/",
   "fusion_live": {
     "deployed": true,
-    "verified_at": "2026-06-19T22:58:24Z",
+    "verified_at": "2026-06-19T23:02:10Z",
     "h1": "강남 가라오케 · 하이퍼블릭 · 풀싸롱 · 쩜오 2026 완벽 가이드",
     "canonical": "https://gangara.co.kr/",
     "sitemap_urls": 5
   },
   "pool_keyword_coverage": {
     "강남 가라오케": 36,
-    "강남 풀싸롱": 33,
+    "강남 풀싸롱": 37,
     "강남 하이퍼블릭": 30,
     "서울 가라오케": 4,
     "강남 유흥": 7,

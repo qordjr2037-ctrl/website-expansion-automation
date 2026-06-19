@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-19T22:59:16Z",
+  "updated_at": "2026-06-19T23:11:47Z",
   "money_site": "https://gangara.co.kr/",
   "machine_id": 1,
   "machines_total": 1,
@@ -19,8 +19,9 @@
       "trait_score": 100,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -32,8 +33,9 @@
       "trait_score": 100,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -45,8 +47,9 @@
       "trait_score": 100,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -58,8 +61,9 @@
       "trait_score": 100,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -71,8 +75,9 @@
       "trait_score": 100,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -84,8 +89,9 @@
       "trait_score": 100,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -97,8 +103,9 @@
       "trait_score": 100,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -110,8 +117,9 @@
       "trait_score": 100,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -123,8 +131,9 @@
       "trait_score": 95,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "<urlopen error [Errno -3] Temporary failure in name resolution>"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -136,8 +145,9 @@
       "trait_score": 95,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "<urlopen error [Errno 104] Connection reset by peer>"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -149,8 +159,9 @@
       "trait_score": 95,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "<urlopen error [Errno 104] Connection reset by peer>"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -162,8 +173,9 @@
       "trait_score": 95,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -175,8 +187,9 @@
       "trait_score": 95,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "<urlopen error [Errno -2] Name or service not known>"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -188,8 +201,9 @@
       "trait_score": 95,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "<urlopen error [Errno -2] Name or service not known>"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -201,8 +215,9 @@
       "trait_score": 95,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -214,8 +229,9 @@
       "trait_score": 95,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "<urlopen error [Errno -2] Name or service not known>"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -227,8 +243,9 @@
       "trait_score": 95,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "ClickN / isweb 프로필·무료 사이트"
+      "status": "failed",
+      "action": "ClickN / isweb 프로필·무료 사이트",
+      "fail_reason": "<urlopen error [Errno -2] Name or service not known>"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -240,8 +257,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 클럽",
@@ -253,8 +271,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 클럽",
@@ -266,8 +285,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -279,8 +299,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -292,8 +313,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -305,8 +327,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "서울 가라오케",
@@ -318,8 +341,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -331,7 +355,7 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
+      "status": "done",
       "action": "티스토리·Velog·네이버 블로그 글"
     },
     {
@@ -344,8 +368,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -357,8 +382,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -370,8 +396,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -383,8 +410,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 유흥",
@@ -396,8 +424,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 유흥",
@@ -409,8 +438,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -422,8 +452,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -435,8 +466,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -448,8 +480,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -461,8 +494,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -474,8 +508,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -487,8 +522,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -500,8 +536,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -513,8 +550,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -526,8 +564,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -539,8 +578,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -552,8 +592,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 하이퍼블릭",
@@ -565,8 +606,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -578,8 +620,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -591,8 +634,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 유흥",
@@ -604,8 +648,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "서울 가라오케",
@@ -617,8 +662,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -630,8 +676,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 가라오케",
@@ -643,8 +690,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -656,8 +704,9 @@
       "trait_score": 85,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "티스토리·Velog·네이버 블로그 글"
+      "status": "failed",
+      "action": "티스토리·Velog·네이버 블로그 글",
+      "fail_reason": "no_href"
     },
     {
       "target_keyword": "강남 풀싸롱",
@@ -1258,8 +1307,9 @@
       "trait_score": 100,
       "dofollow_hint": true,
       "write_captcha": false,
-      "status": "queued",
-      "action": "roompang 등 디렉터리 업소등록"
+      "status": "failed",
+      "action": "roompang 등 디렉터리 업소등록",
+      "fail_reason": "login_required: ROOMPANG_USER/PASS not in notify_secrets"
     },
     {
       "target_keyword": "강남 클럽",

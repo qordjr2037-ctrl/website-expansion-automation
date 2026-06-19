@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-06-19T22:59:16Z",
+  "updated_at": "2026-06-19T23:11:47Z",
   "success_total": 1,
-  "failed_total": 190,
+  "failed_total": 273,
   "last_milestone_reported": 0,
   "milestone_step": 100,
   "successes": [
@@ -1720,6 +1720,753 @@
     {
       "at": "2026-06-19T22:59:16Z",
       "deploy_url": "https://www.roompang.com/guide/gangnam-hyperpublic",
+      "platform_type": "directory",
+      "failure_code": "login_required",
+      "reason": "login_required: ROOMPANG_USER/PASS not in notify_secrets",
+      "next_hypothesis_id": "credential_automation",
+      "next_hypothesis_ko": "「PC notify_secrets에 CLICKN/ROOMPANG 계정 → Playwright 자동 로그인」— 계정 없으면 profile 신규 가입 bulk가 유일한 자동 경로."
+    },
+    {
+      "at": "2026-06-19T23:08:27Z",
+      "deploy_url": "https://fulllssalon.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "network_error",
+      "reason": "<urlopen error [Errno 104] Connection reset by peer>",
+      "next_hypothesis_id": "retry_with_backoff",
+      "next_hypothesis_ko": "「재시도 3회 + 지수 backoff」— 일시 오류는 다음 batch에서 재queue."
+    },
+    {
+      "at": "2026-06-19T23:08:29Z",
+      "deploy_url": "https://fullssalong.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:08:30Z",
+      "deploy_url": "https://fullssalong.clickn.co.kr/boards/11/view",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:08:32Z",
+      "deploy_url": "https://gangnamhigh.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:08:34Z",
+      "deploy_url": "https://gangnamhyperb.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:08:36Z",
+      "deploy_url": "https://jdwroom.clickn.co.kr/boards/21/view",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:08:38Z",
+      "deploy_url": "https://karaokekr.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:08:41Z",
+      "deploy_url": "https://www.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:08:51Z",
+      "deploy_url": "https://clicknn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "unknown",
+      "reason": "<urlopen error [Errno -3] Temporary failure in name resolution>",
+      "next_hypothesis_id": "skip_and_advance",
+      "next_hypothesis_ko": "「실패 URL skip + pool 다음 row」— 로그 수집 후 failure_code 수동 매핑."
+    },
+    {
+      "at": "2026-06-19T23:08:57Z",
+      "deploy_url": "https://gangnamgaraoke.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "network_error",
+      "reason": "<urlopen error [Errno 104] Connection reset by peer>",
+      "next_hypothesis_id": "retry_with_backoff",
+      "next_hypothesis_ko": "「재시도 3회 + 지수 backoff」— 일시 오류는 다음 batch에서 재queue."
+    },
+    {
+      "at": "2026-06-19T23:09:02Z",
+      "deploy_url": "https://gangnamhapeo1.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "network_error",
+      "reason": "<urlopen error [Errno 104] Connection reset by peer>",
+      "next_hypothesis_id": "retry_with_backoff",
+      "next_hypothesis_ko": "「재시도 3회 + 지수 backoff」— 일시 오류는 다음 batch에서 재queue."
+    },
+    {
+      "at": "2026-06-19T23:09:07Z",
+      "deploy_url": "https://gangnamharper.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:08Z",
+      "deploy_url": "https://gangnampulssa.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "unknown",
+      "reason": "<urlopen error [Errno -2] Name or service not known>",
+      "next_hypothesis_id": "skip_and_advance",
+      "next_hypothesis_ko": "「실패 URL skip + pool 다음 row」— 로그 수집 후 failure_code 수동 매핑."
+    },
+    {
+      "at": "2026-06-19T23:09:08Z",
+      "deploy_url": "https://garaoke.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "unknown",
+      "reason": "<urlopen error [Errno -2] Name or service not known>",
+      "next_hypothesis_id": "skip_and_advance",
+      "next_hypothesis_ko": "「실패 URL skip + pool 다음 row」— 로그 수집 후 failure_code 수동 매핑."
+    },
+    {
+      "at": "2026-06-19T23:09:10Z",
+      "deploy_url": "https://harper.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:10Z",
+      "deploy_url": "https://pulssalong.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "unknown",
+      "reason": "<urlopen error [Errno -2] Name or service not known>",
+      "next_hypothesis_id": "skip_and_advance",
+      "next_hypothesis_ko": "「실패 URL skip + pool 다음 row」— 로그 수집 후 failure_code 수동 매핑."
+    },
+    {
+      "at": "2026-06-19T23:09:10Z",
+      "deploy_url": "https://pulssalong94.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "unknown",
+      "reason": "<urlopen error [Errno -2] Name or service not known>",
+      "next_hypothesis_id": "skip_and_advance",
+      "next_hypothesis_ko": "「실패 URL skip + pool 다음 row」— 로그 수집 후 failure_code 수동 매핑."
+    },
+    {
+      "at": "2026-06-19T23:09:11Z",
+      "deploy_url": "http://ellite.co.kr/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:12Z",
+      "deploy_url": "http://seoulnightclub.dothome.co.kr/2026-%EA%B0%95%EB%82%A8-%EC%9C%A0%EC%9D%BC-%EB%82%98%EC%9D%B4%ED%8A%B8-%EC%B2%AD%EB%8B%B4-%EB%A6%AC%EB%B2%A0%EB%9D%BC%ED%98%B8%ED%85%94-h2o%EC%9D%98-%EB%B3%80%ED%99%94%EC%99%80-%ED%98%84%EC%9E%AC/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:15Z",
+      "deploy_url": "https://a.issuekurly.co.kr/61",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:15Z",
+      "deploy_url": "https://applegangnam.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:15Z",
+      "deploy_url": "https://classicsalong.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:16Z",
+      "deploy_url": "https://domamins.co.kr/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:17Z",
+      "deploy_url": "https://galaxykaraoke.co.kr/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:19Z",
+      "deploy_url": "https://gangnam-fullssa.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:20Z",
+      "deploy_url": "https://gangnam-garaoke.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:21Z",
+      "deploy_url": "https://gangnam-highpublic.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:21Z",
+      "deploy_url": "https://gangnam-nightlife.co.kr/blog/0011.html",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:09:21Z",
+      "deploy_url": "https://gangnam-nightlife.co.kr/blog/0013.html",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:10:27Z",
+      "deploy_url": "https://fulllssalon.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:10:29Z",
+      "deploy_url": "https://fullssalong.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:10:31Z",
+      "deploy_url": "https://fullssalong.clickn.co.kr/boards/11/view",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:10:32Z",
+      "deploy_url": "https://gangnamhigh.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:10:34Z",
+      "deploy_url": "https://gangnamhyperb.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:10:35Z",
+      "deploy_url": "https://jdwroom.clickn.co.kr/boards/21/view",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:10:37Z",
+      "deploy_url": "https://karaokekr.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:10:41Z",
+      "deploy_url": "https://www.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:10:52Z",
+      "deploy_url": "https://clicknn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "unknown",
+      "reason": "<urlopen error [Errno -3] Temporary failure in name resolution>",
+      "next_hypothesis_id": "skip_and_advance",
+      "next_hypothesis_ko": "「실패 URL skip + pool 다음 row」— 로그 수집 후 failure_code 수동 매핑."
+    },
+    {
+      "at": "2026-06-19T23:10:57Z",
+      "deploy_url": "https://gangnamgaraoke.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "network_error",
+      "reason": "<urlopen error [Errno 104] Connection reset by peer>",
+      "next_hypothesis_id": "retry_with_backoff",
+      "next_hypothesis_ko": "「재시도 3회 + 지수 backoff」— 일시 오류는 다음 batch에서 재queue."
+    },
+    {
+      "at": "2026-06-19T23:11:02Z",
+      "deploy_url": "https://gangnamhapeo1.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "network_error",
+      "reason": "<urlopen error [Errno 104] Connection reset by peer>",
+      "next_hypothesis_id": "retry_with_backoff",
+      "next_hypothesis_ko": "「재시도 3회 + 지수 backoff」— 일시 오류는 다음 batch에서 재queue."
+    },
+    {
+      "at": "2026-06-19T23:11:05Z",
+      "deploy_url": "https://gangnamharper.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:05Z",
+      "deploy_url": "https://gangnampulssa.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "unknown",
+      "reason": "<urlopen error [Errno -2] Name or service not known>",
+      "next_hypothesis_id": "skip_and_advance",
+      "next_hypothesis_ko": "「실패 URL skip + pool 다음 row」— 로그 수집 후 failure_code 수동 매핑."
+    },
+    {
+      "at": "2026-06-19T23:11:05Z",
+      "deploy_url": "https://garaoke.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "unknown",
+      "reason": "<urlopen error [Errno -2] Name or service not known>",
+      "next_hypothesis_id": "skip_and_advance",
+      "next_hypothesis_ko": "「실패 URL skip + pool 다음 row」— 로그 수집 후 failure_code 수동 매핑."
+    },
+    {
+      "at": "2026-06-19T23:11:07Z",
+      "deploy_url": "https://harper.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:07Z",
+      "deploy_url": "https://pulssalong.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "unknown",
+      "reason": "<urlopen error [Errno -2] Name or service not known>",
+      "next_hypothesis_id": "skip_and_advance",
+      "next_hypothesis_ko": "「실패 URL skip + pool 다음 row」— 로그 수집 후 failure_code 수동 매핑."
+    },
+    {
+      "at": "2026-06-19T23:11:07Z",
+      "deploy_url": "https://pulssalong94.clickn.co.kr/",
+      "platform_type": "profile",
+      "failure_code": "unknown",
+      "reason": "<urlopen error [Errno -2] Name or service not known>",
+      "next_hypothesis_id": "skip_and_advance",
+      "next_hypothesis_ko": "「실패 URL skip + pool 다음 row」— 로그 수집 후 failure_code 수동 매핑."
+    },
+    {
+      "at": "2026-06-19T23:11:07Z",
+      "deploy_url": "http://ellite.co.kr/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:09Z",
+      "deploy_url": "http://seoulnightclub.dothome.co.kr/2026-%EA%B0%95%EB%82%A8-%EC%9C%A0%EC%9D%BC-%EB%82%98%EC%9D%B4%ED%8A%B8-%EC%B2%AD%EB%8B%B4-%EB%A6%AC%EB%B2%A0%EB%9D%BC%ED%98%B8%ED%85%94-h2o%EC%9D%98-%EB%B3%80%ED%99%94%EC%99%80-%ED%98%84%EC%9E%AC/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:11Z",
+      "deploy_url": "https://a.issuekurly.co.kr/61",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:11Z",
+      "deploy_url": "https://applegangnam.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:11Z",
+      "deploy_url": "https://classicsalong.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:12Z",
+      "deploy_url": "https://domamins.co.kr/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:13Z",
+      "deploy_url": "https://galaxykaraoke.co.kr/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:14Z",
+      "deploy_url": "https://gangnam-fullssa.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:16Z",
+      "deploy_url": "https://gangnam-garaoke.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:16Z",
+      "deploy_url": "https://gangnam-highpublic.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:16Z",
+      "deploy_url": "https://gangnam-nightlife.co.kr/blog/0011.html",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:16Z",
+      "deploy_url": "https://gangnam-nightlife.co.kr/blog/0013.html",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:17Z",
+      "deploy_url": "https://gangnam-nightlife.co.kr/blog/0036.html",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:17Z",
+      "deploy_url": "https://gangnam-nightlife.co.kr/blog/0039.html",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:17Z",
+      "deploy_url": "https://gangnam-nightlife.co.kr/perfect.html",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:19Z",
+      "deploy_url": "https://gangnamdalto.co.kr/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:21Z",
+      "deploy_url": "https://gangnamfr.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:22Z",
+      "deploy_url": "https://gangnamgaraoke.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:23Z",
+      "deploy_url": "https://gangnamhub.club/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:23Z",
+      "deploy_url": "https://gangnamhyperclub.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:25Z",
+      "deploy_url": "https://gangnamhyperpublic.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:27Z",
+      "deploy_url": "https://gangnamkaraoke.co.kr/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:30Z",
+      "deploy_url": "https://gangnamkaraoke.co.kr/%EC%97%85%EC%86%8C%EC%B6%94%EC%B2%9C/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:37Z",
+      "deploy_url": "https://gangnamkaraoke.co.kr/%EC%9D%B4%EC%9A%A9%EA%B0%80%EC%9D%B4%EB%93%9C/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:37Z",
+      "deploy_url": "https://gangnammirror.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:38Z",
+      "deploy_url": "https://gangnamroom.co.kr/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:39Z",
+      "deploy_url": "https://gangnamroomsalon.org/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:40Z",
+      "deploy_url": "https://gangnamtenpro.co.kr/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:41Z",
+      "deploy_url": "https://jamsilkaraoke.co.kr/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:43Z",
+      "deploy_url": "https://karaoke-perfect.co.kr/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:44Z",
+      "deploy_url": "https://karaokeplan.com/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:47Z",
+      "deploy_url": "https://milkonmilk.co.kr/article/%EC%83%81%ED%92%88-qa/6/1992721/",
+      "platform_type": "web2",
+      "failure_code": "deploy_not_saved",
+      "reason": "no gangara.co.kr href on page",
+      "next_hypothesis_id": "verify_and_retry_once",
+      "next_hypothesis_ko": "「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement."
+    },
+    {
+      "at": "2026-06-19T23:11:47Z",
+      "deploy_url": "https://roompang.com/",
+      "platform_type": "directory",
+      "failure_code": "login_required",
+      "reason": "login_required: ROOMPANG_USER/PASS not in notify_secrets",
+      "next_hypothesis_id": "credential_automation",
+      "next_hypothesis_ko": "「PC notify_secrets에 CLICKN/ROOMPANG 계정 → Playwright 자동 로그인」— 계정 없으면 profile 신규 가입 bulk가 유일한 자동 경로."
+    },
+    {
+      "at": "2026-06-19T23:11:47Z",
+      "deploy_url": "https://roompang.com/guide/gangnam-poolsalon",
+      "platform_type": "directory",
+      "failure_code": "login_required",
+      "reason": "login_required: ROOMPANG_USER/PASS not in notify_secrets",
+      "next_hypothesis_id": "credential_automation",
+      "next_hypothesis_ko": "「PC notify_secrets에 CLICKN/ROOMPANG 계정 → Playwright 자동 로그인」— 계정 없으면 profile 신규 가입 bulk가 유일한 자동 경로."
+    },
+    {
+      "at": "2026-06-19T23:11:47Z",
+      "deploy_url": "https://www.roompang.com/",
+      "platform_type": "directory",
+      "failure_code": "login_required",
+      "reason": "login_required: ROOMPANG_USER/PASS not in notify_secrets",
+      "next_hypothesis_id": "credential_automation",
+      "next_hypothesis_ko": "「PC notify_secrets에 CLICKN/ROOMPANG 계정 → Playwright 자동 로그인」— 계정 없으면 profile 신규 가입 bulk가 유일한 자동 경로."
+    },
+    {
+      "at": "2026-06-19T23:11:47Z",
+      "deploy_url": "https://www.roompang.com/guide/gangnam-hyperpublic",
+      "platform_type": "directory",
+      "failure_code": "login_required",
+      "reason": "login_required: ROOMPANG_USER/PASS not in notify_secrets",
+      "next_hypothesis_id": "credential_automation",
+      "next_hypothesis_ko": "「PC notify_secrets에 CLICKN/ROOMPANG 계정 → Playwright 자동 로그인」— 계정 없으면 profile 신규 가입 bulk가 유일한 자동 경로."
+    },
+    {
+      "at": "2026-06-19T23:11:47Z",
+      "deploy_url": "https://www.roompang.com/guide/gangnam-karaoke",
       "platform_type": "directory",
       "failure_code": "login_required",
       "reason": "login_required: ROOMPANG_USER/PASS not in notify_secrets",
