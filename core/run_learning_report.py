@@ -13,6 +13,7 @@ import json
 import os
 import smtplib
 import ssl
+import sys
 from datetime import datetime, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -138,13 +139,21 @@ def send_email(subject: str, body_md: str, digest: dict) -> bool:
     msg["To"] = to_addr
     msg.attach(MIMEText(body_md, "plain", "utf-8"))
 
-    ctx = ssl.create_default_context()
-    with smtplib.SMTP(smtp_host, smtp_port, timeout=30) as server:
-        server.starttls(context=ctx)
-        server.login(smtp_user, smtp_pass)
-        server.sendmail(smtp_user, [to_addr], msg.as_string())
-    print(f"EMAIL sent → {to_addr}")
-    return True
+    try:
+        ctx = ssl.create_default_context()
+        with smtplib.SMTP(smtp_host, smtp_port, timeout=30) as server:
+            server.starttls(context=ctx)
+            server.login(smtp_user, smtp_pass)
+            server.sendmail(smtp_user, [to_addr], msg.as_string())
+        print(f"EMAIL sent → {to_addr}")
+        return True
+    except smtplib.SMTPAuthenticationError as e:
+        print(f"EMAIL auth failed: {e}", file=sys.stderr)
+        print("Gmail 앱 비밀번호 필요 → https://myaccount.google.com/apppasswords", file=sys.stderr)
+        return False
+    except Exception as e:
+        print(f"EMAIL failed: {e}", file=sys.stderr)
+        return False
 
 
 def main() -> int:
