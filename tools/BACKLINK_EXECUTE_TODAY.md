@@ -1,6 +1,6 @@
 # gangara 백링크 1000/일 — 오늘 실행 플랜
 
-생성: 2026-06-19T22:37:41Z | 목표: **1000건/일**
+생성: 2026-06-19T22:54:48Z | 목표: **1000건/일**
 
 ---
 
@@ -8,11 +8,11 @@
 
 | 항목 | 값 |
 |------|-----|
-| pool 총 placement | 108 |
+| pool 총 placement | 113 |
 | 오늘 배정 | 1000건 |
-| platform 분포 | {'profile': 462, 'web2': 518, 'directory': 7, 'guide_hub': 13} |
-| fleet | 2대 × 8브라우저 = 16 workers |
-| 브라우저당/일 | ~62건 (8h 근무 기준) |
+| platform 분포 | {'profile': 461, 'web2': 518, 'directory': 8, 'guide_hub': 13} |
+| fleet | 1대 × 8브라우저 = 8 workers |
+| 브라우저당/일 | ~125건 (8h 근무 기준) |
 
 ---
 
@@ -20,9 +20,9 @@
 
 | platform | 목표/일 | pool 보유 | 실행 방법 |
 |----------|---------|-----------|-----------|
-| profile (ClickN·isweb) | 450 | 16 | 무료 사이트 생성 → footer 링크 |
-| web2 (tistory·velog·naver) | 350 | 72 | 새 글 + dofollow 링크 |
-| directory (roompang) | 80 | 7 | 업소등록 (search URL 제외) |
+| profile (ClickN·isweb) | 450 | 17 | 무료 사이트 생성 → footer 링크 |
+| web2 (tistory·velog·naver) | 350 | 75 | 새 글 + dofollow 링크 |
+| directory (roompang) | 80 | 8 | 업소등록 (search URL 제외) |
 | guide_hub | 40 | 13 | 편집 가능한 것만 |
 | comment/QA | 80 | 0 | 댓글 (볼륨·nofollow OK) |
 
@@ -103,15 +103,15 @@ Browser 프롬프트: `tools/CURSOR_BROWSER_DAILY_1000_PROMPT.md` 전체 복사
 | 14 | profile | 강남 가라오케 | https://garaoke.clickn.co.kr/ | queued |
 | 15 | profile | 강남 하이퍼블릭 | https://harper.clickn.co.kr/ | queued |
 | 16 | profile | 강남 풀싸롱 | https://pulssalong.clickn.co.kr/ | queued |
-| 17 | web2 | 강남 하이퍼블릭 | http://ellite.co.kr/ | queued |
-| 18 | web2 | 강남 클럽 | http://seoulnightclub.dothome.co.kr/2026-%EA%B0%95 | queued |
-| 19 | web2 | 강남 클럽 | https://a.issuekurly.co.kr/61 | queued |
-| 20 | web2 | 강남 풀싸롱 | https://applegangnam.com/ | queued |
-| 21 | web2 | 강남 풀싸롱 | https://classicsalong.com/ | queued |
-| 22 | web2 | 강남 하이퍼블릭 | https://domamins.co.kr/ | queued |
-| 23 | web2 | 서울 가라오케 | https://galaxykaraoke.co.kr/ | queued |
-| 24 | web2 | 강남 풀싸롱 | https://gangara.co.kr/ | queued |
-| 25 | web2 | 강남 풀싸롱 | https://gangnam-fullssa.com/ | queued |
+| 17 | profile | 강남 풀싸롱 | https://pulssalong94.clickn.co.kr/ | queued |
+| 18 | web2 | 강남 하이퍼블릭 | http://ellite.co.kr/ | queued |
+| 19 | web2 | 강남 클럽 | http://seoulnightclub.dothome.co.kr/2026-%EA%B0%95 | queued |
+| 20 | web2 | 강남 클럽 | https://a.issuekurly.co.kr/61 | queued |
+| 21 | web2 | 강남 풀싸롱 | https://applegangnam.com/ | queued |
+| 22 | web2 | 강남 풀싸롱 | https://classicsalong.com/ | queued |
+| 23 | web2 | 강남 하이퍼블릭 | https://domamins.co.kr/ | queued |
+| 24 | web2 | 서울 가라오케 | https://galaxykaraoke.co.kr/ | queued |
+| 25 | web2 | 강남 풀싸롱 | https://gangara.co.kr/ | queued |
 
 … 전체 1000건 → `tools/BACKLINK_EXECUTE_TODAY.json`
 

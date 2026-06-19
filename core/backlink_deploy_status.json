@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-19T22:41:03Z",
+  "updated_at": "2026-06-19T22:58:24Z",
   "scope": "collect_and_export_only",
   "current_phase": 2,
   "all_pass": true,
@@ -52,7 +52,7 @@
   "money_site": "https://gangara.co.kr/",
   "fusion_live": {
     "deployed": true,
-    "verified_at": "2026-06-19T22:41:03Z",
+    "verified_at": "2026-06-19T22:58:24Z",
     "h1": "강남 가라오케 · 하이퍼블릭 · 풀싸롱 · 쩜오 2026 완벽 가이드",
     "canonical": "https://gangara.co.kr/",
     "sitemap_urls": 5

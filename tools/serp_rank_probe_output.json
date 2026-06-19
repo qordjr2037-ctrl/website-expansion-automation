@@ -1,5 +1,5 @@
 {
-  "probed_at": "2026-06-19T22:39:11Z",
+  "probed_at": "2026-06-19T22:56:27Z",
   "target_domain": "gangara.co.kr",
   "provider": "duckduckgo_lite",
   "keywords_probed": 3,
@@ -15,7 +15,7 @@
         "https://karaokeplan.com/",
         "https://www.theperfectkaraoke.com/",
         "https://www.karaokegangnam.net/",
-        "https://seoulafterdark.com/gangnam-karaoke-first-time-guide/"
+        "https://www.roompang.com/guide/gangnam-karaoke"
       ]
     },
     {
@@ -25,10 +25,10 @@
       "in_top30": false,
       "sample_urls": [
         "https://www.gangnamfullssalong.com/",
-        "https://www.levelhotelsalon.com/",
-        "https://gangnam-fullssa.com/",
         "https://www.gugudano.com/post/%EA%B0%95%EB%82%A8-%ED%92%80%EC%8B%B8%EB%A1%B1-%EA%B0%80%EA%B2%A9-%EB%B0%8F-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%99%84%EC%A0%84-%EC%A0%95%EB%B3%B5-%EA%B0%80%EC%9D%B4%EB%93%9C-2026-%EC%B5%9C%EC%8B%A0%ED%8C%90",
-        "https://www.fullssawara.com/"
+        "https://www.gangnammirror.com/",
+        "https://www.fullssawara.com/",
+        "https://www.levelhotelsalon.com/"
       ]
     },
     {

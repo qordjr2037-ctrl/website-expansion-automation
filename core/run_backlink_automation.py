@@ -12,6 +12,7 @@ import argparse
 import subprocess
 import sys
 import time
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -46,9 +47,16 @@ def cycle_once() -> int:
         ([py, "core/run_backlink_daily_plan.py", "--target", "1000", "--quiet"], "daily_plan"),
         ([py, "core/run_backlink_prepare.py", "--machine-id", "1"], "prepare_m1"),
         ([py, "core/run_backlink_auto.py", "--batch", "50", "--pause", "0.3"], "auto_batch"),
+    ]
+    secrets_path = REPO / "core/notify_secrets.json"
+    if secrets_path.exists() or os.environ.get("CLICKN_USER") or os.environ.get("ROOMPANG_USER"):
+        steps.append(
+            ([py, "tools/deploy_backlink_playwright.py", "--limit", "10", "--tier", "S", "--platform", "directory"], "playwright_deploy"),
+        )
+    steps.extend([
         ([py, "core/run_learning_loop.py", "--max-cycles", "1"], "learning_1cycle"),
         ([py, "core/run_learning_report.py", "--quiet"], "digest"),
-    ]
+    ])
     for cmd, name in steps:
         run(cmd, name)
     # learning_loop가 experiment.json 덮어쓴 뒤 실패→다음 가설 재기록

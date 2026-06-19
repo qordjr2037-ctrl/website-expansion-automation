@@ -1,4 +1,4 @@
-# gangara 학습 실험 보고 — 2026-06-19T22:41:03Z
+# gangara 학습 실험 보고 — 2026-06-19T22:58:24Z
 
 ## 한 줄 요약
 cycle 1에서 「스팸 백링크 정리 + 고품질 citation 배포」 가설을 실험했지만, **가설과 다르게** SERP는 여전히 0/3입니다. 수집·purge는 진행됐으나 **Browser deploy_queue 17건 미배포 — live citation 미반영으로 SERP 변화 지연** 때문에 citation live 반영이 없어 가설 검증이 지연됐습니다.
@@ -65,25 +65,12 @@ fusion live: ✅
 
 ### 최근 실패 → 다음 가설
 
-**실패:** 미분류 실패
-**다음 가설:** 「실패 URL skip + pool 다음 row」— 로그 수집 후 failure_code 수동 매핑.
-**액션:**
-- failed 기록
-- 다음 queued row
-
 **실패:** 편집했으나 gangara.co.kr href live 미확인
 **다음 가설:** 「저장·캐시·nofollow 확인」— footer HTML 직접 삽입 후 재검증, 동일 URL 2회 실패 시 skip하고 다음 placement.
 **액션:**
 - run_backlink_verify.py --row-id
 - HTML `<a href>` dofollow 위치 변경 (본문 vs footer)
 - 2회 실패 → status failed_permanent
-
-**실패:** deploy_url에 편집 UI 없음 (roompang search?q=, 타인 guide_hub 등)
-**다음 가설:** 「편집 불가 URL은 skip하고 ClickN/isweb 신규 profile bulk」— editable surface만 queue에 넣으면 성공률이 오른다.
-**액션:**
-- queue에서 roompang search·choicelounge 타인 URL 제외
-- NEW_SIGNUP:profile 슬롯 비율 ↑ (daily_quota.profile)
-- run_backlink_daily_plan.py 재생성
 
 ---
 프롬프트: `tools/CURSOR_BROWSER_DEPLOY_QUEUE_PROMPT.md`

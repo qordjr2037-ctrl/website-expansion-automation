@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-19T22:41:18Z",
+  "updated_at": "2026-06-19T22:59:07Z",
   "money_site": "https://gangara.co.kr/",
   "machine_id": 1,
   "machines_total": 1,
@@ -209,6 +209,19 @@
       "platform_type": "profile",
       "tier_hint": "A",
       "deploy_url": "https://pulssalong.clickn.co.kr/",
+      "money_url": "https://gangara.co.kr/",
+      "anchor_text": "gangara.co.kr",
+      "trait_score": 95,
+      "dofollow_hint": true,
+      "write_captcha": false,
+      "status": "queued",
+      "action": "ClickN / isweb 프로필·무료 사이트"
+    },
+    {
+      "target_keyword": "강남 풀싸롱",
+      "platform_type": "profile",
+      "tier_hint": "A",
+      "deploy_url": "https://pulssalong94.clickn.co.kr/",
       "money_url": "https://gangara.co.kr/",
       "anchor_text": "gangara.co.kr",
       "trait_score": 95,
@@ -469,6 +482,19 @@
       "platform_type": "web2",
       "tier_hint": "B",
       "deploy_url": "https://gangnamhub.club/",
+      "money_url": "https://gangara.co.kr/",
+      "anchor_text": "gangara.co.kr",
+      "trait_score": 85,
+      "dofollow_hint": true,
+      "write_captcha": false,
+      "status": "queued",
+      "action": "티스토리·Velog·네이버 블로그 글"
+    },
+    {
+      "target_keyword": "강남 하이퍼블릭",
+      "platform_type": "web2",
+      "tier_hint": "B",
+      "deploy_url": "https://gangnamhyperclub.com/",
       "money_url": "https://gangara.co.kr/",
       "anchor_text": "gangara.co.kr",
       "trait_score": 85,
@@ -790,6 +816,19 @@
       "action": "티스토리·Velog·네이버 블로그 글"
     },
     {
+      "target_keyword": "강남 풀싸롱",
+      "platform_type": "web2",
+      "tier_hint": "B",
+      "deploy_url": "https://www.gangnammirror.com/",
+      "money_url": "https://gangara.co.kr/",
+      "anchor_text": "gangara.co.kr",
+      "trait_score": 85,
+      "dofollow_hint": true,
+      "write_captcha": false,
+      "status": "queued",
+      "action": "티스토리·Velog·네이버 블로그 글"
+    },
+    {
       "target_keyword": "강남 하이퍼블릭",
       "platform_type": "web2",
       "tier_hint": "B",
@@ -998,6 +1037,19 @@
       "action": "티스토리·Velog·네이버 블로그 글"
     },
     {
+      "target_keyword": "강남 하이퍼블릭",
+      "platform_type": "web2",
+      "tier_hint": "B",
+      "deploy_url": "https://youandmekaraoke.co.kr/home",
+      "money_url": "https://gangara.co.kr/",
+      "anchor_text": "gangara.co.kr",
+      "trait_score": 80,
+      "dofollow_hint": true,
+      "write_captcha": false,
+      "status": "queued",
+      "action": "티스토리·Velog·네이버 블로그 글"
+    },
+    {
       "target_keyword": "강남 가라오케",
       "platform_type": "web2",
       "tier_hint": "B",
@@ -1184,6 +1236,19 @@
       "platform_type": "directory",
       "tier_hint": "S",
       "deploy_url": "https://www.roompang.com/guide/gangnam-hyperpublic",
+      "money_url": "https://gangara.co.kr/",
+      "anchor_text": "gangara.co.kr",
+      "trait_score": 100,
+      "dofollow_hint": true,
+      "write_captcha": false,
+      "status": "queued",
+      "action": "roompang 등 디렉터리 업소등록"
+    },
+    {
+      "target_keyword": "강남 가라오케",
+      "platform_type": "directory",
+      "tier_hint": "S",
+      "deploy_url": "https://www.roompang.com/guide/gangnam-karaoke",
       "money_url": "https://gangara.co.kr/",
       "anchor_text": "gangara.co.kr",
       "trait_score": 100,
@@ -11013,61 +11078,6 @@
       "trait_score": null,
       "status": "new_signup",
       "action": "ClickN / isweb 프로필·무료 사이트 — 신규 계정·사이트 생성"
-    },
-    {
-      "target_keyword": "강남 하이퍼블릭",
-      "platform_type": "web2",
-      "tier_hint": "B",
-      "deploy_url": "NEW_SIGNUP:web2:888",
-      "money_url": "https://gangara.co.kr/gangnam-hyperbolic.html",
-      "anchor_text": "강남 하이퍼블릭 가이드",
-      "trait_score": null,
-      "status": "new_signup",
-      "action": "티스토리·Velog·네이버 블로그 글 — 신규 계정·사이트 생성"
-    },
-    {
-      "target_keyword": "강남 가라오케",
-      "platform_type": "profile",
-      "tier_hint": "A",
-      "deploy_url": "NEW_SIGNUP:profile:889",
-      "money_url": "https://gangara.co.kr/gangnam-garaoke.html",
-      "anchor_text": "강남 가라오케",
-      "trait_score": null,
-      "status": "new_signup",
-      "action": "ClickN / isweb 프로필·무료 사이트 — 신규 계정·사이트 생성"
-    },
-    {
-      "target_keyword": "강남 풀싸롱",
-      "platform_type": "web2",
-      "tier_hint": "B",
-      "deploy_url": "NEW_SIGNUP:web2:890",
-      "money_url": "https://gangara.co.kr/gangnam-poolsalon.html",
-      "anchor_text": "강남 풀싸롱",
-      "trait_score": null,
-      "status": "new_signup",
-      "action": "티스토리·Velog·네이버 블로그 글 — 신규 계정·사이트 생성"
-    },
-    {
-      "target_keyword": "강남 하이퍼블릭",
-      "platform_type": "profile",
-      "tier_hint": "A",
-      "deploy_url": "NEW_SIGNUP:profile:891",
-      "money_url": "https://gangara.co.kr/gangnam-hyperbolic.html",
-      "anchor_text": "강남 하이퍼블릭 가이드",
-      "trait_score": null,
-      "status": "new_signup",
-      "action": "ClickN / isweb 프로필·무료 사이트 — 신규 계정·사이트 생성"
-    },
-    {
-      "target_keyword": "강남 가라오케",
-      "platform_type": "web2",
-      "tier_hint": "B",
-      "deploy_url": "NEW_SIGNUP:web2:892",
-      "money_url": "https://gangara.co.kr/gangnam-garaoke.html",
-      "anchor_text": "강남 가라오케",
-      "trait_score": null,
-      "status": "new_signup",
-      "action": "티스토리·Velog·네이버 블로그 글 — 신규 계정·사이트 생성"
     }
   ]
 }

@@ -206,33 +206,44 @@ def purge_spam_master() -> int:
 
 
 def export_deploy_queue() -> int:
-    """Tier S/A directory·guide_hub → PC Browser 배포 큐."""
+    """PC Browser P0 미리보기 — prepare 큐는 덮어쓰지 않음."""
+    m1 = REPO / "core/backlink_deploy_queue_machine1.json"
+    if m1.exists():
+        data = load_json(m1, {})
+        return int(data.get("count") or len(data.get("rows") or []))
+
     sync = load_json(SYNC, {})
     rows = sync.get("table_rows") or []
     priority = []
+    skip = re.compile(r"search\?q=|choicelounge|seoulafterdark|postheaven|blogspot", re.I)
     for r in rows:
         pt = r.get("platform_type", "")
         tier = r.get("tier_hint", "B")
-        if pt in ("directory", "guide_hub") and tier in ("S", "A"):
-            priority.append(
-                {
-                    "target_keyword": r.get("target_keyword"),
-                    "platform_type": pt,
-                    "tier_hint": tier,
-                    "deploy_url": r.get("deploy_url"),
-                    "money_url": r.get("money_url"),
-                    "anchor_text": r.get("anchor_text"),
-                    "status": "queued",
-                }
-            )
+        url = r.get("deploy_url") or ""
+        if pt not in ("directory", "guide_hub") or tier not in ("S", "A"):
+            continue
+        if skip.search(url):
+            continue
+        priority.append(
+            {
+                "target_keyword": r.get("target_keyword"),
+                "platform_type": pt,
+                "tier_hint": tier,
+                "deploy_url": url,
+                "money_url": r.get("money_url"),
+                "anchor_text": r.get("anchor_text"),
+                "status": "queued",
+            }
+        )
+    p0_path = REPO / "core/backlink_deploy_queue_p0.json"
     queue = {
         "updated_at": now_iso(),
         "money_site": sync.get("money_site", "https://gangara.co.kr/"),
         "count": len(priority),
-        "note": "PC Cursor Browser — placement URL에 money_url·anchor 삽입",
+        "note": "P0 preview only — full queue: backlink_deploy_queue_machine1.json",
         "rows": priority[:20],
     }
-    save_json(DEPLOY_QUEUE, queue)
+    save_json(p0_path, queue)
     return len(priority)
 
 

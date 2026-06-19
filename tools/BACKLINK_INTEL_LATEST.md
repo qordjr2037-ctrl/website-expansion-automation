@@ -1,4 +1,4 @@
-# 백링크 인텔 보고 — cycle 3 (2026-06-19T22:39:47Z)
+# 백링크 인텔 보고 — cycle 5 (2026-06-19T22:56:58Z)
 
 > **A. 원론적 방식** (SEO·Track B 코드 원리) | **B. 경쟁자 추적** (SERP·RD·페이지 분석)
 
@@ -78,8 +78,8 @@
 
 ### SERP top5 surface (키워드별)
 
-- **강남 가라오케** gangara=미노출 → top: ['seoulafterdark.com', 'karaokeplan.com', 'www.theperfectkaraoke.com', 'www.karaokegangnam.net', 'seoulafterdark.com']
-- **강남 풀싸롱** gangara=미노출 → top: ['www.gangnamfullssalong.com', 'www.levelhotelsalon.com', 'gangnam-fullssa.com', 'www.gugudano.com', 'www.fullssawara.com']
+- **강남 가라오케** gangara=미노출 → top: ['seoulafterdark.com', 'karaokeplan.com', 'www.theperfectkaraoke.com', 'www.karaokegangnam.net', 'www.roompang.com']
+- **강남 풀싸롱** gangara=미노출 → top: ['www.gangnamfullssalong.com', 'www.gugudano.com', 'www.gangnammirror.com', 'www.fullssawara.com', 'www.levelhotelsalon.com']
 - **강남 하이퍼블릭** gangara=미노출 → top: ['gangnamkaraokeroom.com', 'gangnam-nightlife.co.kr', 'roomhubs.com', 'gangnamhyperpublic.com', 'gangnamhub.club']
 
 ### 경쟁 패턴 → gangara 적용
@@ -120,5 +120,5 @@
 - [경쟁] 중위 RD — directory+profile mix → gangara: RD 98 중위 목표 — profile bulk로 수량, roompang으로 품질
 
 ---
-누적 cycle: 3 | 중지: `touch tools/BACKLINK_INTEL_STOP`
+누적 cycle: 5 | 중지: `touch tools/BACKLINK_INTEL_STOP`
 누적 파일: `tools/BACKLINK_INTEL_ACCUMULATED.json`
