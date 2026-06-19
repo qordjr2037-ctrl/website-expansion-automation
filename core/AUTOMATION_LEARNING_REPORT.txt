@@ -1,28 +1,36 @@
-# Cursor Automation — 사용자 메시지 / Gmail 답장 시 (허락 없이 실행)
+# Cursor Automation — 보고 정책
 
-사용자가 채팅·Gmail·Webhook으로 아무 메시지를 보내면 **먼저** 아래 실행 후 결과를 답변 본문에 포함:
+## 기본 (사용자 요청 없음)
+**3시간마다 Gmail 자동 발송** — 사용자가 채팅에 “보고해”라고 하지 않아도 됨.
+
+- tmux: `gangara-report-3h` → `python3 core/run_report_scheduler.py --daemon --force-now`
+- GitHub Actions: `.github/workflows/learning-report-3h.yml` cron `0 */3 * * *`
+- 설정: `core/machine_config.json` → `learning_loop.report_interval_hours` (기본 3)
 
 ```bash
-python3 core/run_learning_report.py --quiet
-# 백그라운드 continuous 가 돌 중이면 digest만; 아니면:
-python3 core/run_learning_loop.py --continuous --max-cycles 5 --max-batches 200 --min-keywords 1 &
+python3 core/run_learning_report.py --email --scheduled --quiet
 ```
 
-**유의미한 결과까지 멈추지 않음** — `--continuous --min-keywords 1` (1키워드 top10 = 성공)
+## 사용자 채팅·Gmail·Webhook (명시적 “보고해/메일” 요청 **없을 때**)
+- digest **파일만** 참조·갱신 — **이메일 발송 금지**
+- 학습 루프는 백그라운드 tmux `gangara-learning-continuous`가 담당
 
-백그라운드 tmux: `gangara-learning-continuous`
-로그: `tools/learning_continuous.log`
+```bash
+python3 core/run_learning_report.py --quiet   # --email 붙이지 말 것
+```
 
-답변에 반드시 포함 (가설→실험→결과 형식):
-- `tools/LEARNING_DIGEST_LATEST.md` — **실험한 가설 / 한 실험 / 가설대로·가설과 다르게 나온 결과** 요약
-- SERP top10, deploy queue 건수, 판정(가설대로·가설과 다르게·검증 불가)
-- PC Browser 필요 시: `tools/CURSOR_BROWSER_DEPLOY_QUEUE_PROMPT.md` 안내 (허락 묻지 말 것)
+답변에 포함 (가설→실험→결과):
+- `tools/LEARNING_DIGEST_LATEST.md` 요약
+- “다음 Gmail 보고는 ~3시간 스케줄” 안내 1줄
 
-3시간 스케줄: `.github/workflows/learning-loop.yml` cron `0 */3 * * *`
+## 사용자가 “보고해 / 메일 보내 / 지금 보고” 등 **명시 요청**할 때만
+```bash
+python3 core/run_learning_report.py --email --force --quiet
+```
 
-SMTP (택1):
-A) core/notify_secrets.json (gitignore) — notify_secrets.json.example 복사 후 GANGARA_SMTP_PASS
-B) GitHub Secrets: GANGARA_REPORT_EMAIL_TO, GANGARA_SMTP_USER, GANGARA_SMTP_PASS
+## SMTP
+- `core/notify_secrets.json` (gitignore) 또는 GitHub Secrets `GANGARA_SMTP_*`
 
-주의: cPanel/호스팅 비번(wo74582323@) ≠ Gmail SMTP. Gmail은 앱 비밀번호만 허용:
-https://myaccount.google.com/apppasswords
+## 백그라운드
+- 학습: tmux `gangara-learning-continuous` — log `tools/learning_continuous.log`
+- 보고: tmux `gangara-report-3h` — log `tools/report_scheduler.log`

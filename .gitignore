@@ -1,6 +1,7 @@
 # secrets
 **/local_defaults.py
 **/notify_secrets.json
+tools/report_schedule_state.json
 **/captcha_solver.json
 .env
 .env.*

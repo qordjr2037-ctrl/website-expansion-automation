@@ -329,7 +329,7 @@ def run_single_cycle(cycle: int) -> dict:
     st["updated_at"] = now_iso()
     save_json(STATUS, st)
 
-    _run_report(email=os.environ.get("GANGARA_AUTO_EMAIL", "") == "1")
+    _run_report(email=False)
     return {
         "cycle": cycle,
         "serp": serp,
@@ -377,7 +377,7 @@ def run_until_top10(
         exp["learning_loop"]["last_cycle"] = summary.get("final_cycle", start_cycle)
         save_json(EXPERIMENT, exp)
 
-    _run_report(email=os.environ.get("GANGARA_AUTO_EMAIL", "") == "1")
+    _run_report(email=False)
     return summary
 
 
@@ -421,7 +421,7 @@ def run_continuous(
         "goal_met": overall["goal_met"],
     }
     save_json(EXPERIMENT, exp)
-    _run_report(email=True)
+    _run_report(email=False)
     return overall
 
 

@@ -28,6 +28,7 @@ SERP = REPO / "tools/serp_rank_probe_output.json"
 QUEUE = REPO / "core/backlink_deploy_queue.json"
 DIGEST_MD = REPO / "tools/LEARNING_DIGEST_LATEST.md"
 DIGEST_JSON = REPO / "tools/LEARNING_DIGEST_LATEST.json"
+SCHEDULE_STATE = REPO / "tools/report_schedule_state.json"
 CONFIG = REPO / "core/machine_config.json"
 DEFAULT_REPORT_EMAIL = "qordjr2037@gmail.com"
 NOTIFY_SECRETS = REPO / "core/notify_secrets.json"
@@ -165,6 +166,35 @@ def render_markdown(d: dict) -> str:
     return render_experiment_markdown(d)
 
 
+def _report_interval_hours() -> int:
+    cfg = load_json(CONFIG, {})
+    return int((cfg.get("learning_loop") or {}).get("report_interval_hours", 3))
+
+
+def _load_schedule_state() -> dict:
+    return load_json(SCHEDULE_STATE, {"last_email_at": None, "last_digest_at": None})
+
+
+def _save_schedule_state(state: dict) -> None:
+    SCHEDULE_STATE.parent.mkdir(parents=True, exist_ok=True)
+    SCHEDULE_STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def _email_is_due(force: bool = False) -> bool:
+    if force:
+        return True
+    state = _load_schedule_state()
+    last = state.get("last_email_at")
+    if not last:
+        return True
+    try:
+        last_dt = datetime.fromisoformat(last.replace("Z", "+00:00"))
+        elapsed = (datetime.now(timezone.utc) - last_dt).total_seconds()
+        return elapsed >= _report_interval_hours() * 3600
+    except Exception:
+        return True
+
+
 def _report_email() -> str:
     cfg = load_json(CONFIG, {})
     return (
@@ -203,6 +233,11 @@ def send_email(subject: str, body_md: str, digest: dict) -> bool:
             server.login(smtp_user, smtp_pass)
             server.sendmail(smtp_user, [to_addr], msg.as_string())
         print(f"EMAIL sent → {to_addr}")
+        state = _load_schedule_state()
+        state["last_email_at"] = now_iso()
+        state["last_digest_at"] = digest.get("generated_at") or now_iso()
+        state["report_interval_hours"] = _report_interval_hours()
+        _save_schedule_state(state)
         return True
     except smtplib.SMTPAuthenticationError as e:
         print(f"EMAIL auth failed: {e}", file=sys.stderr)
@@ -215,6 +250,12 @@ def send_email(subject: str, body_md: str, digest: dict) -> bool:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--email", action="store_true", help="Gmail/SMTP로 보고 발송")
+    ap.add_argument(
+        "--scheduled",
+        action="store_true",
+        help="스케줄 모드 — report_interval_hours 경과 시에만 발송 (기본 3h)",
+    )
+    ap.add_argument("--force", action="store_true", help="--scheduled 시 due 무시하고 즉시 발송")
     ap.add_argument("--quiet", action="store_true")
     args = ap.parse_args()
 
@@ -224,17 +265,26 @@ def main() -> int:
     DIGEST_MD.write_text(md, encoding="utf-8")
     DIGEST_JSON.write_text(json.dumps(digest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
+    state = _load_schedule_state()
+    state["last_digest_at"] = digest["generated_at"]
+    _save_schedule_state(state)
+
     if not args.quiet:
         print(md)
 
     if args.email:
+        if args.scheduled and not _email_is_due(force=args.force):
+            hours = _report_interval_hours()
+            print(f"EMAIL skip: scheduled — next in ≤{hours}h (tools/report_schedule_state.json)")
+            return 0
         exp = digest.get("experiment") or {}
         verdict = exp.get("verdict_ko", "—")
         subj = (
             f"[gangara 학습] {verdict} · SERP {digest['serp_top10']} · "
             f"cycle {digest.get('learning_cycle', '?')}"
         )
-        send_email(subj, md, digest)
+        if not send_email(subj, md, digest):
+            return 1
 
     return 0
 
