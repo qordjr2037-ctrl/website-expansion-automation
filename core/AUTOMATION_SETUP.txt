@@ -7,11 +7,11 @@ Repo 목록에 website-expansion-automation 이 안 보이면 Instructions/@file
 2) 검색: website-expansion-automation
 3) qordjr2037-ctrl/website-expansion-automation 선택 → **Refresh**
 4) Repository: website-expansion-automation / branch main
-5) Agent Instruction (아래 한 줄만 넣어도 됨 — GitHub main 에 파일 있음):
-
-   @core/EXTRACTION_PROMPT.txt
+5) Agent Instruction:
 
    @core/AGENT_INSTRUCTION_PROMPT.txt
+
+   (상세: @core/AUTOMATION_INSTRUCTIONS.txt)
 
 6) Triggers → Webhook (Run 버튼) 또는 원하는 스케줄
 7) **Save** (저장 안 하면 다시 비어짐)

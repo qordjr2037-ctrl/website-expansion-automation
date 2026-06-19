@@ -1,171 +1,145 @@
-당신은 **website-expansion-automation** (branch: main) 전용 Agent다.
-**board-post-automation(Track A) 절대 수정·참조 금지.**
+# gangara 백링크 실험 — Agent Instruction (간단版)
 
-================================================================================
-당신이 하는 일 (한 줄)
-================================================================================
-「강남 가라오케·풀싸롱·하이퍼블릭」 키워드로 **1페이지에 뜨는 웹사이트**를 연구하고,
-**게시판이 아닌** URL(디렉터리·프로필·가이드·랜딩)만 수집해서
-`backlink_targets_sync.json`으로 push한다. 1 Run = 1사이클.
+> repo: **website-expansion-automation** · branch: **cursor/gangara-faeb** (또는 main)  
+> **board-post-automation(Track A) 수정 금지**
 
-================================================================================
-사용자 전략 (고정)
-================================================================================
-· **1단계 = 백링크 자리 수집·배포** (roompang형 디렉터리, clickn 프로필, guide_hub 슬롯)
-· **2단계 = 우리 랜딩/허브** (choicelounge 패턴 — Phase 3+, Automation은 1단계 우선)
-· **머니 URL** → money_sites.json (로컬만, example.com placeholder 커밋 OK)
-· **우선 키워드 3개** → 강남 하이퍼블릭, 강남 풀싸롱, 강남 가라오케 (이후 13개 확대)
-· **호스팅 참고** → 사용자는 호스팅코리아 + .co.kr 경험 있음. 벤치마크도 .co.kr·자체 도메인 위주.
+---
 
-================================================================================
-1페이지 vs 안 뜨는 것 (판단 기준)
-================================================================================
-**1페이지 (수집·벤치마크 O)**
-  · title/H1에 키워드
-  · FAQ 또는 가격표 또는 비교표
-  · 주소·지하철·영업시간(NAP)
-  · bbs/write.php 없음
-  · (가산) roompang·choicelounge·clickn 등 **인용·허브** 패턴
+## 한 줄 목표
 
-**안 뜨는 것 (수집 X)**
-  · 키워드 없는 기업 홈, 빈 clickn 템플릿, bbs 글, 본문 500자 미만 FAQ 없음
+**gangara.co.kr** 하나에 백링크를 쌓아  
+**강남 가라오케 · 풀싸롱 · 하이퍼블릭** 3키워드 **SERP 1페이지(top10)** 진입.
 
-**DR 50+ 필수 아님** — 작은 .co.kr도 1페이지. DR보다 온페이지+인용 백링크.
+로컬 PC 1대 기준 **하루 verified live 백링크 1000건** (장기 KPI).
 
-================================================================================
-SERP 벤치마크 — CMS/플랫폼 (그누·카페24 게시판 아님)
-================================================================================
-| 사이트 | 도메인 | 실제 기술 |
-| gangnamdalto.co.kr | .co.kr | WordPress 랜딩 (openresty) |
-| choicelounge.co.kr | .co.kr | 커스텀/Apache 가이드 허브 ★ |
-| richhuang.co.kr | .co.kr | WordPress |
-| classicsalong.com | .com | Pepyaka(Wix계열 빌더) |
-| applegangnam.com | .com | Pepyaka 빌더 |
-| thesevensalon.com | .com | Pepyaka 빌더 |
-| *.clickn.co.kr | clickn 서브 | **ClickN(클릭엔)** SaaS — nginx |
-| gangnamko.co.kr | .co.kr | ClickN |
-| roompang.com | .com | 업소 **디렉터리** (백링크 표면) |
+---
 
-**결론:** 1페이지 웹사이트 = 그누보드 글쓰기·카페24 쇼핑몰 글이 아님.
-  → WordPress 랜딩 / ClickN / Wix·Pepyaka / 커스텀 HTML + **.co.kr 또는 .com 자체 도메인**
+## 지금까지 한 것 (이미 됨)
 
-우리 자체 사이트(Phase 2) 권장: **호스팅코리아 + .co.kr + WordPress 또는 정적 랜딩**
-  (Netlify 무료 서브도메인은 이 niche 1페이지 벤치마크에 거의 없음 — 아래 참고)
+| 항목 | 상태 |
+|------|------|
+| fusion 허브 live | ✅ gangara.co.kr (cPanel Browser) |
+| 백링크 수집·pool | ✅ Phase 2 all_pass, pool ~100+ |
+| 학습 루프 | ✅ 가설→실험→결과 보고 |
+| 1000/일 플랜 | ✅ daily_plan + playbook |
+| 인텔 (원론 vs 경쟁자) | ✅ 10분 Gmail |
+| supervisor | ✅ `start_gangara_supervisor.sh` |
 
-================================================================================
-수집 대상 platform_type (우선순위)
-================================================================================
-  P0 directory_listing   — roompang형, 업소등록, 지역 디렉터리
-  P1 guide_hub_link      — choicelounge형 카드→하부
-  P2 platform_profile    — clickn/clicknn homepage·프로필 URL 필드
-  P3 web2_article        — tistory, naver blog
-  P4 single_landing      — 벤치마크 분석용 (배포는 후순위)
+---
 
-**REJECT:** bbs, write.php, wr_id, bo_table, Track A 게시판 URL
+## 지금 막힌 것 (P0)
 
-================================================================================
-도메인·호스팅 정책 (Automation 판단용)
-================================================================================
-· **수집(남의 사이트):** .co.kr / .com / clickn 서브도메인 모두 OK
-· **우리 신규 사이트(Phase 2):**
-    권장 — .co.kr (호스팅코리아 등 국내 호스팅)
-    가능 — .com + WP/빌더 (벤치마크有)
-    비권장 1페이지 목표 — netlify.app / vercel.app / github.io **무료 서브만**
-      (경쟁 SERP 10곳 중 0곳, 한국 상업 키워드 신뢰·NAP 약함)
-    테스트용 — 무료 서브 OK, **본番 키워드는 .co.kr**
+1. **live citation 거의 없음** — verified live **1건** (100건 milestone 전)
+2. **deploy_queue ~18건** — PC Browser로 roompang·ClickN **실제 링크 삽입** 안 함
+3. **SERP 0/3** — 위 2번 안 하면 SERP 안 움직임
+4. **ClickN 자동화** — `notify_secrets.json`에 CLICKN 계정 없으면 profile bulk 불가
 
-· **무한 등록:** ClickN처럼 서브·다중 도메인量産은 가능하나 SEO는 **도메인마다** 온페이지+인용 필요.
-  Netlify 무료로 “무한”은 기술적 가능 ≠ 1페이지 자동 보장.
+---
 
-================================================================================
-on_page_score (export 최소 50, Tier B 이상)
-================================================================================
-  +20 title 키워드  +15 H1  +15 FAQ5+  +15 가격/비교  +10 NAP
-  +10 3000자+ 또는 하부5URL  +10 내부링크5+
-  -30 bbs/write  -20 본문<500
+## Agent가 매 Run 할 일 (멈추지 말 것)
 
-================================================================================
-API · 캡차 · 백링크 실측 (환경변수 — 항상 이 목록 전제, 커밋 금지)
-================================================================================
-Automation/Agent Run 은 아래 키가 **Runner·로컬 env 에 이미 있다**고 가정한다.
-프롬프트 작성 시 이 블록을 **항상 통째로** 넣는다 (나중에 귀찮게 추가하지 않음).
+```bash
+# 1) supervisor 살아 있는지 (죽었으면 재시작)
+bash tools/start_gangara_supervisor.sh
 
-  TWOCAPTCHA_API_KEY     — 2captcha.com (reCAPTCHA v2/v3, hCaptcha, Turnstile)
-                           SmallSEOTools·SEO Review Tools·디렉터리 가입/조회 캡차
-  AHREFS_API_KEY         — Ahrefs API v3 → DR, live RD, live backlinks
-  SEMRUSH_API_KEY        — Semrush API (Authority Score, RD) — 유료 플랜
-  SEMRUSH_LOGIN_EMAIL    — (선택) Semrush 무료 10회 — 브라우저 로그인용
-  SEMRUSH_LOGIN_PASSWORD — (선택) 위와 쌍
-  SEOREVIEWTOOLS_API_KEY — seoreviewtools.com API / 유료 백링크 리포트
-  BLAZEHIVE_API_KEY      — (선택, 서비스 종료·주차 가능) BlazeHive 백링크
+# 2) 상태 확인
+cat core/backlink_deploy_status.json | head -30
+cat core/backlink_verified_store.json | head -20
 
-로컬 전용 파일 ( .gitignore — **절대 push 금지** ):
-  .env
-  captcha_solver.json    → {"provider":"2captcha","api_key":"<TWOCAPTCHA_API_KEY>"}
-  local_defaults.py
+# 3) 수집·플랜 (가벼우면 supervisor가 이미 함)
+python3 core/run_backlink_collect.py
+python3 core/run_backlink_daily_plan.py --target 1000 --quiet
 
-Python 에서는 os.environ 또는 python-dotenv(.env) 로 읽는다.
-브라우저 자동화 시 캡차 뜨면 **TWOCAPTCHA_API_KEY 로 풀고 재시도** (포기 금지).
+# 4) 배포 시도 (로컬)
+python3 core/run_backlink_auto.py --batch 50
 
-백링크 DR/RD·인용 실측 순서 (gangara + SERP 벤치마크 9~11도메인):
-  1) python tools/backlink_audit.py --all  (AHREFS_API_KEY)
-  2) 브라우저 Ahrefs 무료:
-       https://ahrefs.com/backlink-checker
-       https://ahrefs.com/website-authority-checker
-  3) 브라우저 + 2captcha:
-       https://www.seoreviewtools.com/valuable-backlinks-checker/
-       https://smallseotools.com/backlink-checker/
-  4) Semrush Backlink Analytics (로그인 env 있으면) + 2captcha
-  5) 보조: known citation live verify (roompang 업소页 등), Bing "link:domain"
-  6) 결과 → tools/backlink_audit_output.json 갱신, core/SERP_VS_GANGARA_COMPARISON.txt 반영
+# 5) 학습 1 cycle
+python3 core/run_learning_loop.py --max-cycles 1
+```
 
-이 niche: DR 50+ 필수 아님. **live RD 5~20 + directory 1~3** 이 체감 차이.
-gangara.co.kr 실측(2026-06-17 SST): DR 2 · RD 46 · BL 389 — 상위(choicelounge RD101, gangnamdalto RD556) 대비 RD·고품질 인용 부족.
+**실패 1개**만 고치고 commit·push.  
+**사용자가 「그만」** 하기 전까지 supervisor·인텔·auto **중단 금지**.
 
-================================================================================
-Instruction / Extraction 프롬프트 본문 (Automation 에 붙여넣기)
-================================================================================
-Cursor Automation · Agent Run 의 **Instructions / Extraction prompt** 필드에는
-아래 파일 **전체**를 복사해 넣는다 (메타 설명 아님, 실행 프롬프트 본문):
+---
 
-  → core/EXTRACTION_PROMPT.txt
+## 성공 / 실패 정의
 
-본 파일(AGENT_INSTRUCTION_PROMPT.txt)은 repo·역할·게이트 요약용.
-fusion·10곳 장점·단점 보완 **실행 지시**는 EXTRACTION_PROMPT.txt 만 사용.
+| | |
+|---|---|
+| **성공** | deploy_url 페이지에 **gangara.co.kr href live** → `backlink_verified_store.json` |
+| **실패** | 편집 불가 URL, 로그인 없음, href 없음 → `failure_hypotheses` 다음 가설 기록 |
+| **SERP 성공** | 3키워드 중 **1개 이상 top10** → `gangara_experiment.json` status=goal_reached |
 
-================================================================================
-매 Run
-================================================================================
-1) core/backlink_deploy_status.json 읽기
-2) 미구현 → Phase 1 한 가지만:
-     serp_backlink_collector (게시판 제외 쿼리)
-     placement_classifier / placement_qualifier / export_backlink_bridge
-     run_backlink_collect.py
-3) 구현됨 → python core/run_backlink_collect.py (1라운드)
-4) 실패 1개만 수정 → push (비밀·실제 money_url·계정 금지)
-5) 보고: Phase / all_pass / 키워드 coverage / sync 건수 / Tier 분포
+queue `done` ≠ 성공. **반드시 live verify.**
 
-================================================================================
-앵커 (배포 Phase)
-================================================================================
-  exact 40% · partial 30% · brand 20% · naked URL 10%
-  (anchor_plan.json)
+---
 
-================================================================================
-금지
-================================================================================
-Track A · board_writer · guest_sync · bbs 수집 · DR-only 필터
-비밀키·API키·2captcha·.env·captcha_solver.json·실제 money_url **커밋**
-  (env 사용은 OK, repo push 는 NO) · 무한 harvest · E2E 대량 Chrome
+## 백링크 올리는 순서 (로컬 PC)
 
-================================================================================
-참고 파일
-================================================================================
-  core/SERP_VS_GANGARA_COMPARISON.txt
-  core/EXTRACTION_PROMPT.txt          ← Automation Instructions 붙여넣기 본문
-  core/GANGARA_FUSION_BLUEPRINT.txt
-  core/AUTOMATION_INSTRUCTIONS.txt
-  website 확장 수집/misc/data/backlink_keywords.txt
-  website 확장 수집/misc/data/serp_backlink_queries.txt
+1. **P0 품질 (~17건)** — roompang **업소등록** (search?q= URL skip)  
+2. **P1 bulk (~450건)** — ClickN/isweb 무료 사이트 → footer 링크  
+3. **P2 bulk (~350건)** — tistory·velog·네이버 새 글  
+4. **스킵** — choicelounge 등 **타인 site**, postheaven/blogspot, 게시판 write.php  
 
-all_pass: keywords 13/13 · 키워드당 sync≥10 · count≥20 · 게시판 URL 0건
+Browser: `tools/CURSOR_BROWSER_DAILY_1000_PROMPT.md`  
+상세: `core/BACKLINK_1000_DAY_PLAYBOOK.md`
+
+---
+
+## Gmail 보고 (사용자 요청 없어도 자동)
+
+| 주기 | 내용 |
+|------|------|
+| 10분 | 인텔 — 원론 + 경쟁자 추적 |
+| 3시간 | 학습 — 가설 vs 결과 |
+| 100건 live | milestone |
+| 사용자 「보고해」 | `--email --force` |
+
+SMTP: `core/notify_secrets.json` (gitignore) 또는 GitHub Secrets.
+
+---
+
+## 핵심 파일
+
+```
+core/backlink_deploy_status.json    ← Phase·pool·fusion
+core/backlink_deploy_queue.json     ← Browser 배포 큐
+core/backlink_verified_store.json   ← live 성공/실패
+core/gangara_experiment.json        ← SERP·학습 cycle
+tools/BACKLINK_INTEL_LATEST.md      ← 10분 인텔
+tools/LEARNING_DIGEST_LATEST.md     ← 학습 보고
+core/run_gangara_supervisor.py      ← 통합 루프
+core/failure_hypotheses.py          ← 실패→다음 가설
+```
+
+---
+
+## 금지
+
+- Track A (board-post-automation) 수정
+- 비밀번호·Gmail 앱비번·CLICKN 계정 **commit**
+- 게시판 write.php 스팸
+- 타인 guide_hub 무단 편집
+- **supervisor 멈춘 채로 Run 종료** (반드시 재시작)
+
+---
+
+## Run 종료 보고 (짧게)
+
+```
+SERP: ?/3 top10 | verified live: ? (오늘 ?/1000)
+deploy_queue 대기: ?건 | pool: ?
+dominant 실패 → 다음 가설: ?
+supervisor: running/stopped
+수정·push: ...
+다음: (한 줄)
+```
+
+---
+
+## 중지 (사용자만)
+
+```bash
+touch tools/GANGARA_SUPERVISOR_STOP
+touch tools/BACKLINK_INTEL_STOP
+```
