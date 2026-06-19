@@ -1,12 +1,12 @@
 {
-  "at": "2026-06-19T04:00:22Z",
+  "at": "2026-06-19T22:39:03Z",
   "processed": 50,
   "success_total": 1,
   "stats": {
-    "verified_live": 1,
-    "skipped": 5,
-    "failed": 11,
-    "needs_deploy": 33,
+    "verified_live": 0,
+    "skipped": 3,
+    "failed": 10,
+    "needs_deploy": 37,
     "already_success": 0
   },
   "milestone": null,

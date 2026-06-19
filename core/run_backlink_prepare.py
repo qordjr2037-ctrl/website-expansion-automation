@@ -11,10 +11,15 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
+NON_EDITABLE = re.compile(
+    r"search\?q=|choicelounge\.co\.kr|seoulafterdark\.com|postheaven|blogspot",
+    re.I,
+)
 PLAN = REPO / "core/backlink_daily_plan.json"
 CONFIG = REPO / "core/machine_config.json"
 QUEUE_DIR = REPO / "core"
@@ -28,6 +33,17 @@ def load_json(path: Path, default=None):
     if not path.exists():
         return default if default is not None else {}
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def is_editable(row: dict) -> bool:
+    """Browser 배포 가능 URL만 — search?q=·타인 guide_hub 등 제외."""
+    url = row.get("deploy_url") or ""
+    if NON_EDITABLE.search(url):
+        return False
+    action = (row.get("action") or "").strip()
+    if action.startswith("SKIP"):
+        return False
+    return True
 
 
 def shard_rows(rows: list[dict], machine_id: int, machines: int) -> list[dict]:
@@ -55,8 +71,10 @@ def main() -> int:
         print("ERROR: core/backlink_daily_plan.json 없음 — 먼저 run_backlink_daily_plan.py 실행")
         return 1
 
-    rows = plan["rows"]
-    machine_rows = shard_rows(rows, args.machine_id, machines)
+    all_rows = plan["rows"]
+    editable = [r for r in all_rows if is_editable(r)]
+    excluded = len(all_rows) - len(editable)
+    machine_rows = shard_rows(editable, args.machine_id, machines)
 
     if args.browser_id > 0:
         machine_rows = shard_rows(machine_rows, args.browser_id, browsers)
@@ -68,8 +86,9 @@ def main() -> int:
         "machines_total": machines,
         "browser_id": args.browser_id or None,
         "count": len(machine_rows),
+        "excluded_not_editable": excluded,
         "daily_target": plan.get("daily_target", 1000),
-        "note": f"PC machine {args.machine_id}/{machines} — Cursor Browser 배포",
+        "note": f"PC machine {args.machine_id}/{machines} — editable only (excluded {excluded})",
         "rows": machine_rows,
     }
 
