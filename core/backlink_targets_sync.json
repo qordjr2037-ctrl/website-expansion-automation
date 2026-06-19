@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updated_at": "2026-06-19T00:32:27Z",
+  "updated_at": "2026-06-19T00:41:26Z",
   "count": 30,
-  "pool_total": 92,
+  "pool_total": 93,
   "campaign_id": "gangara-experiment",
   "money_site": "https://gangara.co.kr/",
   "source": "gangara_experiment",
@@ -15,7 +15,7 @@
     "강남 클럽": 1
   },
   "pool_keyword_coverage": {
-    "강남 가라오케": 29,
+    "강남 가라오케": 30,
     "강남 풀싸롱": 26,
     "강남 하이퍼블릭": 23,
     "서울 가라오케": 4,
