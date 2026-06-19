@@ -26,6 +26,8 @@ SERP = REPO / "tools/serp_rank_probe_output.json"
 QUEUE = REPO / "core/backlink_deploy_queue.json"
 DIGEST_MD = REPO / "tools/LEARNING_DIGEST_LATEST.md"
 DIGEST_JSON = REPO / "tools/LEARNING_DIGEST_LATEST.json"
+CONFIG = REPO / "core/machine_config.json"
+DEFAULT_REPORT_EMAIL = "qordjr2037@gmail.com"
 
 
 def now_iso() -> str:
@@ -122,15 +124,25 @@ python3 core/run_learning_report.py --email
 """
 
 
+def _report_email() -> str:
+    cfg = load_json(CONFIG, {})
+    return (
+        os.environ.get("GANGARA_REPORT_EMAIL_TO", "").strip()
+        or (cfg.get("learning_loop") or {}).get("report_email", "")
+        or DEFAULT_REPORT_EMAIL
+    )
+
+
 def send_email(subject: str, body_md: str, digest: dict) -> bool:
-    to_addr = os.environ.get("GANGARA_REPORT_EMAIL_TO", "").strip()
+    to_addr = _report_email()
     smtp_host = os.environ.get("GANGARA_SMTP_HOST", "smtp.gmail.com")
     smtp_port = int(os.environ.get("GANGARA_SMTP_PORT", "587"))
-    smtp_user = os.environ.get("GANGARA_SMTP_USER", "").strip()
+    smtp_user = os.environ.get("GANGARA_SMTP_USER", "").strip() or to_addr
     smtp_pass = os.environ.get("GANGARA_SMTP_PASS", "").strip()
 
-    if not to_addr or not smtp_user or not smtp_pass:
-        print("EMAIL skip: GANGARA_REPORT_EMAIL_TO / GANGARA_SMTP_USER / GANGARA_SMTP_PASS not set")
+    if not smtp_pass:
+        print(f"EMAIL skip: GANGARA_SMTP_PASS not set (to={to_addr})", file=sys.stderr)
+        print("GitHub Secrets 또는 env에 Gmail 앱 비밀번호 필요", file=sys.stderr)
         return False
 
     msg = MIMEMultipart("alternative")

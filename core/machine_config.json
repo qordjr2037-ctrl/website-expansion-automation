@@ -30,11 +30,12 @@
   "_track_note": "board-post-automation 과 무관.",
   "_experiment_note": "gangara.co.kr 단일 사이트 백링크 집중 실험 — 3키워드",
   "learning_loop": {
+    "report_email": "qordjr2037@gmail.com",
     "prioritize_platforms": [
       "directory",
       "guide_hub"
     ],
-    "active_cycle": 5,
-    "min_trait_score": 65
+    "active_cycle": 1,
+    "min_trait_score": 57
   }
 }

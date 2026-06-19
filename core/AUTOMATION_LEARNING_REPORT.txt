@@ -20,6 +20,6 @@ python3 core/run_learning_loop.py --continuous --max-cycles 5 --max-batches 200 
 3시간 스케줄: `.github/workflows/learning-loop.yml` cron `0 */3 * * *`
 
 Gmail secrets (repo Settings → Secrets):
-- GANGARA_REPORT_EMAIL_TO
-- GANGARA_SMTP_USER (Gmail 주소)
-- GANGARA_SMTP_PASS (앱 비밀번호)
+- GANGARA_REPORT_EMAIL_TO = qordjr2037@gmail.com
+- GANGARA_SMTP_USER = qordjr2037@gmail.com
+- GANGARA_SMTP_PASS = Gmail 앱 비밀번호 (16자)
