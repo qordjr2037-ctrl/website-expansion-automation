@@ -141,6 +141,23 @@ def build_digest() -> dict:
         sync_count=sync.get("count"),
     )
 
+    failure_md = ""
+    try:
+        sys.path.insert(0, str(REPO / "core"))
+        from backlink_verified_store import load_store  # noqa: WPS433
+        from failure_hypotheses import render_failure_report  # noqa: WPS433
+
+        vstore = load_store()
+        failure_md = render_failure_report(vstore.get("failures") or [])
+        nh = (exp.get("learning_loop") or {}).get("next_hypothesis_on_failure")
+        if nh:
+            failure_md += (
+                f"\n### 현재 dominant 실패 → 적용 중인 다음 가설\n"
+                f"{nh.get('statement_ko', '—')}\n"
+            )
+    except Exception:
+        pass
+
     digest = {
         "generated_at": now_iso(),
         "goal_met": ll.get("goal_met") or st.get("learning_loop", {}).get("goal_met", False),
@@ -158,6 +175,7 @@ def build_digest() -> dict:
         "next_actions": st.get("next_actions", [])[:4],
         "money_site": st.get("money_site", "https://gangara.co.kr/"),
         "experiment": experiment,
+        "failure_hypotheses_md": failure_md,
     }
     return digest
 

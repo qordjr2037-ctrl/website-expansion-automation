@@ -236,6 +236,7 @@ def render_experiment_markdown(d: dict) -> str:
     cycle_patch = exp.get("cycle_actions") or {}
     patch_lines = "\n".join(f"- {p}" for p in cycle_patch.get("patches") or []) or "- —"
     next_actions = "\n".join(f"- {a}" for a in d.get("next_actions", []))
+    failure_block = d.get("failure_hypotheses_md") or ""
 
     return f"""# gangara 학습 실험 보고 — {d['generated_at']}
 
@@ -291,6 +292,7 @@ def render_experiment_markdown(d: dict) -> str:
 sync {d.get('sync_count')} / pool {d.get('pool_total')} · Browser 배포 대기 **{d.get('deploy_queue_pending')}건**
 fusion live: {'✅' if d.get('fusion_live') else '❌'}
 
+{failure_block}
 ---
 프롬프트: `tools/CURSOR_BROWSER_DEPLOY_QUEUE_PROMPT.md`
 """

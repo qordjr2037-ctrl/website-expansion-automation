@@ -38,7 +38,7 @@
       "directory",
       "guide_hub"
     ],
-    "active_cycle": 14,
+    "active_cycle": 26,
     "min_trait_score": 70
   },
   "backlink_volume": {
@@ -52,6 +52,10 @@
       "comment": 80
     },
     "prioritize_new_signup": true,
-    "playbook": "core/BACKLINK_1000_DAY_PLAYBOOK.md"
+    "playbook": "core/BACKLINK_1000_DAY_PLAYBOOK.md",
+    "success_milestone": 100,
+    "auto_enabled": true,
+    "auto_batch_size": 50,
+    "auto_interval_sec": 600
   }
 }

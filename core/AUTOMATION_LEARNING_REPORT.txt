@@ -34,3 +34,6 @@ python3 core/run_learning_report.py --email --force --quiet
 ## 백그라운드
 - 학습: tmux `gangara-learning-continuous` — log `tools/learning_continuous.log`
 - 보고: tmux `gangara-report-3h` — log `tools/report_scheduler.log`
+- **백링크 자동화:** tmux `gangara-backlink-auto` — `run_backlink_automation.py --daemon`
+- **live 100건 milestone Gmail** — `backlink_verified_store.json` success_total 100,200,…
+- 실패→다음 가설: `core/failure_hypotheses.py` + digest·milestone 보고에 포함
