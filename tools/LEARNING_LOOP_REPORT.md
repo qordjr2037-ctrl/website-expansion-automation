@@ -1,4 +1,4 @@
-# 자가 발전 학습 루프 — cycle 20 (2026-06-19T00:58:20Z)
+# 자가 발전 학습 루프 — cycle 25 (2026-06-19T01:06:27Z)
 
 **SERP top10:** 0/3 | **goal_met:** False
 
@@ -12,7 +12,7 @@ RD 46 but spam 100% — quality+deploy.
 | 강남 하이퍼블릭 | — | ❌ |
 
 RD: gangara 46 / target 98
-Deploy queue: 18건 → `core/backlink_deploy_queue.json`
+Deploy queue: 17건 → `core/backlink_deploy_queue.json`
 
 ## 재실행
 ```bash
