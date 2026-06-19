@@ -446,32 +446,46 @@ def _git_push_artifacts(batch: int) -> None:
 
 
 def _render_multi_report(cycle: int, result: dict, goal_met: bool) -> str:
+    from learning_hypothesis_report import evaluate_experiment, render_experiment_markdown
+
     h, c, serp = result["hypothesis"], result["comparison"], result["serp"]
-    lines = [
-        f"# 자가 발전 학습 루프 — cycle {cycle} ({now_iso()})",
-        "",
-        f"**SERP top10:** {serp.get('in_top10_count', 0)}/3 | **goal_met:** {goal_met}",
-        "",
-        f"## 가설 ({h['confidence']:.0%})",
-        h["statement_ko"],
-        "",
-        "| 키워드 | rank | top10 |",
-        "|--------|------|-------|",
-    ]
-    for r in serp.get("results", []):
-        rank = r.get("rank") if r.get("rank") else "—"
-        lines.append(f"| {r['keyword']} | {rank} | {'✅' if r.get('in_top10') else '❌'} |")
-    lines += [
-        "",
-        f"RD: gangara {c['you']['rd']} / target {c['rd_target']}",
-        f"Deploy queue: {result['deploy_queue']}건 → `core/backlink_deploy_queue.json`",
-        "",
-        "## 재실행",
-        "```bash",
-        "python3 core/run_learning_loop.py --until-top10 --max-cycles 20",
-        "```",
-    ]
-    return "\n".join(lines) + "\n"
+    in_top10 = serp.get("in_top10_count", 0)
+    cycle_rec = {
+        "cycle": cycle,
+        "serp_in_top10": in_top10,
+        "seeds_added": 0,
+        "deploy_queue": result["deploy_queue"],
+        "patches": result.get("patches", []),
+        "ranks": {r["keyword"]: r.get("rank") for r in serp.get("results", [])},
+    }
+    exp_eval = evaluate_experiment(
+        h.get("primary", "backlink_quality_and_type"),
+        h,
+        c,
+        cycle_rec,
+        None,
+        deploy_queue_pending=result["deploy_queue"],
+        fusion_live=True,
+        pool_total=None,
+        sync_count=None,
+    )
+    digest = {
+        "generated_at": now_iso(),
+        "goal_met": goal_met,
+        "serp_top10": f"{in_top10}/3",
+        "serp_ranks": cycle_rec["ranks"],
+        "hypothesis_ko": h.get("statement_ko", ""),
+        "hypothesis_confidence": f"{h.get('confidence', 0):.0%}",
+        "learning_cycle": cycle,
+        "deploy_queue_pending": result["deploy_queue"],
+        "fusion_live": True,
+        "next_actions": [
+            f"PC Browser: deploy_queue {result['deploy_queue']}건 배포",
+            "GSC sitemap + site:gangara.co.kr",
+        ],
+        "experiment": exp_eval,
+    }
+    return render_experiment_markdown(digest)
 
 
 def main() -> int:

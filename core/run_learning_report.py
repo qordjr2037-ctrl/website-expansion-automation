@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-학습 루프 결과 보고 — 3시간 스케줄 / 사용자 메시지 / Gmail(선택).
+학습 루프 결과 보고 — 가설→실험→결과(일치/불일치) 형식.
 
   python3 core/run_learning_report.py
   python3 core/run_learning_report.py --email   # GANGARA_REPORT_* env 있으면 발송
@@ -18,6 +18,8 @@ from datetime import datetime, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
+
+from learning_hypothesis_report import evaluate_experiment, render_experiment_markdown
 
 REPO = Path(__file__).resolve().parent.parent
 EXPERIMENT = REPO / "core/gangara_experiment.json"
@@ -108,7 +110,35 @@ def build_digest() -> dict:
         hyp_id = str(hypothesis)
 
     cmp = ll.get("comparison") or {}
-    you_rd = (cmp.get("you") or {}).get("rd") or st.get("pool_keyword_coverage", {})
+    confidence = (hypothesis.get("confidence") if isinstance(hypothesis, dict) else None) or (
+        last_cycle.get("confidence")
+    )
+
+    prev_cycle = None
+    cur_num = ll.get("cycle") or last_cycle.get("cycle")
+    if cur_num and cycles:
+        numbered = [c for c in cycles if c.get("cycle") is not None]
+        for c in reversed(numbered):
+            if c.get("cycle") == cur_num:
+                last_cycle = c
+                break
+        for c in reversed(numbered):
+            cn = c.get("cycle")
+            if cn is not None and cur_num is not None and cn < cur_num:
+                prev_cycle = c
+                break
+
+    experiment = evaluate_experiment(
+        hyp_id or "backlink_quality_and_type",
+        hypothesis if isinstance(hypothesis, dict) else {"statement_ko": hyp_text},
+        cmp,
+        last_cycle or {},
+        prev_cycle,
+        deploy_queue_pending=queue.get("count", 0),
+        fusion_live=(st.get("fusion_live") or {}).get("deployed", False),
+        pool_total=sync.get("pool_total"),
+        sync_count=sync.get("count"),
+    )
 
     digest = {
         "generated_at": now_iso(),
@@ -117,6 +147,7 @@ def build_digest() -> dict:
         "serp_ranks": ranks,
         "hypothesis_id": hyp_id,
         "hypothesis_ko": hyp_text,
+        "hypothesis_confidence": f"{confidence:.0%}" if isinstance(confidence, (int, float)) else "?",
         "learning_cycle": ll.get("cycle") or last_cycle.get("cycle"),
         "pool_total": sync.get("pool_total"),
         "sync_count": sync.get("count"),
@@ -125,45 +156,13 @@ def build_digest() -> dict:
         "fusion_live": (st.get("fusion_live") or {}).get("deployed", False),
         "next_actions": st.get("next_actions", [])[:4],
         "money_site": st.get("money_site", "https://gangara.co.kr/"),
+        "experiment": experiment,
     }
     return digest
 
 
 def render_markdown(d: dict) -> str:
-    rank_lines = "\n".join(
-        f"| {kw} | {r if r else '미노출'} | {'✅' if r and r <= 10 else '❌'} |"
-        for kw, r in d.get("serp_ranks", {}).items()
-    )
-    actions = "\n".join(f"- {a}" for a in d.get("next_actions", []))
-    return f"""# gangara 학습 루프 보고 — {d['generated_at']}
-
-## SERP (목표: 3키워드 top10)
-**현재:** {d['serp_top10']} | **goal_met:** {d['goal_met']}
-
-| 키워드 | rank | top10 |
-|--------|------|-------|
-{rank_lines}
-
-## 가설 (cycle {d.get('learning_cycle', '?')})
-{d.get('hypothesis_ko', '—')}
-
-## 큐·풀
-- sync: {d.get('sync_count')} / pool: {d.get('pool_total')}
-- **Browser 배포 대기:** {d.get('deploy_queue_pending')}건 (`core/backlink_deploy_queue.json`)
-- fusion live: {'✅' if d.get('fusion_live') else '❌'}
-- PC deploy 필요: {'⚠️ 예' if d.get('awaiting_pc_deploy') else '아니오'}
-
-## 다음 액션
-{actions or '- —'}
-
-## 재실행
-```bash
-python3 core/run_learning_loop.py --until-top10 --max-cycles 5
-python3 core/run_learning_report.py --email
-```
-
-프롬프트: `tools/CURSOR_BROWSER_DEPLOY_QUEUE_PROMPT.md`
-"""
+    return render_experiment_markdown(d)
 
 
 def _report_email() -> str:
@@ -189,10 +188,6 @@ def send_email(subject: str, body_md: str, digest: dict) -> bool:
             "core/notify_secrets.json (gitignore) 또는 GitHub Secret GANGARA_SMTP_PASS 필요",
             file=sys.stderr,
         )
-        print(
-            "호스팅/cPanel 비번 ≠ Gmail SMTP — 앱 비밀번호: https://myaccount.google.com/apppasswords",
-            file=sys.stderr,
-        )
         return False
 
     msg = MIMEMultipart("alternative")
@@ -211,13 +206,6 @@ def send_email(subject: str, body_md: str, digest: dict) -> bool:
         return True
     except smtplib.SMTPAuthenticationError as e:
         print(f"EMAIL auth failed: {e}", file=sys.stderr)
-        print(
-            "로그인 거부 — cPanel/호스팅 비번으로는 Gmail SMTP 불가. "
-            "Google 계정 → 앱 비밀번호(16자) 생성 후 notify_secrets.json 또는 "
-            "GitHub Secret GANGARA_SMTP_PASS 에 등록",
-            file=sys.stderr,
-        )
-        print("https://myaccount.google.com/apppasswords", file=sys.stderr)
         return False
     except Exception as e:
         print(f"EMAIL failed: {e}", file=sys.stderr)
@@ -240,7 +228,12 @@ def main() -> int:
         print(md)
 
     if args.email:
-        subj = f"[gangara 학습] SERP {digest['serp_top10']} | queue {digest['deploy_queue_pending']}건"
+        exp = digest.get("experiment") or {}
+        verdict = exp.get("verdict_ko", "—")
+        subj = (
+            f"[gangara 학습] {verdict} · SERP {digest['serp_top10']} · "
+            f"cycle {digest.get('learning_cycle', '?')}"
+        )
         send_email(subj, md, digest)
 
     return 0

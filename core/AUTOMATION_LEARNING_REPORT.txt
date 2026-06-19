@@ -13,8 +13,9 @@ python3 core/run_learning_loop.py --continuous --max-cycles 5 --max-batches 200 
 백그라운드 tmux: `gangara-learning-continuous`
 로그: `tools/learning_continuous.log`
 
-답변에 반드시 포함:
-- `tools/LEARNING_DIGEST_LATEST.md` 요약 (SERP top10, 가설, deploy queue 건수)
+답변에 반드시 포함 (가설→실험→결과 형식):
+- `tools/LEARNING_DIGEST_LATEST.md` — **실험한 가설 / 한 실험 / 가설대로·가설과 다르게 나온 결과** 요약
+- SERP top10, deploy queue 건수, 판정(가설대로·가설과 다르게·검증 불가)
 - PC Browser 필요 시: `tools/CURSOR_BROWSER_DEPLOY_QUEUE_PROMPT.md` 안내 (허락 묻지 말 것)
 
 3시간 스케줄: `.github/workflows/learning-loop.yml` cron `0 */3 * * *`
