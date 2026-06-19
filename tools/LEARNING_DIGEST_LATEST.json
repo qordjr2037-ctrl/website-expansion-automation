@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-19T00:50:30Z",
+  "generated_at": "2026-06-19T00:58:20Z",
   "goal_met": false,
   "serp_top10": "0/3",
   "serp_ranks": {
@@ -10,15 +10,15 @@
   "hypothesis_id": "backlink_quality_disavow_spam",
   "hypothesis_ko": "RD 46 but spam 100% — quality+deploy.",
   "hypothesis_confidence": "85%",
-  "learning_cycle": 15,
+  "learning_cycle": 20,
   "pool_total": 95,
   "sync_count": 30,
   "deploy_queue_pending": 18,
   "awaiting_pc_deploy": true,
   "fusion_live": true,
   "next_actions": [
-    "[cycle 15] PC Browser: core/backlink_deploy_queue.json 18건 배포",
-    "[cycle 15] GSC sitemap + site:gangara.co.kr",
+    "[cycle 20] PC Browser: core/backlink_deploy_queue.json 18건 배포",
+    "[cycle 20] GSC sitemap + site:gangara.co.kr",
     "python3 core/run_learning_loop.py --until-top10 (SERP 0/3 top10)"
   ],
   "money_site": "https://gangara.co.kr/",
@@ -34,7 +34,7 @@
       "min_trait_score 상향으로 저품질 placement 제외"
     ],
     "cycle_actions": {
-      "seeds_added": 1,
+      "seeds_added": 0,
       "deploy_queue": 18,
       "patches": [
         "gangara_experiment learning_loop",
@@ -47,7 +47,6 @@
       "스팸 비율 감소"
     ],
     "matched": [
-      "SERP 시드 1건 주입 — 경쟁 URL 기반 수집 확장",
       "sync 30 / pool 95 — 수집·export 파이프라인 동작"
     ],
     "diverged": [
@@ -64,6 +63,6 @@
     },
     "verdict": "blocked",
     "verdict_ko": "가설 검증 불가(실행 병목)",
-    "summary_ko": "cycle 15에서 「스팸 백링크 정리 + 고품질 citation 배포」 가설을 실험했지만, **가설과 다르게** SERP는 여전히 0/3입니다. 수집·purge는 진행됐으나 **Browser deploy_queue 18건 미배포 — live citation 미반영으로 SERP 변화 지연** 때문에 citation live 반영이 없어 가설 검증이 지연됐습니다."
+    "summary_ko": "cycle 20에서 「스팸 백링크 정리 + 고품질 citation 배포」 가설을 실험했지만, **가설과 다르게** SERP는 여전히 0/3입니다. 수집·purge는 진행됐으나 **Browser deploy_queue 18건 미배포 — live citation 미반영으로 SERP 변화 지연** 때문에 citation live 반영이 없어 가설 검증이 지연됐습니다."
   }
 }
