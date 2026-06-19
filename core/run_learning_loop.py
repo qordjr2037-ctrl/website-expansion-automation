@@ -340,11 +340,18 @@ def run_single_cycle(cycle: int) -> dict:
     }
 
 
-def run_until_top10(max_cycles: int, min_keywords: int, pause_sec: float) -> dict:
-    summary = {"cycles_run": 0, "goal_met": False, "final_serp": None}
-    for cycle in range(1, max_cycles + 1):
+def run_until_top10(
+    max_cycles: int,
+    min_keywords: int,
+    pause_sec: float,
+    start_cycle: int = 1,
+) -> dict:
+    summary = {"cycles_run": 0, "goal_met": False, "final_serp": None, "start_cycle": start_cycle}
+    for i in range(max_cycles):
+        cycle = start_cycle + i
         result = run_single_cycle(cycle)
-        summary["cycles_run"] = cycle
+        summary["cycles_run"] = i + 1
+        summary["final_cycle"] = cycle
         summary["final_serp"] = result["serp"]
         summary["goal_met"] = serp_goal_met(result["serp"], min_keywords)
 
@@ -359,18 +366,82 @@ def run_until_top10(max_cycles: int, min_keywords: int, pause_sec: float) -> dic
             save_json(EXPERIMENT, exp)
             break
 
-        if cycle < max_cycles:
+        if i < max_cycles - 1:
             print(f"Goal not met — next cycle in {pause_sec}s...")
             time.sleep(pause_sec)
 
     if not summary["goal_met"]:
-        print(f"\n--- Max cycles ({max_cycles}) reached. SERP still 0/3. PC deploy queue required. ---")
         exp = load_json(EXPERIMENT, {})
         exp.setdefault("learning_loop", {})["awaiting_pc_deploy"] = True
+        exp["learning_loop"]["last_cycle"] = summary.get("final_cycle", start_cycle)
         save_json(EXPERIMENT, exp)
 
     _run_report(email=os.environ.get("GANGARA_AUTO_EMAIL", "") == "1")
     return summary
+
+
+def run_continuous(
+    batch_cycles: int = 5,
+    max_batches: int = 200,
+    batch_pause: float = 30.0,
+    cycle_pause: float = 2.0,
+    min_keywords: int = 1,
+) -> dict:
+    """유의미한 SERP(top10) 나올 때까지 배치 반복. min_keywords=1 이면 1키워드 top10도 성공."""
+    print(f"=== CONTINUOUS until top10 (min_keywords={min_keywords}, max_batches={max_batches}) ===")
+    exp = load_json(EXPERIMENT, {})
+    start = int((exp.get("learning_loop") or {}).get("last_cycle", 0)) + 1
+    overall = {"batches": 0, "goal_met": False, "total_cycles": 0}
+
+    for batch in range(1, max_batches + 1):
+        print(f"\n>>> Batch {batch}/{max_batches} (cycle from {start})")
+        summary = run_until_top10(batch_cycles, min_keywords, cycle_pause, start_cycle=start)
+        overall["batches"] = batch
+        overall["goal_met"] = summary["goal_met"]
+        overall["total_cycles"] = start + summary["cycles_run"] - 1
+        overall["final_serp"] = summary.get("final_serp")
+
+        _git_push_artifacts(batch)
+
+        if summary["goal_met"]:
+            print(f"\n*** CONTINUOUS STOP: goal met after batch {batch} ***")
+            break
+
+        start = overall["total_cycles"] + 1
+        if batch < max_batches:
+            print(f"Batch {batch} done — pause {batch_pause}s...")
+            time.sleep(batch_pause)
+
+    exp = load_json(EXPERIMENT, {})
+    exp.setdefault("learning_loop", {})["continuous"] = {
+        "updated_at": now_iso(),
+        "batches_run": overall["batches"],
+        "total_cycles": overall["total_cycles"],
+        "goal_met": overall["goal_met"],
+    }
+    save_json(EXPERIMENT, exp)
+    _run_report(email=True)
+    return overall
+
+
+def _git_push_artifacts(batch: int) -> None:
+    paths = [
+        "tools/LEARNING_DIGEST_LATEST.md",
+        "tools/LEARNING_DIGEST_LATEST.json",
+        "tools/LEARNING_LOOP_REPORT.md",
+        "core/gangara_experiment.json",
+        "core/backlink_deploy_status.json",
+        "core/backlink_deploy_queue.json",
+        "core/backlink_targets_sync.json",
+        "website 확장 수집/misc/data/learning_seeds.json",
+        "website 확장 수집/misc/data/placements_master.json",
+    ]
+    subprocess.call(["git", "add"] + paths, cwd=str(REPO))
+    subprocess.call(
+        ["git", "commit", "-m", f"chore(learning): continuous batch {batch}"],
+        cwd=str(REPO),
+    )
+    subprocess.call(["git", "push", "-u", "origin", "cursor/gangara-faeb"], cwd=str(REPO))
 
 
 def _render_multi_report(cycle: int, result: dict, goal_met: bool) -> str:
@@ -404,18 +475,36 @@ def _render_multi_report(cycle: int, result: dict, goal_met: bool) -> str:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="gangara SERP 1페이지 자가 학습 루프")
-    ap.add_argument("--until-top10", action="store_true", help="3키워드 top10까지 반복")
-    ap.add_argument("--max-cycles", type=int, default=20, help="최대 사이클 (안전 상한)")
-    ap.add_argument("--min-keywords", type=int, default=3, help="성공 조건 top10 키워드 수")
-    ap.add_argument("--pause", type=float, default=3.0, help="사이클 간 대기(초)")
+    ap.add_argument("--until-top10", action="store_true", help="top10 달성까지 배치 내 반복")
+    ap.add_argument("--continuous", action="store_true", help="유의미한 SERP 나올 때까지 배치 무한 반복")
+    ap.add_argument("--max-cycles", type=int, default=5, help="배치당 최대 사이클")
+    ap.add_argument("--max-batches", type=int, default=200, help="continuous 최대 배치")
+    ap.add_argument("--min-keywords", type=int, default=1, help="성공 top10 키워드 수 (1=유의미 결과)")
+    ap.add_argument("--pause", type=float, default=2.0, help="사이클 간 대기(초)")
+    ap.add_argument("--batch-pause", type=float, default=30.0, help="배치 간 대기(초)")
     args = ap.parse_args()
 
+    if args.continuous:
+        overall = run_continuous(
+            batch_cycles=args.max_cycles,
+            max_batches=args.max_batches,
+            batch_pause=args.batch_pause,
+            cycle_pause=args.pause,
+            min_keywords=args.min_keywords,
+        )
+        print(json.dumps(overall, ensure_ascii=False, indent=2, default=str))
+        return 0 if overall["goal_met"] else 2
+
     if args.until_top10:
-        summary = run_until_top10(args.max_cycles, args.min_keywords, args.pause)
+        exp = load_json(EXPERIMENT, {})
+        start = int((exp.get("learning_loop") or {}).get("last_cycle", 0)) + 1
+        summary = run_until_top10(args.max_cycles, args.min_keywords, args.pause, start_cycle=start)
         print(json.dumps(summary, ensure_ascii=False, indent=2, default=str))
         return 0 if summary["goal_met"] else 2
 
-    result = run_single_cycle(1)
+    exp = load_json(EXPERIMENT, {})
+    start = int((exp.get("learning_loop") or {}).get("last_cycle", 0)) + 1
+    result = run_single_cycle(start)
     print(json.dumps(result["hypothesis"], ensure_ascii=False, indent=2))
     return 0
 
