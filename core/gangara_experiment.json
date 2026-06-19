@@ -2,7 +2,7 @@
   "experiment_id": "gangara-blitz-2026",
   "status": "active",
   "started_at": "2026-06-17T00:00:00Z",
-  "updated_at": "2026-06-18T23:53:19Z",
+  "updated_at": "2026-06-19T00:30:44Z",
   "hypothesis": "gangara.co.kr 단일 사이트에 directory+guide_hub 백링크 집중 시 3키워드 SERP 상승",
   "target": {
     "money_url": "https://gangara.co.kr/",
@@ -571,10 +571,298 @@
           ]
         }
       ]
+    },
+    {
+      "probed_at": "2026-06-19T00:05:13Z",
+      "target_domain": "gangara.co.kr",
+      "provider": "duckduckgo_lite",
+      "keywords_probed": 3,
+      "in_top10_count": 0,
+      "results": [
+        {
+          "keyword": "강남 가라오케",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://karaokeplan.com/",
+            "https://www.theperfectkaraoke.com/",
+            "https://www.karaokegangnam.net/",
+            "https://seoulafterdark.com/gangnam-karaoke-guide-2026/",
+            "https://gangnam-garaoke.com/"
+          ]
+        },
+        {
+          "keyword": "강남 풀싸롱",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://www.gangnamfullssalong.com/",
+            "https://www.levelhotelsalon.com/",
+            "https://gangnam-fullssa.com/",
+            "https://www.gugudano.com/post/%EA%B0%95%EB%82%A8-%ED%92%80%EC%8B%B8%EB%A1%B1-%EA%B0%80%EA%B2%A9-%EB%B0%8F-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%99%84%EC%A0%84-%EC%A0%95%EB%B3%B5-%EA%B0%80%EC%9D%B4%EB%93%9C-2026-%EC%B5%9C%EC%8B%A0%ED%8C%90",
+            "https://www.fullssawara.com/"
+          ]
+        },
+        {
+          "keyword": "강남 하이퍼블릭",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://gangnamkaraokeroom.com/gangnam-hyperpublic-guide/",
+            "https://www.roompang.com/guide/gangnam-hyperpublic",
+            "https://gangnam-nightlife.co.kr/blog/0011.html",
+            "https://roomhubs.com/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD/",
+            "https://gangnam-highpublic.com/"
+          ]
+        }
+      ]
+    },
+    {
+      "probed_at": "2026-06-19T00:24:25Z",
+      "target_domain": "gangara.co.kr",
+      "provider": "duckduckgo_lite",
+      "keywords_probed": 3,
+      "in_top10_count": 0,
+      "results": [
+        {
+          "keyword": "강남 가라오케",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://karaokeplan.com/",
+            "https://www.theperfectkaraoke.com/",
+            "https://www.karaokegangnam.net/",
+            "https://seoulafterdark.com/gangnam-karaoke-guide-2026/",
+            "https://gangnam-garaoke.com/"
+          ]
+        },
+        {
+          "keyword": "강남 풀싸롱",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://www.gangnamfullssalong.com/",
+            "https://www.levelhotelsalon.com/",
+            "https://www.gugudano.com/post/%EA%B0%95%EB%82%A8-%ED%92%80%EC%8B%B8%EB%A1%B1-%EA%B0%80%EA%B2%A9-%EB%B0%8F-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%99%84%EC%A0%84-%EC%A0%95%EB%B3%B5-%EA%B0%80%EC%9D%B4%EB%93%9C-2026-%EC%B5%9C%EC%8B%A0%ED%8C%90",
+            "https://gangnam-fullssa.com/",
+            "https://www.gnfull.net/"
+          ]
+        },
+        {
+          "keyword": "강남 하이퍼블릭",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://gangnamkaraokeroom.com/gangnam-hyperpublic-guide/",
+            "https://www.roompang.com/guide/gangnam-hyperpublic",
+            "https://gangnam-nightlife.co.kr/blog/0011.html",
+            "https://roomhubs.com/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD/",
+            "https://gangnamhub.club/"
+          ]
+        }
+      ]
+    },
+    {
+      "probed_at": "2026-06-19T00:25:59Z",
+      "target_domain": "gangara.co.kr",
+      "provider": "duckduckgo_lite",
+      "keywords_probed": 3,
+      "in_top10_count": 0,
+      "results": [
+        {
+          "keyword": "강남 가라오케",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://karaokeplan.com/",
+            "https://www.theperfectkaraoke.com/",
+            "https://www.karaokegangnam.net/",
+            "https://seoulafterdark.com/gangnam-karaoke-guide-2026/",
+            "https://gangnam-garaoke.com/"
+          ]
+        },
+        {
+          "keyword": "강남 풀싸롱",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://www.gangnamfullssalong.com/",
+            "https://www.levelhotelsalon.com/",
+            "https://gangnam-fullssa.com/",
+            "https://www.gugudano.com/post/%EA%B0%95%EB%82%A8-%ED%92%80%EC%8B%B8%EB%A1%B1-%EA%B0%80%EA%B2%A9-%EB%B0%8F-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%99%84%EC%A0%84-%EC%A0%95%EB%B3%B5-%EA%B0%80%EC%9D%B4%EB%93%9C-2026-%EC%B5%9C%EC%8B%A0%ED%8C%90",
+            "https://www.fullssawara.com/"
+          ]
+        },
+        {
+          "keyword": "강남 하이퍼블릭",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://gangnamkaraokeroom.com/gangnam-hyperpublic-guide/",
+            "https://www.roompang.com/guide/gangnam-hyperpublic",
+            "https://gangnam-nightlife.co.kr/blog/0011.html",
+            "https://roomhubs.com/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD/",
+            "https://gangnamhub.club/"
+          ]
+        }
+      ]
+    },
+    {
+      "probed_at": "2026-06-19T00:27:41Z",
+      "target_domain": "gangara.co.kr",
+      "provider": "duckduckgo_lite",
+      "keywords_probed": 3,
+      "in_top10_count": 0,
+      "results": [
+        {
+          "keyword": "강남 가라오케",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://karaokeplan.com/",
+            "https://www.theperfectkaraoke.com/",
+            "https://www.karaokegangnam.net/",
+            "https://seoulafterdark.com/gangnam-karaoke-guide-2026/",
+            "https://gangnam-garaoke.com/"
+          ]
+        },
+        {
+          "keyword": "강남 풀싸롱",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://www.gangnamfullssalong.com/",
+            "https://www.levelhotelsalon.com/",
+            "https://gangnam-fullssa.com/",
+            "https://gangnamroomsalon.org/",
+            "https://www.gugudano.com/post/%EA%B0%95%EB%82%A8-%ED%92%80%EC%8B%B8%EB%A1%B1-%EA%B0%80%EA%B2%A9-%EB%B0%8F-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%99%84%EC%A0%84-%EC%A0%95%EB%B3%B5-%EA%B0%80%EC%9D%B4%EB%93%9C-2026-%EC%B5%9C%EC%8B%A0%ED%8C%90"
+          ]
+        },
+        {
+          "keyword": "강남 하이퍼블릭",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://gangnamkaraokeroom.com/gangnam-hyperpublic-guide/",
+            "https://www.roompang.com/guide/gangnam-hyperpublic",
+            "https://gangnam-nightlife.co.kr/blog/0011.html",
+            "https://roomhubs.com/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD/",
+            "https://gangnam-highpublic.com/"
+          ]
+        }
+      ]
+    },
+    {
+      "probed_at": "2026-06-19T00:29:25Z",
+      "target_domain": "gangara.co.kr",
+      "provider": "duckduckgo_lite",
+      "keywords_probed": 3,
+      "in_top10_count": 0,
+      "results": [
+        {
+          "keyword": "강남 가라오케",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://www.karaokegangnam.net/",
+            "https://karaokeplan.com/",
+            "https://www.theperfectkaraoke.com/",
+            "https://seoulafterdark.com/gangnam-karaoke-guide-2026/",
+            "https://gangnam-garaoke.com/"
+          ]
+        },
+        {
+          "keyword": "강남 풀싸롱",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://www.gangnamfullssalong.com/",
+            "https://www.levelhotelsalon.com/",
+            "https://gangnam-fullssa.com/",
+            "https://www.gugudano.com/post/%EA%B0%95%EB%82%A8-%ED%92%80%EC%8B%B8%EB%A1%B1-%EA%B0%80%EA%B2%A9-%EB%B0%8F-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%99%84%EC%A0%84-%EC%A0%95%EB%B3%B5-%EA%B0%80%EC%9D%B4%EB%93%9C-2026-%EC%B5%9C%EC%8B%A0%ED%8C%90",
+            "https://www.fullssawara.com/"
+          ]
+        },
+        {
+          "keyword": "강남 하이퍼블릭",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://gangnamkaraokeroom.com/gangnam-hyperpublic-guide/",
+            "https://www.roompang.com/guide/gangnam-hyperpublic",
+            "https://gangnam-nightlife.co.kr/blog/0011.html",
+            "https://roomhubs.com/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD/",
+            "https://gangnamhub.club/"
+          ]
+        }
+      ]
+    },
+    {
+      "probed_at": "2026-06-19T00:30:44Z",
+      "target_domain": "gangara.co.kr",
+      "provider": "duckduckgo_lite",
+      "keywords_probed": 3,
+      "in_top10_count": 0,
+      "results": [
+        {
+          "keyword": "강남 가라오케",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://karaokeplan.com/",
+            "https://www.theperfectkaraoke.com/",
+            "https://www.gangnamkaraoke.org/",
+            "https://www.karaokegangnam.net/",
+            "https://seoulafterdark.com/gangnam-karaoke-guide-2026/"
+          ]
+        },
+        {
+          "keyword": "강남 풀싸롱",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://www.gangnamfullssalong.com/",
+            "https://www.levelhotelsalon.com/",
+            "https://www.gugudano.com/post/%EA%B0%95%EB%82%A8-%ED%92%80%EC%8B%B8%EB%A1%B1-%EA%B0%80%EA%B2%A9-%EB%B0%8F-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%99%84%EC%A0%84-%EC%A0%95%EB%B3%B5-%EA%B0%80%EC%9D%B4%EB%93%9C-2026-%EC%B5%9C%EC%8B%A0%ED%8C%90",
+            "https://gangnam-fullssa.com/",
+            "https://www.fullssawara.com/"
+          ]
+        },
+        {
+          "keyword": "강남 하이퍼블릭",
+          "rank": null,
+          "in_top10": false,
+          "in_top30": false,
+          "sample_urls": [
+            "https://gangnamkaraokeroom.com/gangnam-hyperpublic-guide/",
+            "https://www.roompang.com/guide/gangnam-hyperpublic",
+            "https://gangnam-nightlife.co.kr/blog/0011.html",
+            "https://gangnam-highpublic.com/",
+            "https://roomhubs.com/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD/"
+          ]
+        }
+      ]
     }
   ],
   "last_probe": {
-    "probed_at": "2026-06-18T23:53:19Z",
+    "probed_at": "2026-06-19T00:30:44Z",
     "target_domain": "gangara.co.kr",
     "provider": "duckduckgo_lite",
     "keywords_probed": 3,
@@ -586,11 +874,11 @@
         "in_top10": false,
         "in_top30": false,
         "sample_urls": [
-          "https://www.karaokegangnam.net/",
           "https://karaokeplan.com/",
           "https://www.theperfectkaraoke.com/",
-          "https://seoulafterdark.com/gangnam-karaoke-guide-2026/",
-          "https://gangnam-garaoke.com/"
+          "https://www.gangnamkaraoke.org/",
+          "https://www.karaokegangnam.net/",
+          "https://seoulafterdark.com/gangnam-karaoke-guide-2026/"
         ]
       },
       {
@@ -601,8 +889,8 @@
         "sample_urls": [
           "https://www.gangnamfullssalong.com/",
           "https://www.levelhotelsalon.com/",
-          "https://gangnam-fullssa.com/",
           "https://www.gugudano.com/post/%EA%B0%95%EB%82%A8-%ED%92%80%EC%8B%B8%EB%A1%B1-%EA%B0%80%EA%B2%A9-%EB%B0%8F-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%99%84%EC%A0%84-%EC%A0%95%EB%B3%B5-%EA%B0%80%EC%9D%B4%EB%93%9C-2026-%EC%B5%9C%EC%8B%A0%ED%8C%90",
+          "https://gangnam-fullssa.com/",
           "https://www.fullssawara.com/"
         ]
       },
@@ -613,10 +901,10 @@
         "in_top30": false,
         "sample_urls": [
           "https://gangnamkaraokeroom.com/gangnam-hyperpublic-guide/",
-          "https://gangnam-nightlife.co.kr/blog/0011.html",
           "https://www.roompang.com/guide/gangnam-hyperpublic",
-          "https://roomhubs.com/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD/",
-          "https://gangnamhyperpublic.com/"
+          "https://gangnam-nightlife.co.kr/blog/0011.html",
+          "https://gangnam-highpublic.com/",
+          "https://roomhubs.com/%EA%B0%95%EB%82%A8-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD/"
         ]
       }
     ]
@@ -780,7 +1068,7 @@
     ]
   },
   "learning_loop": {
-    "updated_at": "2026-06-18T23:54:33Z",
+    "updated_at": "2026-06-19T00:32:27Z",
     "cycle": 5,
     "hypothesis": {
       "primary": "backlink_quality_disavow_spam",
@@ -844,7 +1132,8 @@
       "spam_sample_ratio": 1.0
     },
     "goal_met": false,
-    "awaiting_pc_deploy": true
+    "awaiting_pc_deploy": true,
+    "last_cycle": 5
   },
   "learning_cycles": [
     {
@@ -929,6 +1218,114 @@
     {
       "cycle": 5,
       "at": "2026-06-18T23:54:33Z",
+      "hypothesis_id": "backlink_quality_disavow_spam",
+      "serp_in_top10": 0,
+      "rd_gap": 52.5,
+      "seeds_added": 1,
+      "deploy_queue": 18,
+      "patches": [
+        "gangara_experiment learning_loop",
+        "machine_config min_trait escalation"
+      ],
+      "ranks": {
+        "강남 가라오케": null,
+        "강남 풀싸롱": null,
+        "강남 하이퍼블릭": null
+      }
+    },
+    {
+      "cycle": 1,
+      "at": "2026-06-19T00:06:55Z",
+      "hypothesis_id": "backlink_quality_disavow_spam",
+      "serp_in_top10": 0,
+      "rd_gap": 52.5,
+      "seeds_added": 1,
+      "deploy_queue": 18,
+      "patches": [
+        "gangara_experiment learning_loop",
+        "machine_config min_trait escalation"
+      ],
+      "ranks": {
+        "강남 가라오케": null,
+        "강남 풀싸롱": null,
+        "강남 하이퍼블릭": null
+      }
+    },
+    {
+      "cycle": 1,
+      "at": "2026-06-19T00:25:51Z",
+      "hypothesis_id": "backlink_quality_disavow_spam",
+      "serp_in_top10": 0,
+      "rd_gap": 52.5,
+      "seeds_added": 1,
+      "deploy_queue": 18,
+      "patches": [
+        "gangara_experiment learning_loop",
+        "machine_config min_trait escalation"
+      ],
+      "ranks": {
+        "강남 가라오케": null,
+        "강남 풀싸롱": null,
+        "강남 하이퍼블릭": null
+      }
+    },
+    {
+      "cycle": 2,
+      "at": "2026-06-19T00:27:34Z",
+      "hypothesis_id": "backlink_quality_disavow_spam",
+      "serp_in_top10": 0,
+      "rd_gap": 52.5,
+      "seeds_added": 0,
+      "deploy_queue": 18,
+      "patches": [
+        "gangara_experiment learning_loop",
+        "machine_config min_trait escalation"
+      ],
+      "ranks": {
+        "강남 가라오케": null,
+        "강남 풀싸롱": null,
+        "강남 하이퍼블릭": null
+      }
+    },
+    {
+      "cycle": 3,
+      "at": "2026-06-19T00:29:18Z",
+      "hypothesis_id": "backlink_quality_disavow_spam",
+      "serp_in_top10": 0,
+      "rd_gap": 52.5,
+      "seeds_added": 1,
+      "deploy_queue": 18,
+      "patches": [
+        "gangara_experiment learning_loop",
+        "machine_config min_trait escalation"
+      ],
+      "ranks": {
+        "강남 가라오케": null,
+        "강남 풀싸롱": null,
+        "강남 하이퍼블릭": null
+      }
+    },
+    {
+      "cycle": 4,
+      "at": "2026-06-19T00:30:37Z",
+      "hypothesis_id": "backlink_quality_disavow_spam",
+      "serp_in_top10": 0,
+      "rd_gap": 52.5,
+      "seeds_added": 0,
+      "deploy_queue": 18,
+      "patches": [
+        "gangara_experiment learning_loop",
+        "machine_config min_trait escalation"
+      ],
+      "ranks": {
+        "강남 가라오케": null,
+        "강남 풀싸롱": null,
+        "강남 하이퍼블릭": null
+      }
+    },
+    {
+      "cycle": 5,
+      "at": "2026-06-19T00:32:27Z",
       "hypothesis_id": "backlink_quality_disavow_spam",
       "serp_in_top10": 0,
       "rd_gap": 52.5,

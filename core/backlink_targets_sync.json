@@ -1,31 +1,30 @@
 {
   "version": 1,
-  "updated_at": "2026-06-18T23:54:33Z",
+  "updated_at": "2026-06-19T00:32:27Z",
   "count": 30,
-  "pool_total": 88,
+  "pool_total": 92,
   "campaign_id": "gangara-experiment",
   "money_site": "https://gangara.co.kr/",
   "source": "gangara_experiment",
   "board_urls": 0,
   "keyword_coverage": {
-    "강남 가라오케": 11,
+    "강남 가라오케": 10,
     "강남 풀싸롱": 8,
-    "강남 하이퍼블릭": 9,
+    "강남 하이퍼블릭": 10,
     "강남 유흥": 1,
     "강남 클럽": 1
   },
   "pool_keyword_coverage": {
-    "강남 가라오케": 28,
-    "강남 풀싸롱": 24,
-    "강남 하이퍼블릭": 22,
+    "강남 가라오케": 29,
+    "강남 풀싸롱": 26,
+    "강남 하이퍼블릭": 23,
     "서울 가라오케": 4,
     "강남 유흥": 7,
     "강남 클럽": 3
   },
   "tier_distribution": {
     "S": 6,
-    "A": 23,
-    "B": 1
+    "A": 24
   },
   "table_rows": [
     {
@@ -407,6 +406,20 @@
       "serp_rank": 5
     },
     {
+      "target_keyword": "강남 하이퍼블릭",
+      "platform_type": "profile",
+      "tier_hint": "A",
+      "deploy_url": "https://gangnamharper.clickn.co.kr/",
+      "entry_url": "https://gangnamharper.clickn.co.kr/",
+      "money_url": "https://gangara.co.kr/gangnam-hyperbolic.html",
+      "anchor_text": "강남가라",
+      "dofollow_hint": true,
+      "write_captcha": false,
+      "signup_captcha": false,
+      "trait_score": 95,
+      "serp_rank": 5
+    },
+    {
       "target_keyword": "강남 유흥",
       "platform_type": "guide_hub",
       "tier_hint": "A",
@@ -426,26 +439,12 @@
       "tier_hint": "A",
       "deploy_url": "https://aceclub.co.kr/gangnam-club-guide/",
       "entry_url": "https://aceclub.co.kr/gangnam-club-guide/",
-      "money_url": "https://gangara.co.kr/",
-      "anchor_text": "강남가라",
-      "dofollow_hint": true,
-      "write_captcha": false,
-      "signup_captcha": false,
-      "trait_score": 100,
-      "serp_rank": 1
-    },
-    {
-      "target_keyword": "강남 가라오케",
-      "platform_type": "web2",
-      "tier_hint": "B",
-      "deploy_url": "https://www.safetyreport.go.kr/",
-      "entry_url": "https://www.safetyreport.go.kr/",
       "money_url": "https://gangara.co.kr//",
       "anchor_text": "gangara.co.kr",
       "dofollow_hint": true,
       "write_captcha": false,
       "signup_captcha": false,
-      "trait_score": 85,
+      "trait_score": 100,
       "serp_rank": 1
     }
   ]
